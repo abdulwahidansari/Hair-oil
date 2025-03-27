@@ -381,7 +381,7 @@ export default function Home() {
               Follow us on social media for more discount & promotions
             </Text>
             <Text size="xl" weight={500} family="poppins" color="gray">
-              @kupingplug_official
+              @coeleganceintl_official
             </Text>
           </div>
         </div>

@@ -74,9 +74,14 @@ const links: NavLinkProps[] = [
     ],
   },
   {
-    id: "product",
-    path: "/product",
-    name: "Product",
+    id: "about",
+    path: "/about",
+    name: "About Us",
+  },
+  {
+    id: "blog",
+    path: "/blog",
+    name: "Blog",
   },
   {
     id: "contact",

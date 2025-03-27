@@ -23,19 +23,19 @@ const Footer = () => {
           </div>
 
           <ul className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE]">
+            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE] hover:text-gray-300">
               <Link href="/">Home</Link>
             </li>
-            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE]">
-              <Link href="/">Shop</Link>
+            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE] hover:text-gray-300">
+              <Link href="/shop">Shop</Link>
             </li>
-            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE]">
-              <Link href="/">Product</Link>
+            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE] hover:text-gray-300">
+              <Link href="/about">About Us</Link>
             </li>
-            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE]">
-              <Link href="/">Blog</Link>
+            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE] hover:text-gray-300">
+              <Link href="/blog">Blog</Link>
             </li>
-            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE]">
+            <li className="text-center font-inter text-sm font-normal text-[#FEFEFE] hover:text-gray-300">
               <Link href="/contact">Contact Us</Link>
             </li>
           </ul>
@@ -77,15 +77,20 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-7 lg:order-1 lg:flex-row">
-            <div className="flex justify-center gap-7 lg:order-2">
-              <Link href="/refund">
+            <div className="flex flex-col gap-4 text-center sm:flex-row sm:justify-center sm:gap-7 lg:order-2">
+              <Link href="/refund" className="hover:text-gray-300">
                 <Text size="xs" weight={600} family="poppins" color="white/900">
                   Refund & Exchange Policy
                 </Text>
               </Link>
-              <Link href="/terms">
+              <Link href="/terms" className="hover:text-gray-300">
                 <Text size="xs" weight={600} family="poppins" color="white/900">
                   Terms of Service (Privacy Policy)
+                </Text>
+              </Link>
+              <Link href="/sitemap" className="hover:text-gray-300">
+                <Text size="xs" weight={600} family="poppins" color="white/900">
+                  Sitemap
                 </Text>
               </Link>
             </div>
@@ -96,7 +101,7 @@ const Footer = () => {
               color="white/800"
               className="text-center lg:order-1 lg:text-left"
             >
-              Copyright © 2023 Kupingplug. All rights reserved
+              Copyright © 2024 Coeleganceintl. All rights reserved
             </Text>
           </div>
         </div>

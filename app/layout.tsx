@@ -21,8 +21,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kupingplug - Sumpel kuping untuk anda dan keluarga",
-  description: "Kupingplug - Sumpel kuping untuk anda dan keluarga",
+  title: "Coeleganceintl - Premium Audio Equipment Store",
+  description: "Coeleganceintl - Your destination for high-quality headphones and audio equipment",
 };
 
 export default function RootLayout({
