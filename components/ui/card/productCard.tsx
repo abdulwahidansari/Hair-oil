@@ -187,12 +187,17 @@ type RatingsProps = {
 const Ratings: React.FC<RatingsProps> = memo(({ className }) => {
   const { data } = useProductCardContext();
   
+  const stars = useMemo(() => {
+    if (!data?.rating) {
+      return [];
+    }
+    return formatRating(data.rating);
+  }, [data?.rating]);
+
   if (!data?.rating) {
     console.error("Rating data is missing in ProductCard context");
     return null;
   }
-
-  const stars = useMemo(() => formatRating(data.rating), [data.rating]);
 
   return (
     <div className="flex gap-0.5">
@@ -234,12 +239,17 @@ type PriceProps = Omit<TextProps, "children">;
 const Price: React.FC<PriceProps> = memo(({ className, ...props }) => {
   const { data } = useProductCardContext();
 
+  const formattedPrice = useMemo(() => {
+    if (!data?.price) {
+      return "";
+    }
+    return formatCurrency(data.price);
+  }, [data?.price]);
+
   if (!data?.price) {
     console.error("Price data is missing in ProductCard context");
     return null;
   }
-
-  const formattedPrice = useMemo(() => formatCurrency(data.price), [data.price]);
 
   return (
     <Text

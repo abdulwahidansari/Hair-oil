@@ -47,7 +47,7 @@ const RefundPolicy = () => {
                   </p>
                 </div>
                 <p className="font-semibold text-gray-900">
-                  No product/item ordered online can be exchanged at any of Saeed Ghani's retail stores.
+                  No product/item ordered online can be exchanged at any of Saeed Ghani&apos;s retail stores.
                 </p>
               </div>
             </section>
@@ -57,7 +57,7 @@ const RefundPolicy = () => {
               <h2 className="text-2xl font-bold text-gray-900">What if there is a defect in the order received, how should I inform you?</h2>
               <div className="space-y-4">
                 <p>
-                  In case of a defective item being delivered anywhere in Pakistan, Saeed Ghani will have our courier partner pick the defected item in packed form. Pickup timings and date will be notified to the customer in advance. The pick-up timings will be notified beforehand. However, photographic evidence of the product received, picture of the invoice and our courier's airway bill will be required through email on the customer service email id or WhatsApp. Upon receipt, Saeed Ghani shall issue a replacement against the product mentioned in the Invoice.
+                  In case of a defective item being delivered anywhere in Pakistan, Saeed Ghani will have our courier partner pick the defected item in packed form. Pickup timings and date will be notified to the customer in advance. The pick-up timings will be notified beforehand. However, photographic evidence of the product received, picture of the invoice and our courier&apos;s airway bill will be required through email on the customer service email id or WhatsApp. Upon receipt, Saeed Ghani shall issue a replacement against the product mentioned in the Invoice.
                 </p>
                 <p className="font-semibold text-gray-900">
                   Important: The complaint escalation period is only within a day that is 24 hours after the product is received by the customer. No complain after the stated time frame will be facilitated.

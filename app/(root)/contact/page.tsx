@@ -54,7 +54,7 @@ const ContactUs = () => {
         <div className="mb-12 text-center">
           <h1 className="mb-2 text-4xl font-bold text-gray-900">DROP US A QUERY</h1>
           <p className="text-gray-600">
-            We're here to quickly provide you with the info and services you need & answer any question you may have
+            We&apos;re here to quickly provide you with the info and services you need & answer any question you may have
           </p>
         </div>
 
@@ -62,7 +62,7 @@ const ContactUs = () => {
           {/* Contact Form */}
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-gray-900">SEND US AN EMAIL:</h2>
-            <p className="text-gray-600">ASK US ANYTHING! WE'LL GET BACK TO YOU WITHIN 24-48 HOURS.</p>
+            <p className="text-gray-600">ASK US ANYTHING! WE&apos;LL GET BACK TO YOU WITHIN 24-48 HOURS.</p>
 
             {submitStatus.type && (
               <div
@@ -177,7 +177,7 @@ const ContactUs = () => {
 
               <div>
                 <p className="text-gray-600">
-                  IF WE AREN'T AVAILABLE, DROP US AN EMAIL AND WE'LL RESPOND WITHIN 24-48 HOURS
+                  IF WE AREN&apos;T AVAILABLE, DROP US AN EMAIL AND WE&apos;LL RESPOND WITHIN 24-48 HOURS
                 </p>
               </div>
 
