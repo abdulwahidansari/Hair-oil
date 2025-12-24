@@ -34,11 +34,11 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
           <div className="space-y-2 text-center lg:text-left">
             <Heading as="h1" intent="hero-section">
-              Listen to the <span className="text-[#377DFF]">amazing</span>{" "}
-              music sound.
+              Healthy hair <br /><span className="text-[#377DFF]">starts</span>{" "}
+              with <br /> care.
             </Heading>
             <Text className="md:text-lg lg:text-xl">
-              Experience music like never before
+              From root to tip refined care
             </Text>
           </div>
           <Button fontSize="sm" className="px-14 py-3 md:text-lg">
@@ -198,99 +198,18 @@ export default function Home() {
         </div>
       </SectionLayout>
 
-      {/* Promotion section */}
-      <div className="grid overflow-hidden md:grid-cols-2 lg:h-full lg:max-h-[500px] lg:place-items-center">
-        <div className="w-full justify-end bg-gray-400 md:flex">
-          <Image
-            src="/images/promotion-card.png"
-            width={1250}
-            height={1080}
-            alt="promotion-card"
-            className="h-auto w-full object-cover lg:w-[460px]"
-          />
-        </div>
-
-        <div className="order-1 w-full bg-[#ffdd99] md:order-2">
-          <div className="w-full max-w-[720px] space-y-6 p-8">
-            <div className="space-y-4">
-              <Text weight={700} transform="uppercase" color="blue">
-                promotion
-              </Text>
-              <Heading as="h2" intent="base-section">
-                Hurry up! 40% OFF
-              </Heading>
-              <Text size="sm">Thousands of high tech are waiting for you</Text>
-            </div>
-            <div className="space-y-3">
-              <Text>Offer expires in:</Text>
-              <div className="flex gap-4">
-                <div className="w-fit">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center bg-white">
-                    <Text
-                      size="3xl"
-                      weight={500}
-                      family="poppins"
-                      color="black/800"
-                    >
-                      02
-                    </Text>
-                  </div>
-                  <Text size="xs" color="black/800" className="text-center">
-                    Days
-                  </Text>
-                </div>
-                <div className="w-fit">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center bg-white">
-                    <Text
-                      size="3xl"
-                      weight={500}
-                      family="poppins"
-                      color="black/800"
-                    >
-                      12
-                    </Text>
-                  </div>
-                  <Text size="xs" color="black/800" className="text-center">
-                    Hours
-                  </Text>
-                </div>
-                <div className="w-fit">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center bg-white">
-                    <Text
-                      size="3xl"
-                      weight={500}
-                      family="poppins"
-                      color="black/800"
-                    >
-                      45
-                    </Text>
-                  </div>
-                  <Text size="xs" color="black/800" className="text-center">
-                    Minutes
-                  </Text>
-                </div>
-                <div className="w-fit">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center bg-white">
-                    <Text
-                      size="3xl"
-                      weight={500}
-                      family="poppins"
-                      color="black/800"
-                    >
-                      05
-                    </Text>
-                  </div>
-                  <Text size="xs" color="black/800" className="text-center">
-                    Seconds
-                  </Text>
-                </div>
-              </div>
-            </div>
-            <Button fontSize="sm" className="py-1.5 md:text-base">
-              Shop now
-            </Button>
-          </div>
-        </div>
+      {/* Video section */}
+      <div className="relative w-full">
+        <video
+          src="/vedio/1.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-auto w-full object-cover"
+        >
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       {/* Features section */}
