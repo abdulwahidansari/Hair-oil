@@ -7,7 +7,7 @@ import Text from "@/ui/text";
 import Button from "@/ui/button";
 
 // form
-import Input from "@/form/input";
+import Input from "@/app/form/input";
 
 // lib
 import { cn } from "@/lib/utils";
