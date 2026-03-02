@@ -10,7 +10,7 @@ export default function AboutUsPage() {
           About Us
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-gray-600">
-          We are passionate about delivering high-quality audio experiences through our carefully curated selection of headphones and audio equipment.
+          We are passionate about delivering high-quality organic hair care through our carefully crafted herbal hair oil, blending natural ingredients for healthier, stronger hair.
         </p>
       </section>
 
@@ -27,16 +27,16 @@ export default function AboutUsPage() {
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">Our Mission</h2>
           <p className="text-gray-600">
-            Our mission is to provide audio enthusiasts with the finest selection of headphones and audio equipment. We believe that everyone deserves to experience music in its purest form, which is why we carefully curate our products to ensure the highest quality and performance.
+            Our mission is to provide everyone with access to pure, organic hair care. We believe that healthy hair starts with natural ingredients—rosemary, onion, black seed, and botanical oils—which is why we carefully craft our formulations to nourish roots, reduce hair fall, and support natural growth.
           </p>
           <ul className="space-y-4 text-gray-600">
             <li className="flex items-start">
               <span className="mr-2 text-xl">•</span>
-              Delivering exceptional audio quality
+              Using only organic, natural ingredients
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-xl">•</span>
-              Providing expert guidance and support
+              Providing expert guidance on hair care
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-xl">•</span>
@@ -55,15 +55,15 @@ export default function AboutUsPage() {
           {[
             {
               title: "Quality",
-              description: "We only offer products that meet our high standards for audio excellence.",
+              description: "We only offer products that meet our high standards for organic, natural hair care.",
             },
             {
-              title: "Innovation",
-              description: "We stay at the forefront of audio technology to bring you the latest advancements.",
+              title: "Natural Ingredients",
+              description: "We use rosemary, onion, black seed and botanical oils—ingredients proven to support healthy hair growth.",
             },
             {
               title: "Customer Focus",
-              description: "Your satisfaction is our top priority, and we're here to help you find the perfect audio solution.",
+              description: "Your satisfaction is our top priority, and we're here to help you achieve healthier, stronger hair.",
             },
           ].map((value, index) => (
             <div
@@ -91,7 +91,7 @@ export default function AboutUsPage() {
             },
             {
               name: "Sarah Johnson",
-              role: "Audio Specialist",
+              role: "Product Specialist",
               image: "/images/about/team2.jpg",
             },
             {
@@ -123,9 +123,9 @@ export default function AboutUsPage() {
 
       {/* CTA Section */}
       <section className="rounded-lg bg-gray-900 px-6 py-12 text-center text-white md:px-12">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Ready to Experience Premium Audio?</h2>
+        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Ready for Healthier Hair?</h2>
         <p className="mb-8 text-gray-300">
-          Explore our collection of high-quality headphones and audio equipment.
+          Explore our organic herbal hair oil and start your journey to stronger, healthier hair.
         </p>
         <Link
           href="/shop"

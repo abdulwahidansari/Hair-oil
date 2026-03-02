@@ -43,7 +43,7 @@ const ContactUs = () => {
   };
 
   const handleEmailUsClick = () => {
-    const email = "customercare@saeedghani1888.com";
+    const email = "coeleganceintl@gmail.com";
     window.location.href = `mailto:${email}`;
   };
 
@@ -160,18 +160,18 @@ const ContactUs = () => {
             <div className="space-y-4">
               <div>
                 <p className="font-medium text-gray-700">Phone:</p>
-                <a href="tel:0213130284" className="text-gray-600 hover:text-gray-900">
-                  0213/130284
+                <a href="tel:+922137170445" className="text-gray-600 hover:text-gray-900">
+                  +92 213 717 0445
                 </a>
               </div>
 
               <div>
                 <p className="font-medium text-gray-700">For customer queries:</p>
                 <a 
-                  href="mailto:customercare@saeedghani1888.com" 
+                  href="mailto:coeleganceintl@gmail.com" 
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  customercare@saeedghani1888.com
+                  coeleganceintl@gmail.com
                 </a>
               </div>
 
@@ -183,8 +183,8 @@ const ContactUs = () => {
 
               <div>
                 <p className="font-medium text-gray-700">OUR CUSTOMER SERVICE TEAM IS AVAILABLE</p>
-                <p className="text-gray-600">FROM 10 AM TO 5 PM</p>
-                <p className="text-gray-600">MONDAY - SATURDAY</p>
+                <p className="text-gray-600">Mon - Sat: 9:30am - 10:00pm</p>
+                <p className="text-gray-600">Sun: 11am - 8pm</p>
               </div>
 
               <div>
@@ -206,10 +206,10 @@ const ContactUs = () => {
               <div>
                 <p className="font-medium text-gray-700">Email:</p>
                 <a 
-                  href="mailto:corporate@saeedghani1888.com" 
+                  href="mailto:coeleganceintl@gmail.com?subject=CORPORATE" 
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  corporate@saeedghani1888.com
+                  coeleganceintl@gmail.com (Subject: CORPORATE)
                 </a>
               </div>
             </div>

@@ -494,3 +494,58 @@ export const YoutubeIcon: React.FC<SVGComponentProps> = ({
     </svg>
   );
 };
+
+export const PinterestIcon: React.FC<SVGComponentProps> = ({
+  stroke,
+  className,
+}) => {
+  return (
+    <svg
+      className={cn(className)}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        stroke={cn(stroke ? stroke : "#141718")}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M11.5 16L12 13.75M12 13.75C13.3807 13.75 14.5 12.7426 14.5 11.5C14.5 10.2574 13.6193 9.25 12.2386 9.25H11.7614C10.3807 9.25 9.5 10.2574 9.5 11.5C9.5 12.3203 9.96005 12.9831 10.6775 13.2386L10.5 14.25"
+        stroke={cn(stroke ? stroke : "#141718")}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const TikTokIcon: React.FC<SVGComponentProps> = ({
+  stroke,
+  className,
+}) => {
+  return (
+    <svg
+      className={cn(className)}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 9.5V15C10 16.3807 11.1193 17.5 12.5 17.5C13.8807 17.5 15 16.3807 15 15V12.5C15.6523 13.0411 16.4683 13.375 17.25 13.375V11.75C17.25 11.75 16.25 11.7077 15.5956 11.1311C14.8711 10.4933 14.75 9.75 14.75 9.75H13V9.5C13 8.39543 12.1046 7.5 11 7.5C9.89543 7.5 9 8.39543 9 9.5C9 10.6046 9.89543 11.5 11 11.5"
+        stroke={cn(stroke ? stroke : "#141718")}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
