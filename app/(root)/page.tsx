@@ -19,19 +19,23 @@ import {
 
 const testimonials = [
   {
-    quote: `I've never felt better about my hair. CoElegance delivers on its promise of organic, effective hair care. My hair feels softer and looks fuller!`,
-    author: "Mark Alice",
-    location: "New York",
+    quote: `I've never felt better about the products I use on my skin. Purad'or delivers on its promise of organic, effective skincare. My skin is glowing!`,
+    author: "Bisma Khan",
+    location: "Karachi",
+  }, {
+    quote: `My hair fall reduced within weeks and feels thicker at the roots. CoElegance is now a permanent part of my night routine.`,
+    author: "Ayesha Khan",
+    location: "Karachi",
   },
   {
-    quote: `Gentle, effective, and truly organic. I recommend CoElegance to everyone who cares about what they put on their hair and scalp.`,
-    author: "Sarah Chen",
-    location: "California",
+    quote: `I love that it&apos;s herbal and still lightweight. My scalp feels calm and my hair looks healthier without feeling greasy.`,
+    author: "Sara Malik",
+    location: "Lahore",
   },
   {
-    quote: `Finally, skincare that works without the chemicals. My complexion has never looked or felt better.`,
-    author: "James Miller",
-    location: "Texas",
+    quote: `After using CoElegance regularly, my hair feels stronger and breakage has visibly reduced. Highly recommend for damaged hair.`,
+    author: "Hamza Ali",
+    location: "Islamabad",
   },
 ];
 
@@ -64,28 +68,19 @@ export default function Home() {
         className="flex flex-col items-center justify-between lg:grid lg:grid-cols-2 lg:pt-8"
       >
         {/* Text content */}
-        <div className="flex flex-col items-center gap-6 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
-          <div className="space-y-3 text-center lg:text-left">
+        <div className="flex flex-col items-center gap-4 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
+          <div className="space-y-2 text-center lg:text-left">
             <Heading as="h1" intent="hero-section">
-              Healthy hair <br />
-              <span className="text-[#377DFF]">starts</span> with <br />
-              CoElegance.
+              Healthy hair <br /><span className="text-[#377DFF]">starts</span>{" "}
+              with <br /> care.
             </Heading>
             <Text className="md:text-lg lg:text-xl">
-              Nourishing organic herbal hair oil for stronger, shinier, fuller-looking
-              hair—powered by rosemary, onion, and black seed.
+              From root to tip refined care
             </Text>
           </div>
-          <div className="flex flex-col items-center gap-3 lg:flex-row">
-            <Link href="/shop">
-              <Button fontSize="sm" className="px-14 py-3 md:text-lg">
-                Shop Hair Oil
-              </Button>
-            </Link>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-black/70">
-              100% Herbal · No Sulfates · Made in Pakistan
-            </p>
-          </div>
+          <Button fontSize="sm" className="px-14 py-3 md:text-lg">
+            Shopping Now
+          </Button>
         </div>
 
         {/* Image content */}
@@ -106,7 +101,7 @@ export default function Home() {
           <div className="max-w-3xl space-y-4 text-center">
             <div className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-[#c7994b]">
               <span className="h-px w-8 bg-[#e3cfa4]" />
-              <span>Organic Hair Care</span>
+              <span>Organic</span>
               <span className="h-px w-8 bg-[#e3cfa4]" />
             </div>
 
@@ -115,17 +110,18 @@ export default function Home() {
               intent="base-section"
               className="text-3xl leading-tight text-[#21411f] md:text-4xl lg:text-5xl"
             >
-              Why Choose Organic Hair Oil
+              Why Choose Organic
             </Heading>
 
             <Text
               size="sm"
               className="mx-auto max-w-2xl text-sm leading-relaxed text-[#5b6b5a] md:text-base"
             >
-              At CoElegance, we believe hair care should be gentle, effective, and
-              rooted in nature. Our organic herbal hair oil blends ingredients like
-              rosemary, onion, and black seed to nourish the scalp, reduce hair fall,
-              and support healthy growth—without harsh chemicals or heavy build-up.
+              At purad&apos;or, we believe that skincare should be more than
+              just a routine—it should be a transformative experience. Our
+              journey began with a simple yet profound realization: the power of
+              natural ingredients to nourish, heal, and rejuvenate the skin is
+              unparalleled. With this vision in mind.
             </Text>
           </div>
 
@@ -137,7 +133,7 @@ export default function Home() {
                 transform="uppercase"
                 className="tracking-[0.2em] text-[#c7994b]"
               >
-                Nature&apos;s Hair Secret
+                Nature&apos;s Beauty Secret
               </Text>
               <Heading
                 as="h3"
@@ -150,10 +146,11 @@ export default function Home() {
                 size="sm"
                 className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base lg:ml-auto"
               >
-                Our commitment to organic beauty is rooted in the belief that nature
-                provides the best ingredients for strong, shiny hair. We carefully
-                source our botanicals and oils, creating formulations that are free
-                from sulfates, parabens, mineral oils, and synthetic fragrances.
+                Our commitment to organic beauty is rooted in the belief that
+                nature provides the best ingredients for healthy, radiant skin.
+                We carefully source our ingredients responsibly and ethically,
+                creating formulations that are free from harsh chemicals,
+                synthetic fragrances, and toxins.
               </Text>
             </div>
 
@@ -177,23 +174,23 @@ export default function Home() {
                   transform="uppercase"
                   className="tracking-[0.2em] text-[#c7994b]"
                 >
-                  Deep nourishment
+                  Nature&apos;s Beauty Secret
                 </Text>
                 <Heading
                   as="h3"
                   intent="base-section"
                   className="text-xl text-[#21411f] md:text-2xl"
                 >
-                  Scalp & Hair Nourishment
+                  Skin Nourishment
                 </Heading>
                 <Text
                   size="sm"
                   className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base"
                 >
-                  Each drop of CoElegance Organic Herbal Hair Oil is infused with
-                  nutrient-rich botanical extracts and essential oils that help
-                  revitalize the scalp, strengthen roots, and bring back natural
-                  shine. Healthy hair starts at the scalp—and we focus exactly there.
+                  Each product in our range is infused with nutrient-rich
+                  botanical extracts, essential oils, and herbal blends that
+                  replenish and restore your skin&apos;s natural balance. We
+                  believe that radiant skin begins with deep, authentic care.
                 </Text>
               </div>
 
@@ -218,10 +215,10 @@ export default function Home() {
                   className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base"
                 >
                   Our commitment to the environment goes hand in hand with our
-                  organic philosophy. We use mindful packaging, support sustainable
-                  sourcing, and minimize unnecessary waste. Beautiful hair
-                  shouldn&apos;t come at the planet&apos;s expense—and we&apos;re
-                  proud to do our part.
+                  organic philosophy. We use eco-friendly packaging, support
+                  sustainable sourcing, and minimize our carbon footprint.
+                  Beauty shouldn&apos;t harm the planet, and we&apos;re proud to
+                  do our part.
                 </Text>
               </div>
             </div>
@@ -245,14 +242,14 @@ export default function Home() {
               intent="base-section"
               className="font-serif text-3xl tracking-tight text-[#2d4a2a] md:text-4xl lg:text-5xl"
             >
-              Our Best Organic Hair Oil
+              Our Best Organic Products
             </Heading>
             <Text
               size="sm"
               className="text-sm leading-relaxed text-[#6b7280] md:text-base"
             >
-              Discover our signature organic herbal hair oil, crafted to support hair
-              growth, reduce breakage, and add natural shine with every use.
+              Discover our carefully curated selection of organic essentials
+              crafted for your wellness and daily care.
             </Text>
           </div>
 
@@ -274,17 +271,18 @@ export default function Home() {
               {/* Right: product details */}
               <div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
                 <h3 className="font-sans text-xl font-bold leading-tight text-[#2d4a2a] md:text-2xl lg:text-3xl">
-                  CoElegance Organic Herbal Hair Oil | 100% Natural Blend
+                  Organic Fractionated | Coconut Oil | 100% Pure
                 </h3>
                 <Text
                   size="sm"
                   className="mt-4 max-w-xl text-sm leading-relaxed text-[#6b7280] md:text-base"
                 >
-                  A lightweight yet powerful blend of herbal oils designed for daily
-                  use. CoElegance Organic Herbal Hair Oil absorbs quickly without
-                  leaving a greasy feel, helping to reduce hair fall, soothe dry
-                  scalp, and enhance shine. Use it as a pre-wash treatment or
-                  leave-in nourishment for visibly healthier hair over time.
+                  Fractionated Coconut Oil Organic: PURA D&apos;OR Organic
+                  Fractionated Coconut Oil (MCT Oil) is easily absorbed,
+                  non-greasy and scent-free. Our organic coconut oil with pump
+                  can be used as a moisturizer day or nighttime for extra skin
+                  protection. Our coconut oil is great for makeup removal or
+                  hydration of the skin after a shower and a long day.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/shop">
@@ -326,17 +324,6 @@ export default function Home() {
         >
           Your browser does not support the video tag.
         </video>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 flex items-end justify-center pb-10">
-          <div className="mx-4 max-w-3xl text-center text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
-              Real Results
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold md:text-3xl">
-              See the natural shine CoElegance brings to your hair.
-            </h2>
-          </div>
-        </div>
       </div>
 
       {/* Features section - 3 cards */}
@@ -357,7 +344,7 @@ export default function Home() {
               Secure Payments
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-                Encrypted & secure checkout
+              Secured by Striped
             </p>
           </div>
           <div className="flex flex-col items-center rounded-2xl bg-white px-8 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:py-12">
@@ -366,7 +353,7 @@ export default function Home() {
               24/7 Support
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-                Phone and email support
+              Phone and Email support
             </p>
           </div>
         </div>
