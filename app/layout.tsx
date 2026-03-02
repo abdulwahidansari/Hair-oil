@@ -29,16 +29,18 @@ const jsonLd = {
   "@type": "HealthAndBeautyBusiness",
   name: "CoElegance Organic Herbal Hair Oil",
   url: siteUrl,
-  telephone: "+92 213 130284",
+  telephone: "+923071123512",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Karachi",
     addressCountry: "PK",
   },
   sameAs: [
-    "https://www.facebook.com/Coeleganceintl/",
+    "https://www.facebook.com/profile.php?id=61587810810965",
     "https://www.instagram.com/coeleganceintl/",
     "https://www.youtube.com/@Coelegance",
+    "https://www.pinterest.com/coelegance/",
+    "https://www.tiktok.com/@coeleganceintl",
   ],
 };
 

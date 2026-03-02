@@ -12,26 +12,11 @@ const sitemapData = [
     ],
   },
   {
-    title: "Product Categories",
+    title: "Shop",
     links: [
-      { name: "All Categories", path: "/shop" },
-      { name: "Earphones", path: "/shop?category=earphones" },
-      { name: "Headsets", path: "/shop?category=headsets" },
-      { name: "Headphones", path: "/shop?category=headphones" },
-    ],
-  },
-  {
-    title: "Earphone Types",
-    links: [
-      { name: "Earbuds", path: "/shop?category=earphones&type=earbud" },
-      { name: "IEMs (In-Ear Monitors)", path: "/shop?category=earphones&type=iem" },
-    ],
-  },
-  {
-    title: "Headphone Types",
-    links: [
-      { name: "Bluetooth", path: "/shop?category=headphones&type=bluetooth" },
-      { name: "TWS", path: "/shop?category=headphones&type=tws" },
+      { name: "All Products", path: "/shop" },
+      { name: "Featured Hair Oil", path: "/shop" },
+      { name: "Track My Order", path: "/orders/track" },
     ],
   },
   {

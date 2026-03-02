@@ -40,26 +40,6 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const centerImages = [
-    "/images/main.png",
-    "/images/sumplekuping-2.png",
-    "/images/sumplekuping-4.png",
-  ];
-
-  const randomCenterImage =
-    centerImages[Math.floor(Math.random() * centerImages.length)];
-
-  const featuredProductImages = [
-    "/images/main.png",
-    "/images/sumplekuping-2.png",
-    "/images/sumplekuping-4.png",
-    "/images/sumplekuping-5.png",
-  ];
-  const randomFeaturedImage =
-    featuredProductImages[
-      Math.floor(Math.random() * featuredProductImages.length)
-    ];
-
   return (
     <>
       {/* Hero section */}
@@ -157,7 +137,7 @@ export default function Home() {
             <div className="flex justify-center">
               <div className="relative h-64 w-40 md:h-80 md:w-52 lg:h-96 lg:w-60">
                 <Image
-                  src={randomCenterImage}
+                  src="/images/bottel.png"
                   alt="Organic product"
                   fill
                   sizes="(min-width: 1024px) 240px, 200px"
@@ -248,8 +228,7 @@ export default function Home() {
               size="sm"
               className="text-sm leading-relaxed text-[#6b7280] md:text-base"
             >
-              Discover our carefully curated selection of organic essentials
-              crafted for your wellness and daily care.
+              Discover our carefully curated selection of organic essentials crafted for your wellness and daily care.
             </Text>
           </div>
 
@@ -259,7 +238,7 @@ export default function Home() {
               <div className="flex min-h-[280px] items-center justify-center bg-[#faf4e8] p-8 lg:min-h-0">
                 <div className="relative h-56 w-40 md:h-72 md:w-48 lg:h-80 lg:w-52">
                   <Image
-                    src={randomFeaturedImage}
+                    src="/images/bottel.png"
                     alt="Organic product"
                     fill
                     sizes="(min-width: 1024px) 208px, 192px"
@@ -271,18 +250,15 @@ export default function Home() {
               {/* Right: product details */}
               <div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
                 <h3 className="font-sans text-xl font-bold leading-tight text-[#2d4a2a] md:text-2xl lg:text-3xl">
-                  Organic Fractionated | Coconut Oil | 100% Pure
+                Organic Hair Oil | 100% Herbal Formula | For All Hair Types
                 </h3>
                 <Text
                   size="sm"
                   className="mt-4 max-w-xl text-sm leading-relaxed text-[#6b7280] md:text-base"
                 >
-                  Fractionated Coconut Oil Organic: PURA D&apos;OR Organic
-                  Fractionated Coconut Oil (MCT Oil) is easily absorbed,
-                  non-greasy and scent-free. Our organic coconut oil with pump
-                  can be used as a moisturizer day or nighttime for extra skin
-                  protection. Our coconut oil is great for makeup removal or
-                  hydration of the skin after a shower and a long day.
+                  CoElegance Organic Hair Oil is a powerful herbal blend formulated to strengthen hair roots, reduce hair fall, and support healthy growth. Made with nutrient-rich plant oils and botanical extracts, it helps prevent split ends while providing natural anti-dandruff care.
+
+Lightweight, deeply nourishing, and suitable for all hair types.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/shop">
