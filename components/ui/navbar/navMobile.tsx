@@ -26,7 +26,7 @@ const links = [
   },
   {
     id: "shop",
-    path: "/shop",
+    path: "/shipping",
     name: "Shop",
   },
   {

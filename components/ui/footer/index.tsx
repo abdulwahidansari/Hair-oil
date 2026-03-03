@@ -84,7 +84,7 @@ const Footer = () => {
               </Text>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/shop" className={linkClass}>
+                  <Link href="/shipping" className={linkClass}>
                     Shop
                   </Link>
                 </li>

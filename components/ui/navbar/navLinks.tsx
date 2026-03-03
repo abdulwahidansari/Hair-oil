@@ -17,7 +17,7 @@ const links: NavLinkProps[] = [
   },
   {
     id: "shop",
-    path: "/shop",
+    path: "/shipping",
     name: "Shop",
   },
   {

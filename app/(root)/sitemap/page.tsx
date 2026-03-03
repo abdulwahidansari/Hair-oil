@@ -5,17 +5,16 @@ const sitemapData = [
     title: "Main Pages",
     links: [
       { name: "Home", path: "/" },
-      { name: "Shop", path: "/shop" },
+      { name: "Shipping", path: "/shipping" },
       { name: "About Us", path: "/about" },
       { name: "Blog", path: "/blog" },
       { name: "Contact Us", path: "/contact" },
     ],
   },
   {
-    title: "Shop",
+    title: "Shipping",
     links: [
-      { name: "All Products", path: "/shop" },
-      { name: "Featured Hair Oil", path: "/shop" },
+      { name: "Order Page", path: "/shipping" },
       { name: "Track My Order", path: "/orders/track" },
     ],
   },

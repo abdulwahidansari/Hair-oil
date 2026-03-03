@@ -40,7 +40,7 @@ export default function PromoSection() {
               )}
             >
               30% off storewide — Limited time!
-              <Link href="/shop">
+              <Link href="/shipping">
                 <span
                   className={cn(
                     "hidden items-center gap-1 border-b font-medium md:flex",

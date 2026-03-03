@@ -1,141 +1,421 @@
+"use client";
+
 // package
-import { ChevronLeft, MapPin } from "lucide-react";
+import Image from "next/image";
+import { useState, FormEvent } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
 
 // ui
-import { DiscountIcon } from "@/ui/assets/svg";
-import PaymentMethod from "@/app/(subroot)/checkout/checkoutPaymentMethod";
-import CheckoutOrders from "@/app/(subroot)/checkout/checkoutOrders";
+import Text from "@/ui/text";
+import Heading from "@/ui/head";
+
+const BASE_PRODUCT = {
+  name: "CoElegance Organic Herbal Hair Oil",
+  variant: "1 Bottle",
+  price: 2000,
+  compareAtPrice: 2999,
+  image: "/images/bottel.png",
+};
+
+const formatCurrency = (value: number) =>
+  `Rs ${value.toLocaleString("en-PK")}.00`;
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const packSizeParam = Number(searchParams.get("packSize") || "1");
+  const quantityParam = Number(searchParams.get("quantity") || "1");
+
+  const packSize =
+    !Number.isFinite(packSizeParam) || packSizeParam < 1 || packSizeParam > 4
+      ? 1
+      : packSizeParam;
+  const quantity =
+    !Number.isFinite(quantityParam) || quantityParam < 1 || quantityParam > 20
+      ? 1
+      : quantityParam;
+
+  const totalBottles = packSize * quantity;
+
+  const subtotal = BASE_PRODUCT.price * totalBottles;
+  const savingsPerUnit = BASE_PRODUCT.compareAtPrice - BASE_PRODUCT.price;
+  const totalSavings = savingsPerUnit * totalBottles;
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formTouched, setFormTouched] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+
+    const formData = new FormData(form);
+    const nextErrors: Record<string, string> = {};
+
+    const requiredFields = [
+      "contactEmail",
+      "firstName",
+      "lastName",
+      "address",
+      "city",
+      "phone",
+    ];
+
+    requiredFields.forEach((field) => {
+      const value = (formData.get(field) || "").toString().trim();
+      if (!value) {
+        nextErrors[field] = "This field is required.";
+      }
+    });
+
+    const email = (formData.get("contactEmail") || "").toString().trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      nextErrors["contactEmail"] = "Enter a valid email address.";
+    }
+
+    setErrors(nextErrors);
+    setFormTouched(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
+
+    const productPayload = {
+      name: BASE_PRODUCT.name,
+      variant: `${packSize} Bottle${packSize > 1 ? "s" : ""}`,
+      packSize,
+      quantity,
+      totalBottles,
+    };
+
+    const payload = {
+      contactEmail: formData.get("contactEmail") || "",
+      firstName: formData.get("firstName") || "",
+      lastName: formData.get("lastName") || "",
+      address: formData.get("address") || "",
+      apartment: formData.get("apartment") || "",
+      city: formData.get("city") || "",
+      postalCode: formData.get("postalCode") || "",
+      phone: formData.get("phone") || "",
+      product: productPayload,
+      pricing: {
+        unitPrice: formatCurrency(BASE_PRODUCT.price),
+        subtotal: formatCurrency(subtotal),
+        shipping: "FREE",
+        savings: totalSavings > 0 ? formatCurrency(totalSavings) : "Rs 0.00",
+        total: `PKR ${subtotal.toLocaleString("en-PK")}`,
+      },
+    };
+
+    setSubmitting(true);
+
+    fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || "Failed to place order.");
+        }
+        setSubmitSuccess(true);
+        // Redirect to thank you page so user sees clear confirmation.
+        router.push("/thank-you");
+      })
+      .catch((err: any) => {
+        setSubmitError(
+          err?.message || "Something went wrong while sending your order.",
+        );
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+  };
+
   return (
-    <SectionLayout className="relative px-8 py-20">
-      <div className="absolute left-8 top-4 inline-flex items-center gap-1 align-baseline lg:hidden">
-        <ChevronLeft stroke="#605F5F" className="h-3 w-3" />
-        <p className="font-inter text-sm font-medium text-[#605F5F]">back</p>
-      </div>
-
-      <div className="space-y-6 pb-20 lg:space-y-10">
-        <h1 className="text-center font-poppins text-[40px] font-medium text-[#141718]">
-          Check Out
-        </h1>
-        <div className="flex items-center justify-center gap-4 align-baseline">
-          <p className="relative line-clamp-1 pr-4 font-inter text-sm font-medium text-[#38CB89] before:absolute before:right-0 before:content-['/']">
-            <span className="mr-2 hidden h-6 w-6 items-center justify-center rounded-full bg-[#38CB89] font-inter text-xs text-white md:inline-flex">
-              1
-            </span>
-            Shopping cart
-          </p>
-          <p className="relative min-w-max pr-4 font-inter text-sm font-normal text-[#141718] before:absolute before:right-0 before:content-['/']">
-            <span className="mr-2 hidden h-6 w-6 items-center justify-center rounded-full bg-[#141718] font-inter text-xs text-white md:inline-flex">
-              2
-            </span>
-            Checkout details
-          </p>
-          <p className="relative line-clamp-1 pr-4 font-inter text-sm font-normal text-[#605F5F] before:absolute before:right-0 before:content-['/'] last:before:content-['']">
-            <span className="mr-2 hidden h-6 w-6 items-center justify-center rounded-full bg-[#605F5F] font-inter text-xs text-white md:inline-flex">
-              3
-            </span>
-            Order complete
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-y-6 lg:grid-cols-[2fr_1fr] lg:gap-x-8 xl:gap-x-16">
-        <div className="space-y-6">
-          <div className="space-y-6 rounded-md border border-[#6C7275] p-6">
-            <p className="font-poppins text-lg font-semibold text-[#141718]">
-              Shipping Address
-            </p>
-
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <MapPin stroke="#141718" className="h-4 w-4" />
-                <p className="font-inter text-sm font-semibold text-[#141718]">
-                  House
-                </p>
-              </div>
-
-              <p className="font-inter text-sm font-normal text-[#6C7275]">
-                RT02/RW02 Dukuh Jalakan Ds.Wotan Kec.Pulung Kab.Ponorogo (Kasun
-                Jalakan)
+    <SectionLayout className="px-4 py-10 md:px-8 lg:px-12">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[2fr_1.4fr] lg:items-start"
+        noValidate
+      >
+        {/* Left column: contact + delivery + payment */}
+        <div className="space-y-8">
+          <div>
+            <Heading
+              as="h1"
+              intent="shop-page"
+              className="mb-2 text-2xl md:text-3xl"
+            >
+              Checkout
+            </Heading>
+            <Text size="sm" className="text-sm text-[#4b5563]">
+              Complete your details below to place your order with cash on
+              delivery.
+            </Text>
+            {formTouched && Object.keys(errors).length > 0 && (
+              <p className="mt-3 text-xs font-medium text-red-600 md:text-sm">
+                Please fix the highlighted fields before completing your order.
               </p>
-
-              <button className="h-10 rounded-md bg-[#141718] px-6 font-inter text-sm font-normal text-white">
-                Change Address
-              </button>
-            </div>
+            )}
+            {submitError && (
+              <p className="mt-2 text-xs font-medium text-red-600 md:text-sm">
+                {submitError}
+              </p>
+            )}
+            {submitSuccess && !submitError && (
+              <p className="mt-2 text-xs font-medium text-green-600 md:text-sm">
+                Thank you! Your order has been submitted. We will contact you to
+                confirm delivery.
+              </p>
+            )}
           </div>
 
-          <CheckoutOrders />
-
-          <PaymentMethod />
-        </div>
-
-        <div className="h-fit space-y-6">
-          <div className="space-y-6 rounded-md border border-[#6C7275] p-6">
-            <p className="font-poppins text-lg font-semibold text-[#141718]">
-              Order Summary
-            </p>
-
-            <div className="flex gap-3">
+          {/* Contact */}
+          <section className="space-y-4">
+            <Text size="sm" weight={600} className="text-[#111827]">
+              Contact
+            </Text>
+            <div className="space-y-3">
               <input
-                className="h-10 w-full rounded-md border border-[#6C7275] px-4 font-inter text-sm font-normal text-[#141718] outline-none placeholder:text-[#6C7275] placeholder:opacity-100"
-                placeholder="Coupon code"
+                type="email"
+                name="contactEmail"
+                placeholder="Email or mobile phone number"
+                className={`w-full rounded-md border px-3 py-2 text-sm text-[#111827] outline-none focus:ring-1 ${
+                  errors.contactEmail
+                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                    : "border-gray-300 focus:border-black focus:ring-black"
+                }`}
               />
-              <button className="h-10 w-fit rounded-md bg-[#141718] px-6 font-inter text-sm font-medium text-white">
-                Apply
-              </button>
+              {errors.contactEmail && (
+                <p className="text-xs text-red-500">{errors.contactEmail}</p>
+              )}
+              <label className="flex items-center gap-2 text-xs text-[#4b5563] md:text-sm">
+                <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
+                Email me with news and offers
+              </label>
             </div>
+          </section>
 
-            <div>
-              <div className="flex justify-between border-b border-[#6C7275] py-3">
-                <div className="flex items-center gap-2">
-                  <DiscountIcon fill="#141718" className="h-6 w-6" />
-                  <p className="line-clamp-1 font-inter text-sm font-normal text-[#141718]">
-                    JenkateMW
-                  </p>
-                </div>
+          {/* Delivery */}
+          <section className="space-y-4 border-t border-gray-200 pt-6">
+            <Text size="sm" weight={600} className="text-[#111827]">
+              Delivery
+            </Text>
+            <div className="space-y-3">
+              <div className="grid gap-3 md:grid-cols-2">
+                <input
+                  name="firstName"
+                  placeholder="First name"
+                  className={`rounded-md border px-3 py-2 text-sm outline-none focus:ring-1 ${
+                    errors.firstName
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-black focus:ring-black"
+                  }`}
+                />
+                <input
+                  name="lastName"
+                  placeholder="Last name"
+                  className={`rounded-md border px-3 py-2 text-sm outline-none focus:ring-1 ${
+                    errors.lastName
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-black focus:ring-black"
+                  }`}
+                />
+              </div>
+              {errors.firstName && (
+                <p className="text-xs text-red-500">{errors.firstName}</p>
+              )}
+              {errors.lastName && (
+                <p className="text-xs text-red-500">{errors.lastName}</p>
+              )}
+              <input
+                name="address"
+                placeholder="Address"
+                className={`w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-1 ${
+                  errors.address
+                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                    : "border-gray-300 focus:border-black focus:ring-black"
+                }`}
+              />
+              {errors.address && (
+                <p className="text-xs text-red-500">{errors.address}</p>
+              )}
+              <input
+                name="apartment"
+                placeholder="Apartment, suite, etc. (optional)"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black"
+              />
+              <div className="grid gap-3 md:grid-cols-3">
+                <input
+                  name="city"
+                  placeholder="City"
+                  className={`rounded-md border px-3 py-2 text-sm outline-none focus:ring-1 ${
+                    errors.city
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-black focus:ring-black"
+                  }`}
+                />
+                <input
+                  name="postalCode"
+                  placeholder="Postal code (optional)"
+                  className="rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black"
+                />
+                <input
+                  name="phone"
+                  placeholder="Phone"
+                  className={`rounded-md border px-3 py-2 text-sm outline-none focus:ring-1 ${
+                    errors.phone
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : "border-gray-300 focus:border-black focus:ring-black"
+                  }`}
+                />
+              </div>
+              {errors.city && (
+                <p className="text-xs text-red-500">{errors.city}</p>
+              )}
+              {errors.phone && (
+                <p className="text-xs text-red-500">{errors.phone}</p>
+              )}
+              <label className="flex items-center gap-2 text-xs text-[#4b5563] md:text-sm">
+                <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
+                Save this information for next time
+              </label>
+            </div>
+          </section>
 
-                <p className="font-inter text-sm font-semibold text-[#38CB89]">
-                  -$25.00 [Remove]
-                </p>
+          {/* Shipping method */}
+          <section className="space-y-4 border-t border-gray-200 pt-6">
+            <Text size="sm" weight={600} className="text-[#111827]">
+              Shipping method
+            </Text>
+            <div className="flex items-center justify-between rounded-lg border border-gray-400 bg-[#f5f5f5] px-4 py-3 text-sm text-[#111827]">
+              <span>Standard</span>
+              <div className="flex items-center gap-3 text-xs md:text-sm">
+                <span className="text-[#9ca3af] line-through">
+                  {formatCurrency(200)}
+                </span>
+                <span className="font-semibold text-[#16a34a]">FREE</span>
               </div>
+            </div>
+          </section>
 
-              <div className="flex items-center justify-between py-3">
-                <p className="font-inter text-sm font-normal text-[#141718]">
-                  Shipping
+          {/* Payment */}
+          <section className="space-y-4 border-t border-gray-200 pt-6">
+            <Text size="sm" weight={600} className="text-[#111827]">
+              Payment
+            </Text>
+            <Text size="sm" className="text-xs text-[#6b7280] md:text-sm">
+              All transactions are secure and encrypted. You will pay in cash at
+              delivery.
+            </Text>
+            <div className="rounded-md border border-gray-300">
+              <label className="flex items-center justify-between gap-3 px-4 py-3 text-sm">
+                <span className="flex items-center gap-3">
+                  <input
+                    type="radio"
+                    name="payment"
+                    defaultChecked
+                    className="h-4 w-4 border-gray-400"
+                  />
+                  <span>Cash on Delivery (COD)</span>
+                </span>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        {/* Right column: order summary */}
+        <aside className="space-y-6 rounded-lg bg-[#f9fafb] p-6 lg:p-8">
+          {/* Product list */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="relative h-20 w-20 overflow-hidden rounded-md bg-white">
+                <Image
+                  src={BASE_PRODUCT.image}
+                  alt={BASE_PRODUCT.name}
+                  fill
+                  sizes="80px"
+                  className="object-contain"
+                />
+                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 text-xs font-semibold text-white">
+                  {totalBottles}
+                </span>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-[#111827]">
+                  {BASE_PRODUCT.name}
                 </p>
-                <p className="font-inter text-sm font-semibold text-[#141718]">
-                  Free
+                <p className="text-xs text-[#6b7280]">
+                  {packSize} Bottle{packSize > 1 ? "s" : ""} × {quantity} pack
                 </p>
               </div>
-              <div className="flex items-center justify-between py-3">
-                <p className="font-inter text-sm font-normal text-[#141718]">
-                  Subtotal
-                </p>
-                <p className="font-inter text-sm font-semibold text-[#141718]">
-                  $99.00
-                </p>
-              </div>
-              <div className="flex items-center justify-between py-3">
-                <p className="font-poppins text-lg font-semibold text-[#141718]">
-                  Total
-                </p>
-                <p className="font-poppins text-lg font-semibold text-[#141718]">
-                  $234.00
-                </p>
-              </div>
+              <p className="text-sm font-semibold text-[#111827]">
+                {formatCurrency(subtotal)}
+              </p>
             </div>
           </div>
 
-          <button className="h-10 w-full rounded-md bg-[#141718] px-10 font-inter text-sm font-medium text-white lg:h-[50px] lg:text-base">
-            Place Order
+          {/* Discount code */}
+          <div className="mt-2 flex gap-3">
+            <input
+              placeholder="Discount code"
+              className="h-10 flex-1 rounded-md border border-gray-300 px-3 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black"
+            />
+            <button className="h-10 rounded-md bg-black px-4 text-sm font-medium text-white hover:bg-gray-900">
+              Apply
+            </button>
+          </div>
+
+          {/* Totals */}
+          <div className="space-y-2 border-t border-gray-200 pt-4 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-[#4b5563]">Subtotal</span>
+              <span className="text-[#111827] font-medium">
+                {formatCurrency(subtotal)}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[#4b5563]">Shipping</span>
+              <span className="text-[#16a34a] font-medium">FREE</span>
+            </div>
+            {totalSavings > 0 && (
+              <div className="flex items-center justify-between text-xs text-[#16a34a]">
+                <span>Total savings</span>
+                <span>{formatCurrency(totalSavings)}</span>
+              </div>
+            )}
+            <div className="mt-2 flex items-center justify-between border-t border-gray-200 pt-4">
+              <span className="text-base font-semibold text-[#111827]">
+                Total
+              </span>
+              <span className="text-base font-semibold text-[#111827]">
+                PKR {subtotal.toLocaleString("en-PK")}
+              </span>
+            </div>
+          </div>
+
+          {/* Complete order button */}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="mt-2 h-10 w-full rounded-md bg-black px-6 text-sm font-semibold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:opacity-70 lg:h-11 lg:text-base"
+          >
+            {submitting ? "Placing order..." : "Complete order"}
           </button>
-        </div>
-      </div>
+        </aside>
+      </form>
     </SectionLayout>
   );
 }
