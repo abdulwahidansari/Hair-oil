@@ -139,7 +139,7 @@ export default function Home() {
             <div className="flex justify-center">
               <div className="relative h-64 w-40 md:h-80 md:w-52 lg:h-96 lg:w-60">
                 <Image
-                  src="/images/bottel.png"
+                  src="/images/bottel1.png"
                   alt="Organic product"
                   fill
                   sizes="(min-width: 1024px) 240px, 200px"
