@@ -160,8 +160,8 @@ const ContactUs = () => {
             <div className="space-y-4">
               <div>
                 <p className="font-medium text-gray-700">Phone:</p>
-                <a href="tel:+922137170445" className="text-gray-600 hover:text-gray-900">
-                  +92 213 717 0445
+                <a href="tel:+923071123512" className="text-gray-600 hover:text-gray-900">
+                +923071123512
                 </a>
               </div>
 
@@ -201,7 +201,7 @@ const ContactUs = () => {
 
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900">
-                FOR BULK ORDERS, DISTRIBUTION AND CORPORATE INQUIRIES, SUBJECT: CORPORATE
+                FOR BULK ORDERS, DISTRIBUTION AND CORPORATE INQUIRIES
               </h3>
               <div>
                 <p className="font-medium text-gray-700">Email:</p>
@@ -209,7 +209,7 @@ const ContactUs = () => {
                   href="mailto:coeleganceintl@gmail.com?subject=CORPORATE" 
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  coeleganceintl@gmail.com (Subject: CORPORATE)
+                  coeleganceintl@gmail.com
                 </a>
               </div>
             </div>

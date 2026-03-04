@@ -322,7 +322,7 @@ Lightweight, deeply nourishing, and suitable for all hair types.
               Secure Payments
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-              Secured by Striped
+              COD
             </p>
           </div>
           <div className="flex flex-col items-center rounded-2xl bg-white px-8 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:py-12">

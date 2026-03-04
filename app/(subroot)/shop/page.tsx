@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
@@ -27,6 +27,21 @@ export default function Page() {
   const currentTotal = CURRENT_PRICE_PER_BOTTLE * totalBottles;
   const originalTotal = ORIGINAL_PRICE_PER_BOTTLE * totalBottles;
   const savings = originalTotal - currentTotal;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const order = {
+      productName: "CoElegance Organic Herbal Hair Oil",
+      packSize,
+      quantity,
+      totalBottles,
+      subtotal: currentTotal,
+      subtotalFormatted: formatCurrency(currentTotal),
+    };
+
+    window.localStorage.setItem("currentOrder", JSON.stringify(order));
+  }, [packSize, quantity, totalBottles, currentTotal]);
 
   return (
     <SectionLayout bg="bg-white">

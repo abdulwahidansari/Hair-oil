@@ -63,8 +63,8 @@ const Footer = () => {
               </div>
 
               <div className="space-y-2 text-sm">
-                <a href="tel:+922137170445" className={linkClass}>
-                  +92 213 717 0445
+                <a href="tel:+923071123512" className={linkClass}>
+                Phone : +923071123512
                 </a>
                 <div className="text-white/60">
                   Mon - Sat: 9:30am - 10:00pm <span className="text-white/30">|</span> Sun:

@@ -18,7 +18,7 @@ export default function AboutUsPage() {
       <section className="mb-16 grid gap-8 md:mb-24 md:grid-cols-2 md:items-center md:gap-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
           <Image
-            src="/images/about/mission.jpg"
+            src="/images/1.png"
             alt="Our Mission"
             fill
             className="object-cover"

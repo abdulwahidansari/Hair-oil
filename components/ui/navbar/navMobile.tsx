@@ -1,5 +1,9 @@
+"use client";
+
 // package
+import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // ui
 import Logo from "@/ui/assets/logo";
@@ -49,10 +53,28 @@ const links = [
 export default function NavMobile({
   onClick,
   open,
+  onSignInClick,
+  onSearchOpen,
 }: {
   onClick: () => void;
   open: boolean;
+  onSignInClick?: () => void;
+  onSearchOpen?: () => void;
 }) {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onClick();
+    if (searchQuery.trim()) {
+      router.push(`/shipping?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push("/shipping");
+    }
+    setSearchQuery("");
+  };
+
   return (
     <div
       className={cn(
@@ -73,17 +95,30 @@ export default function NavMobile({
           </div>
 
           {/* search input */}
-          <div className="flex h-12 items-center gap-2 rounded-md border border-[#6C7275] px-4">
-            <label htmlFor="search" className="cursor-pointer">
-              <SearchIcon />
-            </label>
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex h-12 items-center gap-2 rounded-md border border-[#6C7275] px-4"
+          >
+            <SearchIcon className="shrink-0" aria-hidden />
             <input
               id="search"
               name="search"
-              className="font-inter text-sm font-normal text-[#141718] outline-none placeholder:opacity-70"
-              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="min-w-0 flex-1 font-inter text-sm font-normal text-[#141718] outline-none placeholder:opacity-70"
+              placeholder="Search products..."
             />
-          </div>
+            <button
+              type="button"
+              className="text-xs font-semibold text-[#141718]"
+              onClick={() => {
+                onSearchOpen?.();
+                onClick();
+              }}
+            >
+              Go
+            </button>
+          </form>
           {/* navbar links */}
           <ul className="grid grid-cols-1">
             {links.map((link) => (
@@ -108,11 +143,11 @@ export default function NavMobile({
           <ul>
             <li>
               <Link
-                href="/cart"
+                href="/checkout"
                 className="flex items-center justify-between border-b border-[#E8ECEF] py-4"
               >
                 <span className="font-inter text-sm font-medium text-[#141718]">
-                  Cart
+                  Checkout
                 </span>
 
                 <div className="flex items-center gap-1.5">
@@ -122,24 +157,33 @@ export default function NavMobile({
               </Link>
             </li>
             <li>
-              <Link
-                href="/cart"
-                className="flex items-center justify-between border-b border-[#E8ECEF] py-4"
+              <button
+                type="button"
+                className="flex w-full items-center justify-between border-b border-[#E8ECEF] py-4 text-left"
+                disabled
               >
-                <span className="font-inter text-sm font-medium text-[#141718]">
-                  Wishlist
+                <span className="font-inter text-sm font-medium text-[#9ca3af]">
+                  Wishlist (coming soon)
                 </span>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 text-[#9ca3af]">
                   <WishlistIcon className="w-6" />
-                  <NotificationCount count={12} />
+                  <NotificationCount count={0} />
                 </div>
-              </Link>
+              </button>
             </li>
           </ul>
 
           {/* login button */}
-          <Button width="full" fontSize="lg" className="py-2.5">
+          <Button
+            width="full"
+            fontSize="lg"
+            className="py-2.5"
+            onClick={() => {
+              onClick();
+              onSignInClick?.();
+            }}
+          >
             Sign In
           </Button>
 
