@@ -19,9 +19,14 @@ export async function POST(request: Request) {
 
     const gmailUser = process.env.GMAIL_USER;
     const gmailPass = process.env.GMAIL_PASS;
-    const recipient = process.env.RECIPIENT_EMAIL || gmailUser;
+    const recipientEmails = process.env.RECIPIENT_EMAILS || process.env.RECIPIENT_EMAIL || gmailUser || '';
+    
+    // Split multiple emails if comma-separated, otherwise use single email
+    const recipients = recipientEmails.includes(',') 
+      ? recipientEmails.split(',').map(email => email.trim())
+      : [recipientEmails];
 
-    if (!gmailUser || !gmailPass || !recipient) {
+    if (!gmailUser || !gmailPass || !recipients.length) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -72,7 +77,7 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: `"CoElegance Store" <${gmailUser}>`,
-      to: recipient,
+      to: recipients.join(', '),
       replyTo: contactEmail || gmailUser,
       subject,
       html,

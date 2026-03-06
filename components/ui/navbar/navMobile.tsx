@@ -53,12 +53,10 @@ const links = [
 export default function NavMobile({
   onClick,
   open,
-  onSignInClick,
   onSearchOpen,
 }: {
   onClick: () => void;
   open: boolean;
-  onSignInClick?: () => void;
   onSearchOpen?: () => void;
 }) {
   const router = useRouter();
@@ -173,19 +171,6 @@ export default function NavMobile({
               </button>
             </li>
           </ul>
-
-          {/* login button */}
-          <Button
-            width="full"
-            fontSize="lg"
-            className="py-2.5"
-            onClick={() => {
-              onClick();
-              onSignInClick?.();
-            }}
-          >
-            Sign In
-          </Button>
 
           {/* social media button */}
           <div className="flex items-center gap-6">
