@@ -5,19 +5,11 @@ import Link from "next/link";
 const blogPosts = [
   {
     id: 1,
-    title: "TEST 2",
-    date: "February 15, 2024",
-    image: "/images/blog/test2.jpg",
-    excerpt: "Lorem ipsum sit dolor amet is a dummy text used in typing out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.",
-    slug: "test-2"
-  },
-  {
-    id: 2,
-    title: "Test",
-    date: "February 15, 2024",
-    image: "/images/blog/test1.jpg",
-    excerpt: "Lorem ipsum sit dolor amet is a dummy text used in typing out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.",
-    slug: "test-1"
+    title: "Ramadan: Maintaining Health and Wellness During Fasting",
+    date: "March 7, 2025",
+    image: "/images/blog/ramadan-wellness.jpg",
+    excerpt: "Ramadan and fasting offer a valuable opportunity to slow down and reset both body and mind. Learn essential tips for maintaining physical well-being, proper hydration, and healthy nutrition during the holy month.",
+    slug: "ramadan-health-wellness"
   },
 ];
 

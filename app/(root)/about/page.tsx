@@ -85,25 +85,25 @@ export default function AboutUsPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              name: "John Smith",
+              name: "Abdul Wahid Ansari",
               role: "Founder & CEO",
-              image: "/images/about/team1.jpg",
+              image: "/images/team1.jpg",
             },
             {
-              name: "Sarah Johnson",
-              role: "Product Specialist",
-              image: "/images/about/team2.jpg",
+              name: "Shahana Khan",
+              role: "Founder & Product Specialist",
+              image: "/images/team2.jpg",
             },
-            {
-              name: "Michael Chen",
-              role: "Customer Experience",
-              image: "/images/about/team3.jpg",
-            },
-            {
-              name: "Emily Brown",
-              role: "Product Manager",
-              image: "/images/about/team4.jpg",
-            },
+            // {
+            //   name: "Michael Chen",
+            //   role: "Customer Experience",
+            //   image: "/images/about/team3.jpg",
+            // },
+            // {
+            //   name: "Emily Brown",
+            //   role: "Product Manager",
+            //   image: "/images/about/team4.jpg",
+            // },
           ].map((member, index) => (
             <div key={index} className="text-center">
               <div className="relative mx-auto mb-4 aspect-square w-48 overflow-hidden rounded-full">
