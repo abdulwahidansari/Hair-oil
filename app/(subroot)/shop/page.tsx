@@ -13,8 +13,8 @@ import Heading from "@/ui/head";
 import Button from "@/ui/button";
 
 const PACK_OPTIONS = [1, 2, 3, 4] as const;
-const CURRENT_PRICE_PER_BOTTLE = 2000;
-const ORIGINAL_PRICE_PER_BOTTLE = 2999;
+const CURRENT_PRICE_PER_BOTTLE = 1500;
+const ORIGINAL_PRICE_PER_BOTTLE = 2000;
 
 const formatCurrency = (value: number) =>
   `Rs ${value.toLocaleString("en-PK")}.00`;

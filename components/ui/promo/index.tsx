@@ -39,7 +39,7 @@ export default function PromoSection() {
                 isRootPage ? "text-[#FEFEFE]" : "text-[#343839]",
               )}
             >
-              30% off storewide — Limited time!
+              25% off Eid Special — Limited time!
               <Link href="/shipping">
                 <span
                   className={cn(

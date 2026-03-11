@@ -40,7 +40,7 @@ const CatalogProduct = () => {
                 <div className="space-y-1.5">
                   <ProductCard.Badge>new</ProductCard.Badge>
                   <ProductCard.Badge intent="discount">
-                    50% off
+                    25% off
                   </ProductCard.Badge>
                 </div>
 

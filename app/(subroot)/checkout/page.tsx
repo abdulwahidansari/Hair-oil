@@ -15,8 +15,8 @@ import Heading from "@/ui/head";
 const BASE_PRODUCT = {
   name: "CoElegance Organic Herbal Hair Oil",
   variant: "1 Bottle",
-  price: 2000,
-  compareAtPrice: 2999,
+  price: 1500,
+  compareAtPrice: 2000,
   image: "/images/bottel.png",
 };
 
@@ -42,6 +42,8 @@ export default function Page() {
   const totalBottles = packSize * quantity;
 
   const subtotal = BASE_PRODUCT.price * totalBottles;
+  const shipping = 200;
+  const total = subtotal + shipping;
   const savingsPerUnit = BASE_PRODUCT.compareAtPrice - BASE_PRODUCT.price;
   const totalSavings = savingsPerUnit * totalBottles;
 
@@ -109,9 +111,9 @@ export default function Page() {
       pricing: {
         unitPrice: formatCurrency(BASE_PRODUCT.price),
         subtotal: formatCurrency(subtotal),
-        shipping: "FREE",
+        shipping: "200",
         savings: totalSavings > 0 ? formatCurrency(totalSavings) : "Rs 0.00",
-        total: `PKR ${subtotal.toLocaleString("en-PK")}`,
+        total: `PKR ${total.toLocaleString("en-PK")}`,
       },
     };
 
@@ -302,12 +304,12 @@ export default function Page() {
             </Text>
             <div className="flex items-center justify-between rounded-lg border border-gray-400 bg-[#f5f5f5] px-4 py-3 text-sm text-[#111827]">
               <span>Standard</span>
-              <div className="flex items-center gap-3 text-xs md:text-sm">
+              {/* <div className="flex items-center gap-3 text-xs md:text-sm">
                 <span className="text-[#9ca3af] line-through">
                   {formatCurrency(200)}
                 </span>
                 <span className="font-semibold text-[#16a34a]">FREE</span>
-              </div>
+              </div> */}
             </div>
           </section>
 
@@ -388,7 +390,7 @@ export default function Page() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-[#4b5563]">Shipping</span>
-              <span className="text-[#16a34a] font-medium">FREE</span>
+              <span className="text-black font-medium">200</span>
             </div>
             {totalSavings > 0 && (
               <div className="flex items-center justify-between text-xs text-[#16a34a]">
@@ -401,7 +403,7 @@ export default function Page() {
                 Total
               </span>
               <span className="text-base font-semibold text-[#111827]">
-                PKR {subtotal.toLocaleString("en-PK")}
+                PKR {total.toLocaleString("en-PK")}
               </span>
             </div>
           </div>
