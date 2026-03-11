@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // lib
 import { cn } from "@/lib/utils";
@@ -138,6 +139,7 @@ fbq('track', 'PageView');
           }}
         />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
