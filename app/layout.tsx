@@ -6,6 +6,9 @@ import { Analytics } from "@vercel/analytics/next";
 // lib
 import { cn } from "@/lib/utils";
 
+// components
+import { FacebookPixelEvents } from "@/components/facebookPixel";
+
 // css
 import "./globals.css";
 
@@ -101,7 +104,7 @@ export default function RootLayout({
       <head>
         <meta name="facebook-domain-verification" content="vkqsp1jvv2nn9zgwp5kzyct9i9b5h3" />
         
-        {/* Meta Pixel Code */}
+        {/* Meta Pixel Base Code */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -114,7 +117,6 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '770294949152488');
-fbq('track', 'PageView');
             `,
           }}
         />
@@ -130,6 +132,7 @@ fbq('track', 'PageView');
         {/* End Meta Pixel Code */}
       </head>
       <body>
+        <FacebookPixelEvents />
         {children}
         <script
           type="application/ld+json"
