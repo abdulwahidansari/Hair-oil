@@ -12,9 +12,6 @@ import SectionLayout from "@/layouts/sectionLayout";
 import Text from "@/ui/text";
 import Heading from "@/ui/head";
 
-// components
-import { trackFacebookPurchase } from "@/components/facebookPixel";
-
 const BASE_PRODUCT = {
   name: "CoElegance Organic Herbal Hair Oil",
   variant: "1 Bottle",
@@ -132,10 +129,6 @@ export default function Page() {
         if (!res.ok || !data.success) {
           throw new Error(data.message || "Failed to place order.");
         }
-        
-        // Track Facebook Purchase event
-        trackFacebookPurchase(subtotal / 100, "PKR"); // Convert from paisa to rupees
-        
         setSubmitSuccess(true);
         // Redirect to thank you page so user sees clear confirmation.
         router.push("/thank-you");
