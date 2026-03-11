@@ -102,6 +102,29 @@ export default function RootLayout({
       <head>
         <meta name="facebook-domain-verification" content="vkqsp1jvv2nn9zgwp5kzyct9i9b5h3" />
         
+        {/* Font Preloading for Performance */}
+        <link
+          rel="preload"
+          href="/fonts/poppins-v20-latin-regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/poppins-v20-latin-500.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/poppins-v20-latin-600.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{

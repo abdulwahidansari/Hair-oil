@@ -86,6 +86,7 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
                 alt={product.image.alt}
                 width={231}
                 height={308}
+                placeholder="blur"
                 className="h-full w-full object-cover"
               />
             </div>
