@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
 
-import products from "@/data/product.json";
-
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.coelegance.store";
 
@@ -28,15 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  const productEntries: MetadataRoute.Sitemap = (products as { id: number | string }[]).map(
-    (product) => ({
-      url: `${siteUrl}/products/${product.id}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.6,
-    }),
-  );
-
-  return [...staticEntries, ...productEntries];
+  return staticEntries;
 }
 
