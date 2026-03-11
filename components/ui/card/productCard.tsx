@@ -155,7 +155,6 @@ const Image: React.FC<ImageProps> = memo(({
       width={width}
       height={height}
       alt={data.image.alt}
-      priority={priority}
       placeholder="blur"
       className={cn(
         "absolute left-0 top-0 z-0 h-full w-full object-cover",
