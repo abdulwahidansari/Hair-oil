@@ -89,11 +89,6 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/1" className={linkClass}>
-                    Products
-                  </Link>
-                </li>
-                <li>
                   <Link href="/blog" className={linkClass}>
                     Blog
                   </Link>

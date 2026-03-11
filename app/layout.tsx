@@ -98,6 +98,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn(inter.variable, poppins.variable)}>
+      <head>
+        <meta name="facebook-domain-verification" content="vkqsp1jvv2nn9zgwp5kzyct9i9b5h3" />
+      </head>
       <body>
         {children}
         <script

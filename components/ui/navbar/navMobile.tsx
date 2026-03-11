@@ -104,7 +104,7 @@ export default function NavMobile({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="min-w-0 flex-1 font-inter text-sm font-normal text-[#141718] outline-none placeholder:opacity-70"
-              placeholder="Search products..."
+              placeholder="Search..."
             />
             <button
               type="button"
