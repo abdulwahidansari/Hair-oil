@@ -165,7 +165,7 @@ export default function Page() {
             </Text>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4 text-xs text-[#4b5563] md:text-sm">
+          <div className="grid grid-cols-1 gap-4 border-t border-gray-200 pt-4 text-xs text-[#4b5563] sm:grid-cols-2 md:text-sm">
             <div>
               <p className="font-semibold text-[#111827]">100% Herbal Formula</p>
               <p>No parabens, mineral oil, or harsh chemicals.</p>

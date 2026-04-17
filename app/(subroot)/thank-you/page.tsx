@@ -1,26 +1,26 @@
+import type { Metadata } from "next";
+import Script from "next/script";
+import Link from "next/link";
+
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
-import Head from "next/head";
 
 // ui
 import Heading from "@/ui/head";
 import Text from "@/ui/text";
-import Link from "next/link";
 import Button from "@/ui/button";
+
+export const metadata: Metadata = {
+  title: "Thank You - CoElegance",
+  robots: { index: false, follow: false },
+};
 
 export default function ThankYouPage() {
   return (
     <>
-      <Head>
-        <title>Thank You - CoElegance</title>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              fbq('track', 'Purchase');
-            `,
-          }}
-        />
-      </Head>
+      <Script id="fbq-purchase" strategy="afterInteractive">
+        {`if (typeof fbq === "function") { fbq("track", "Purchase"); }`}
+      </Script>
       <SectionLayout bg="bg-white">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-16 text-center md:py-24">
           <Heading
@@ -54,4 +54,3 @@ export default function ThankYouPage() {
     </>
   );
 }
-

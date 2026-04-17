@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 // ui
 import Logo from "@/ui/assets/logo";
-import Button from "@/ui/button";
 import {
   CartIcon,
   CloseIcon,
@@ -78,18 +77,27 @@ export default function NavMobile({
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 z-10 grid min-h-[100dvh] w-full grid-cols-[11fr_1fr] transition-transform duration-100 ease-in md:grid-cols-[10fr_2fr] lg:hidden",
-        open ? "transform-none touch-none" : "-translate-x-full",
+        "fixed inset-0 z-[110] grid h-[100dvh] min-h-[100dvh] w-full grid-cols-[11fr_1fr] bg-transparent transition-transform duration-200 ease-out md:grid-cols-[10fr_2fr] lg:hidden",
+        open ? "translate-x-0 touch-none" : "pointer-events-none -translate-x-full",
       )}
+      aria-hidden={!open}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile navigation"
     >
-      <div className="flex h-full flex-col justify-between bg-white p-6">
+      <div className="flex min-h-0 flex-col justify-between overflow-y-auto bg-white p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))]">
         {/* top section */}
         <div className="flex flex-col gap-4">
           {/* logo */}
           <div className="flex items-center justify-between">
             <Logo />
 
-            <button onClick={onClick} aria-label="Close navigation menu">
+            <button
+              type="button"
+              onClick={onClick}
+              aria-label="Close navigation menu"
+              className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center"
+            >
               <CloseIcon className="w-6" />
             </button>
           </div>
@@ -128,6 +136,7 @@ export default function NavMobile({
               >
                 <Link
                   href={link.path}
+                  onClick={onClick}
                   className="block py-4 font-inter text-sm font-medium text-[#141718]"
                 >
                   {link.name}
@@ -144,6 +153,7 @@ export default function NavMobile({
             <li>
               <Link
                 href="/checkout"
+                onClick={onClick}
                 className="flex items-center justify-between border-b border-[#E8ECEF] py-4"
               >
                 <span className="font-inter text-sm font-medium text-[#141718]">

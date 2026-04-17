@@ -1,5 +1,5 @@
 // package
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -43,6 +43,13 @@ const jsonLd = {
     "https://www.pinterest.com/coelegance/",
     "https://www.tiktok.com/@coeleganceintl",
   ],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffc95c",
 };
 
 export const metadata: Metadata = {
@@ -143,10 +150,11 @@ fbq('track', 'PageView');
           }}
         />
         <noscript>
-          <img 
-            height="1" 
-            width="1" 
-            style={{ display: 'none' }}
+          {/* eslint-disable-next-line @next/next/no-img-element -- Meta Pixel noscript fallback; must be a raw tracking pixel */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=770294949152488&ev=PageView&noscript=1"
             alt=""
           />

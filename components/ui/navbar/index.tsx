@@ -80,6 +80,17 @@ const Navbar: React.FC<NavbarProps> = () => {
     return () => window.removeEventListener("scroll", handleOnScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
+
   return (
     <>
       {!open && <PromoSection />}
@@ -143,11 +154,11 @@ const Navbar: React.FC<NavbarProps> = () => {
 
         {cartOpen && (
           <div
-            className="fixed inset-0 z-[120] flex items-start justify-end bg-black/30 px-4 pt-20 sm:pt-24"
+            className="fixed inset-0 z-[120] flex items-end justify-center bg-black/30 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-16 sm:items-start sm:justify-end sm:pt-24"
             onClick={() => setCartOpen(false)}
           >
             <div
-              className="w-full max-w-sm rounded-lg bg-white p-4 shadow-lg sm:p-5"
+              className="w-full max-w-sm rounded-t-xl bg-white p-4 shadow-lg sm:rounded-lg sm:p-5"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mb-3 flex items-center justify-between">
@@ -216,7 +227,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         {/* Search overlay */}
         {searchOpen && (
           <div
-            className="fixed inset-0 z-[120] flex items-start justify-center bg-black/40 pt-24 px-4"
+            className="fixed inset-0 z-[120] flex items-start justify-center bg-black/40 px-4 pb-[env(safe-area-inset-bottom)] pt-[max(6rem,env(safe-area-inset-top))]"
             onClick={() => {
               setSearchOpen(false);
               setSearchQuery("");

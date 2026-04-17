@@ -24,7 +24,7 @@ export default function PromoSection() {
         !showPromo && "hidden",
       )}
     >
-      <div className="relative mx-auto flex max-w-[1440px] justify-center px-8 py-2">
+      <div className="relative mx-auto flex max-w-[1440px] justify-center px-4 py-2 sm:px-8">
         {/* promo content */}
         <div className="flex gap-6">
           <div className="flex items-center gap-2">
