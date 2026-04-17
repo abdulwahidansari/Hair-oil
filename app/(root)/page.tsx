@@ -58,7 +58,7 @@ export default function Home() {
               From root to tip refined care
             </Text>
           </div>
-          <Link href="/shipping">
+          <Link href="/products/coelegance-organic-herbal-hair-oil-best-seller">
             <Button fontSize="sm" className="px-14 py-3 md:text-lg">
               Shopping Now
             </Button>
@@ -263,7 +263,7 @@ export default function Home() {
 Lightweight, deeply nourishing, and suitable for all hair types.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/shipping">
+                <Link href="/products/coelegance-organic-herbal-hair-oil-best-seller">
                     <Button
                       fontSize="sm"
                       className="rounded-xl bg-[#4a5d47] px-6 py-2.5 text-white hover:bg-[#3d4f3b]"
@@ -271,7 +271,7 @@ Lightweight, deeply nourishing, and suitable for all hair types.
                       Shop Now
                     </Button>
                   </Link>
-                  <Link href="/shipping">
+                  <Link href="/products/coelegance-organic-herbal-hair-oil-best-seller">
                     <Button
                       variant="primary"
                       fontSize="sm"

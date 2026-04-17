@@ -64,8 +64,13 @@ const Navbar: React.FC<NavbarProps> = () => {
     e.preventDefault();
     setSearchOpen(false);
     const q = searchQuery.trim();
-    if (q) router.push(`/shipping?q=${encodeURIComponent(q)}`);
-    else router.push("/shipping");
+    if (q) {
+      router.push(
+        `/products/coelegance-organic-herbal-hair-oil-best-seller?q=${encodeURIComponent(q)}`,
+      );
+    } else {
+      router.push("/products/coelegance-organic-herbal-hair-oil-best-seller");
+    }
     setSearchQuery("");
   };
 
@@ -194,7 +199,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <div className="space-y-3 text-sm text-[#4b5563]">
                   <p>No order selected yet.</p>
                   <Link
-                    href="/shipping"
+                    href="/products/coelegance-organic-herbal-hair-oil-best-seller"
                     onClick={() => setCartOpen(false)}
                     className="inline-flex w-full justify-center"
                   >

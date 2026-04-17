@@ -35,7 +35,7 @@ export default function ThankYouPage() {
             your CoElegance Organic Herbal Hair Oil order and arrange delivery.
           </Text>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/shipping">
+            <Link href="/products/coelegance-organic-herbal-hair-oil-best-seller">
               <Button className="rounded-full px-6 py-2.5 text-sm md:text-base">
                 Back to product page
               </Button>

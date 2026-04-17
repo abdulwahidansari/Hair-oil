@@ -8,15 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     "",
-    "shop",
     "about",
     "blog",
     "contact",
     "refund",
     "terms",
     "sitemap",
-    "cart",
     "checkout",
+    "products/coelegance-organic-herbal-hair-oil-best-seller",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({

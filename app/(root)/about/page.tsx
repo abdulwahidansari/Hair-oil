@@ -128,7 +128,7 @@ export default function AboutUsPage() {
           Explore our organic herbal hair oil and start your journey to stronger, healthier hair.
         </p>
         <Link
-          href="/shipping"
+          href="/products/coelegance-organic-herbal-hair-oil-best-seller"
           className="inline-block rounded-md bg-white px-8 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-100"
         >
           Shop Now

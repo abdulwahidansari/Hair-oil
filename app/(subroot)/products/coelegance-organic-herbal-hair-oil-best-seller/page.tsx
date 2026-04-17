@@ -16,8 +16,7 @@ const PACK_OPTIONS = [1, 2, 3, 4] as const;
 const CURRENT_PRICE_PER_BOTTLE = 1500;
 const ORIGINAL_PRICE_PER_BOTTLE = 2000;
 
-const formatCurrency = (value: number) =>
-  `Rs ${value.toLocaleString("en-PK")}.00`;
+const formatCurrency = (value: number) => `Rs ${value.toLocaleString("en-PK")}.00`;
 
 export default function Page() {
   const [packSize, setPackSize] = useState<(typeof PACK_OPTIONS)[number]>(1);
@@ -46,7 +45,6 @@ export default function Page() {
   return (
     <SectionLayout bg="bg-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:px-10 md:py-16 lg:flex-row lg:items-start lg:gap-12">
-        {/* Left: product image */}
         <div className="flex w-full items-center justify-center rounded-2xl border border-gray-200 bg-white p-6 md:p-8 lg:w-1/2">
           <div className="w-full max-w-md">
             <Image
@@ -59,7 +57,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Right: product details */}
         <div className="w-full space-y-6 lg:w-1/2">
           <div>
             <Heading
@@ -71,7 +68,6 @@ export default function Page() {
             </Heading>
           </div>
 
-          {/* Price */}
           <div className="flex flex-wrap items-baseline gap-3">
             <p className="text-2xl font-semibold text-[#111827] md:text-3xl">
               {formatCurrency(currentTotal)}
@@ -87,12 +83,11 @@ export default function Page() {
           </div>
 
           <Text size="sm" className="max-w-xl text-sm text-[#4b5563] md:text-base">
-            A powerful herbal blend with more than 20 natural ingredients to
-            reduce hair fall, support new growth, and nourish your scalp.
-            Lightweight, non-sticky and suitable for all hair types.
+            A powerful herbal blend with more than 20 natural ingredients to reduce hair
+            fall, support new growth, and nourish your scalp. Lightweight, non-sticky and
+            suitable for all hair types.
           </Text>
 
-          {/* Bottle options */}
           <div className="space-y-3">
             <Text size="sm" weight={600} className="text-[#111827]">
               Quantity Options
@@ -103,25 +98,24 @@ export default function Page() {
                 const isActive = packSize === value;
 
                 return (
-                <button
-                  key={value}
-                  type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setPackSize(value)}
-                  className={`w-full rounded-full border px-4 py-2.5 text-xs font-medium transition-colors md:text-sm ${
-                    isActive
-                      ? "border-black bg-black text-white"
-                      : "border-gray-300 text-gray-800 hover:border-black"
-                  }`}
-                >
-                  {label}
-                </button>
-              );
+                  <button
+                    key={value}
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setPackSize(value)}
+                    className={`w-full rounded-full border px-4 py-2.5 text-xs font-medium transition-colors md:text-sm ${
+                      isActive
+                        ? "border-black bg-black text-white"
+                        : "border-gray-300 text-gray-800 hover:border-black"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
               })}
             </div>
           </div>
 
-          {/* Quantity selector */}
           <div className="space-y-3">
             <Text size="sm" weight={600} className="text-[#111827]">
               Quantity
@@ -148,12 +142,10 @@ export default function Page() {
               </button>
             </div>
             <Text size="sm" className="text-xs text-[#6b7280] md:text-sm">
-              Total bottles:{" "}
-              <span className="font-semibold text-[#111827]">{totalBottles}</span>
+              Total bottles: <span className="font-semibold text-[#111827]">{totalBottles}</span>
             </Text>
           </div>
 
-          {/* COD button */}
           <div className="space-y-2">
             <Link
               href={{
@@ -173,12 +165,9 @@ export default function Page() {
             </Text>
           </div>
 
-          {/* Trust badges */}
           <div className="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4 text-xs text-[#4b5563] md:text-sm">
             <div>
-              <p className="font-semibold text-[#111827]">
-                100% Herbal Formula
-              </p>
+              <p className="font-semibold text-[#111827]">100% Herbal Formula</p>
               <p>No parabens, mineral oil, or harsh chemicals.</p>
             </div>
             <div>

@@ -5,17 +5,23 @@ const sitemapData = [
     title: "Main Pages",
     links: [
       { name: "Home", path: "/" },
-      { name: "Shipping", path: "/shipping" },
+      {
+        name: "Product",
+        path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+      },
       { name: "About Us", path: "/about" },
       { name: "Blog", path: "/blog" },
       { name: "Contact Us", path: "/contact" },
     ],
   },
   {
-    title: "Shipping",
+    title: "Products",
     links: [
-      { name: "Order Page", path: "/shipping" },
-      { name: "Track My Order", path: "/orders/track" },
+      {
+        name: "Best Seller Product",
+        path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+      },
+      { name: "Checkout", path: "/checkout" },
     ],
   },
   {
