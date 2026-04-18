@@ -20,7 +20,7 @@ const Footer = () => {
     },
     {
       label: "Instagram",
-      href: "https://www.instagram.com/coeleganceintl/",
+      href: "https://www.instagram.com/coelegance.store/",
       brand: "#E1306C",
       Icon: FaInstagram,
     },
