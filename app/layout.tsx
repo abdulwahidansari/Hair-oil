@@ -108,6 +108,11 @@ export default function RootLayout({
     <html lang="en" className={cn(inter.variable, poppins.variable)}>
       <head>
         <meta name="facebook-domain-verification" content="vkqsp1jvv2nn9zgwp5kzyct9i9b5h3" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7448158315430407"
+          crossOrigin="anonymous"
+        />
         
         {/* Font Preloading for Performance */}
         <link
