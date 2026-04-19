@@ -45,12 +45,17 @@ const PRODUCT_ACCORDION_SECTIONS: AccordionSection[] = [
     id: "usage",
     title: "Usage",
     content: (
-      <ol className="list-decimal space-y-2 pl-5">
-        <li>Part hair and apply a small amount directly to the scalp.</li>
-        <li>Gently massage in circular motions for a few minutes.</li>
+      <ul className="list-decimal space-y-2 pl-5">
+        <li>Shake CoElegance Organic Hair Oil bottle well before use.</li>
+        <li>Gently massage in circular motions for a few minutes into scalp and ends of hair.</li>
         <li>Leave on for at least 30 minutes, or overnight for deeper care.</li>
         <li>Wash with your usual shampoo. Use 2–3 times per week, or as needed.</li>
-      </ol>
+        <li>Do not use on cut, broken or irritated skin.</li>
+        <li>Avoid contact with eyes. In the event of contact with eyes, rinse thoroughly with water.</li>
+        <li>Do not use if you are sensitive or allergic to any of the ingredients.</li>
+        <li>Store under 30°C and out of direct sunlight.</li>
+        <li>For external use only.</li>
+        </ul>
     ),
   },
   {
@@ -58,9 +63,7 @@ const PRODUCT_ACCORDION_SECTIONS: AccordionSection[] = [
     title: "Ingredients",
     content: (
       <p>
-        A curated herbal oil base with natural extracts (including amla, methi, coconut-derived
-        carriers, and other traditional botanicals). Full INCI-style listing is printed on your
-        product packaging; patch test before first use if you have sensitive skin.
+        Mustard oil, Coconut oil, Sesame seeds, Jasmine oil, Jojoba oil, Olive oil, Rosemary essential oil, Argan oil, Avocado oil, Peppermint oil, Tea tree oil, Linseed oil, Almond oil, Vitamin E oil, Castor oil, Almonds, Beetroot, Ginger, Coriander leaves, Onions, Aloe vera, Amla, Fenugreek seeds, Terminalia chebula, Jatamansi, Sapindus mukorossi, Black cumin, Alkanet root, Cloves, Curry leaves, Shikakai.
       </p>
     ),
   },
