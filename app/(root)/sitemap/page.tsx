@@ -7,7 +7,7 @@ const sitemapData = [
       { name: "Home", path: "/" },
       {
         name: "Product",
-        path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+        path: "/products/coelegance-organic-hair-oil-best-seller",
       },
       { name: "About Us", path: "/about" },
       { name: "Blog", path: "/blog" },
@@ -19,7 +19,7 @@ const sitemapData = [
     links: [
       {
         name: "Best Seller Product",
-        path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+        path: "/products/coelegance-organic-hair-oil-best-seller",
       },
       { name: "Checkout", path: "/checkout" },
     ],

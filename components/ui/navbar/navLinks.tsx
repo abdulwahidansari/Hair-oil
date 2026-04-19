@@ -17,7 +17,7 @@ const links: NavLinkProps[] = [
   },
   {
     id: "shop",
-    path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+    path: "/products/coelegance-organic-hair-oil-best-seller",
     name: "Shop",
   },
   {

@@ -40,7 +40,7 @@ export default function PromoSection() {
               )}
             >
               25% off Eid Special — Limited time!
-              <Link href="/products/coelegance-organic-herbal-hair-oil-best-seller">
+              <Link href="/products/coelegance-organic-hair-oil-best-seller">
                 <span
                   className={cn(
                     "hidden items-center gap-1 border-b font-medium md:flex",

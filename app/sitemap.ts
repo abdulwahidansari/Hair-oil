@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "terms",
     "sitemap",
     "checkout",
-    "products/coelegance-organic-herbal-hair-oil-best-seller",
+    "products/coelegance-organic-hair-oil-best-seller",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({

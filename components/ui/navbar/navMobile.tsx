@@ -29,7 +29,7 @@ const links = [
   },
   {
     id: "shop",
-    path: "/products/coelegance-organic-herbal-hair-oil-best-seller",
+    path: "/products/coelegance-organic-hair-oil-best-seller",
     name: "Shop",
   },
   {
@@ -66,10 +66,10 @@ export default function NavMobile({
     onClick();
     if (searchQuery.trim()) {
       router.push(
-        `/products/coelegance-organic-herbal-hair-oil-best-seller?q=${encodeURIComponent(searchQuery.trim())}`,
+        `/products/coelegance-organic-hair-oil-best-seller?q=${encodeURIComponent(searchQuery.trim())}`,
       );
     } else {
-      router.push("/products/coelegance-organic-herbal-hair-oil-best-seller");
+      router.push("/products/coelegance-organic-hair-oil-best-seller");
     }
     setSearchQuery("");
   };

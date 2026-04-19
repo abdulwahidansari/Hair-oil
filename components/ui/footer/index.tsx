@@ -85,7 +85,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/products/coelegance-organic-herbal-hair-oil-best-seller"
+                    href="/products/coelegance-organic-hair-oil-best-seller"
                     className={linkClass}
                   >
                     Shop
