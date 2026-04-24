@@ -1,10 +1,10 @@
 import { FaWhatsapp } from "react-icons/fa";
 
-const whatsappNumber = "923453443123";
+const whatsappNumber = "+923071123512";
 const baseurl = "https://api.whatsapp.com/send/";
 
 const defaultMessage =
-  "Hello! I would like to know more about CoElegance organic hair oil.";
+  "Assalam o alikum! I would like to know more about CoElegance organic hair oil.";
 
 function whatsappHref() {
   const params = new URLSearchParams({
