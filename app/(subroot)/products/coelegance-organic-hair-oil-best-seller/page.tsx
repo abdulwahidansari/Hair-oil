@@ -45,7 +45,7 @@ const PRODUCT_ACCORDION_SECTIONS: AccordionSection[] = [
     id: "usage",
     title: "Usage",
     content: (
-      <ul className="list-decimal space-y-2 pl-5">
+      <ul className="list-disc space-y-2 pl-5">
         <li>Shake CoElegance Organic Hair Oil bottle well before use.</li>
         <li>Gently massage in circular motions for a few minutes into scalp and ends of hair.</li>
         <li>Leave on for at least 30 minutes, or overnight for deeper care.</li>

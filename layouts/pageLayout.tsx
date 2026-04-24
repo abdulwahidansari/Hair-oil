@@ -1,6 +1,7 @@
 // ui
 import Navbar from "@/ui/navbar";
 import Footer from "@/ui/footer";
+import WhatsAppWidget from "@/components/whatsapp-widget";
 
 // hooks
 import { RootContextProvider } from "@/hooks/rootContext";
@@ -18,6 +19,7 @@ export default function PageLayout({ root, children }: PageLayoutProps) {
       </RootContextProvider>
       <main>{children}</main>
       <Footer />
+      <WhatsAppWidget />
     </>
   );
 }
