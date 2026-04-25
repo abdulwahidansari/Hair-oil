@@ -92,18 +92,17 @@ export default function Home() {
               intent="base-section"
               className="text-3xl leading-tight text-[#21411f] md:text-4xl lg:text-5xl"
             >
-              Why Choose Organic
+              Why Choose CoElegance Organic Herbal Hair Oil in Pakistan?
+
             </Heading>
 
             <Text
               size="sm"
               className="mx-auto max-w-2xl text-sm leading-relaxed text-[#5b6b5a] md:text-base"
             >
-              At purad&apos;or, we believe that skincare should be more than
-              just a routine—it should be a transformative experience. Our
-              journey began with a simple yet profound realization: the power of
-              natural ingredients to nourish, heal, and rejuvenate the skin is
-              unparalleled. With this vision in mind.
+              CoElegance Organic Herbal Hair Oil is made in Pakistan for people who want real results without harsh chemicals. Our 100% herbal formulation blends time-tested botanical oils to fight hair fall, strengthen roots & restore natural shine. Do you struggle with dryness, dandruff or slow growth? This oil works with your scalp – not against it.
+
+
             </Text>
           </div>
 
@@ -128,11 +127,7 @@ export default function Home() {
                 size="sm"
                 className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base lg:ml-auto"
               >
-                Our commitment to organic beauty is rooted in the belief that
-                nature provides the best ingredients for healthy, radiant skin.
-                We carefully source our ingredients responsibly and ethically,
-                creating formulations that are free from harsh chemicals,
-                synthetic fragrances, and toxins.
+                CoElegance is free from mineral oil, parabens, silicones and artificial fragrance, ingredients that block pores and damage hair over time. We buy organic botanical oils from reputable suppliers and cold-press to ensure full potency. All bottles are halal friendly and safe for daily use on all hair types including colour treated hair.
               </Text>
             </div>
 
@@ -169,10 +164,9 @@ export default function Home() {
                   size="sm"
                   className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base"
                 >
-                  Each product in our range is infused with nutrient-rich
-                  botanical extracts, essential oils, and herbal blends that
-                  replenish and restore your skin&apos;s natural balance. We
-                  believe that radiant skin begins with deep, authentic care.
+                  CoElegance Oil is packed with essential fatty acids, vitamins A, D, and E, and herbal actives that penetrate the hair shaft, not just coat it, in every drop. Black seed oil, castor oil and olive oil are the main ingredients that work together to seal split ends, control frizz and promote visibly thicker hair in 4-6 weeks of regular use.
+
+
                 </Text>
               </div>
 
@@ -196,11 +190,7 @@ export default function Home() {
                   size="sm"
                   className="max-w-sm text-sm leading-relaxed text-[#5b6b5a] md:text-base"
                 >
-                  Our commitment to the environment goes hand in hand with our
-                  organic philosophy. We use eco-friendly packaging, support
-                  sustainable sourcing, and minimize our carbon footprint.
-                  Beauty shouldn&apos;t harm the planet, and we&apos;re proud to
-                  do our part.
+                  CoElegance is a Pakistani brand founded on sustainability. We use minimal packaging which is recyclable and only work with ethical ingredient suppliers. Our oil is cruelty free, not tested on animals and made in small batches to ensure quality. Support local and shop responsibly by purchasing CoElegance.
                 </Text>
               </div>
             </div>
@@ -224,13 +214,15 @@ export default function Home() {
               intent="base-section"
               className="font-serif text-3xl tracking-tight text-[#2d4a2a] md:text-4xl lg:text-5xl"
             >
-              Our Best Organic Products
+              Best Organic Herbal Hair Oil in Pakistan — CoElegance
+
             </Heading>
             <Text
               size="sm"
               className="text-sm leading-relaxed text-[#6b7280] md:text-base"
             >
-              Discover our carefully curated selection of organic essentials crafted for your wellness and daily care.
+Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and Islamabad — CoElegance delivers proven herbal hair care with cash-on-delivery across Pakistan.
+
             </Text>
           </div>
 
@@ -252,15 +244,24 @@ export default function Home() {
               {/* Right: product details */}
               <div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
                 <h3 className="font-sans text-xl font-bold leading-tight text-[#2d4a2a] md:text-2xl lg:text-3xl">
-                Organic Hair Oil | 100% Herbal Formula | For All Hair Types
+                CoElegance Organic Herbal Hair Oil 200ml | Reduces Hair Fall, Strengthens Roots & Controls Dandruff | All Hair Types
                 </h3>
                 <Text
                   size="sm"
                   className="mt-4 max-w-xl text-sm leading-relaxed text-[#6b7280] md:text-base"
                 >
-                  CoElegance Organic Hair Oil is a powerful herbal blend formulated to strengthen hair roots, reduce hair fall, and support healthy growth. Made with nutrient-rich plant oils and botanical extracts, it helps prevent split ends while providing natural anti-dandruff care.
-
-Lightweight, deeply nourishing, and suitable for all hair types.
+                  CoElegance Organic Hair Oil is a 100% Herbal & Chemical Free Formula for Pakistani Hair Types. It nourishes the scalp very well, reduces hair fall from the root and helps in faster and thicker hair growth in 4-6 weeks. It is enriched with black seed oil, castor oil and olive oil, all cold pressed and free from mineral oil, parabens and silicones. Lightweight for everyday use. Suitable for coloured, dry, oily and chemically treated hair.
+                </Text>
+                <ul className="mt-5 max-w-xl space-y-2 text-sm text-[#374151] md:text-base">
+                  <li>✓ Reduces hair fall in 2–4 weeks of regular use</li>
+                  <li>✓ Strengthens weak, brittle hair from the root</li>
+                  <li>✓ Natural anti-dandruff care — no medicated chemicals</li>
+                  <li>✓ Seals split ends and controls frizz</li>
+                  <li>✓ Halal-friendly | Cruelty-free | No mineral oil</li>
+                  <li>✓ Nationwide delivery with COD — Pakistan</li>
+                </ul>
+                <Text size="sm" className="mt-4 max-w-xl text-sm leading-relaxed text-[#6b7280] md:text-base">
+                  <span className="font-semibold text-[#374151]">How to use:</span> Apply 8–10 drops to the scalp. Massage in circular motions for 5 minutes. Leave overnight or for at least 2 hours before washing. Use 2–3 times per week for best results.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/products/coelegance-organic-hair-oil-best-seller">

@@ -39,7 +39,7 @@ export default function PromoSection() {
                 isRootPage ? "text-[#FEFEFE]" : "text-[#343839]",
               )}
             >
-              25% off Eid Special — Limited time!
+               25% OFF CoElegance Organic Hair Oil  — Limited time!
               <Link href="/products/coelegance-organic-hair-oil-best-seller">
                 <span
                   className={cn(
