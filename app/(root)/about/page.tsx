@@ -1,5 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About CoElegance Organic Hair Oil",
+  description:
+    "Learn about CoElegance, our mission, and how our organic herbal hair oil helps reduce hair fall and support healthy hair growth in Pakistan.",
+};
 
 export default function AboutUsPage() {
   return (

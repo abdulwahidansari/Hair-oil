@@ -1,6 +1,7 @@
 // package
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
@@ -39,6 +40,12 @@ const testimonials = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Organic Herbal Hair Oil in Pakistan | Reduce Hair Fall | CoElegance",
+  description:
+    "Buy CoElegance Organic Herbal Hair Oil in Pakistan. Reduce hair fall, strengthen roots, control dandruff and support natural hair growth with herbal ingredients.",
+};
+
 export default function Home() {
   return (
     <>
@@ -51,11 +58,12 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
           <div className="space-y-2 text-center lg:text-left">
             <Heading as="h1" intent="hero-section">
-              Healthy hair <br /><span className="text-[#377DFF]">starts</span>{" "}
-              with <br /> care.
+              Organic Herbal Hair Oil <br />
+              <span className="text-[#377DFF]">for Hair Fall</span> <br />
+              in Pakistan
             </Heading>
             <Text className="md:text-lg lg:text-xl">
-              From root to tip refined care
+              Reduce hair fall, nourish roots, and support healthy natural hair growth.
             </Text>
           </div>
           <Link href="/products/coelegance-organic-hair-oil-best-seller">

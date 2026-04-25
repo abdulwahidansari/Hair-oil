@@ -1,5 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hair Care Blog",
+  description:
+    "Read CoElegance hair care tips and herbal wellness guides for healthier scalp care, reduced hair fall, and stronger hair growth.",
+};
 
 // Sample blog data - in a real app, this would come from an API or CMS
 const blogPosts = [

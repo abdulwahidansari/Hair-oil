@@ -3,8 +3,12 @@ import type { Metadata } from "next";
 import PageLayout from "@/layouts/pageLayout";
 
 export const metadata: Metadata = {
-  title: "CoElegance Organic Herbal Hair Oil | Natural Hair Growth & Scalp Care",
-  description: "CoElegance Organic Herbal Hair Oil blends rosemary, onion, black seed and botanical oils to reduce hair fall, strengthen roots and support healthy natural hair growth.",
+  title: {
+    default: "Shop CoElegance Products",
+    template: "%s | CoElegance Pakistan",
+  },
+  description:
+    "Shop CoElegance organic herbal hair oil products designed for Pakistani hair concerns, including hair fall, dandruff and weak roots.",
 };
 
 export default function RootLayout({
