@@ -20,7 +20,7 @@ import {
 
 const testimonials = [
   {
-    quote: `I've never felt better about the products I use on my skin. Purad'or delivers on its promise of organic, effective skincare. My skin is glowing!`,
+    quote: `I've never felt better about the products I use on my Hair. CoElegance delivers on its promise of organic, effective Hair oil.!`,
     author: "Bisma Khan",
     location: "Karachi",
   }, {
@@ -58,12 +58,11 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
           <div className="space-y-2 text-center lg:text-left">
             <Heading as="h1" intent="hero-section">
-              Organic Herbal Hair Oil <br />
-              <span className="text-[#377DFF]">for Hair Fall</span> <br />
-              in Pakistan
+               Healthy hair <br /><span className="text-[#377DFF]">starts</span>{" "}
+              with <br /> care.
             </Heading>
             <Text className="md:text-lg lg:text-xl">
-              Reduce hair fall, nourish roots, and support healthy natural hair growth.
+              From root to tip refined care
             </Text>
           </div>
           <Link href="/products/coelegance-organic-hair-oil-best-seller">
