@@ -113,6 +113,20 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7448158315430407"
           crossOrigin="anonymous"
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZLCV481LSR"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZLCV481LSR');
+            `,
+          }}
+        />
         
         {/* Font Preloading for Performance */}
         <link
