@@ -3,9 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About CoElegance Organic Hair Oil",
+  title: "About CoElegance | Best Organic Hair Oil Brand in Pakistan",
   description:
-    "Learn about CoElegance, our mission, and how our organic herbal hair oil helps reduce hair fall and support healthy hair growth in Pakistan.",
+    "CoElegance is a Pakistani brand making the best organic hair oil for hair growth. Our herbal formula with black seed & castor oil reduces hair fall naturally. Learn our story.",
 };
 
 export default function AboutUsPage() {

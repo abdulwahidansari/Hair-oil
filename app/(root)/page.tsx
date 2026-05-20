@@ -41,9 +41,9 @@ const testimonials = [
 ];
 
 export const metadata: Metadata = {
-  title: "Organic Herbal Hair Oil in Pakistan | Reduce Hair Fall | CoElegance",
+  title: "Best Hair Oil for Hair Growth in Pakistan | CoElegance Organic Hair Oil",
   description:
-    "Buy CoElegance Organic Herbal Hair Oil in Pakistan. Reduce hair fall, strengthen roots, control dandruff and support natural hair growth with herbal ingredients.",
+    "Looking for the best hair oil in Pakistan? CoElegance is the best organic hair oil in Pakistan — reduces hair fall, promotes hair growth and strengthens roots. Cash on delivery nationwide.",
 };
 
 export default function Home() {

@@ -3,9 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hair Care Blog",
+  title: "Hair Care Blog | Best Hair Oil Tips & Growth Guide | CoElegance Pakistan",
   description:
-    "Read CoElegance hair care tips and herbal wellness guides for healthier scalp care, reduced hair fall, and stronger hair growth.",
+    "Discover expert tips on the best hair oil for hair growth, reducing hair fall and herbal scalp care. CoElegance blog — your guide to healthier hair in Pakistan.",
 };
 
 // Sample blog data - in a real app, this would come from an API or CMS
