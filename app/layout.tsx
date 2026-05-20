@@ -92,11 +92,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [{ url: "/icon", type: "image/svg+xml" }],
-    shortcut: "/icon",
-    apple: "/icon",
-  },
 };
 
 export default function RootLayout({
