@@ -121,7 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-ZLCV481LSR"
+          src="https://www.googletagmanager.com/gtag/js?id=G-4NRC667Z4N"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -129,7 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-ZLCV481LSR');
+gtag('config', 'G-4NRC667Z4N');
             `,
           }}
         />
