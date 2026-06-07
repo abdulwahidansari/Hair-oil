@@ -71,7 +71,6 @@ export const metadata: Metadata = {
       "CoElegance Organic Herbal Hair Oil | Natural Hair Growth & Scalp Care",
     description:
       "Strengthen roots, reduce hair fall, and support healthy growth with CoElegance Organic Herbal Hair Oil.",
-    url: siteUrl,
     siteName: "CoElegance Organic Herbal Hair Oil",
     type: "website",
     locale: "en_PK",
