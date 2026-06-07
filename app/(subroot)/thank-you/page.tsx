@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 
+import { canonicalFor } from "@/lib/site";
+
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
 
@@ -13,6 +15,7 @@ import Button from "@/ui/button";
 export const metadata: Metadata = {
   title: "Thank You - CoElegance",
   robots: { index: false, follow: false },
+  ...canonicalFor("/thank-you"),
 };
 
 export default function ThankYouPage() {

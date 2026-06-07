@@ -2,10 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { canonicalFor } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "Hair Care Blog | Best Hair Oil Tips & Growth Guide | CoElegance Pakistan",
   description:
     "Discover expert tips on the best hair oil for hair growth, reducing hair fall and herbal scalp care. CoElegance blog — your guide to healthier hair in Pakistan.",
+  ...canonicalFor("/blog"),
 };
 
 // Sample blog data - in a real app, this would come from an API or CMS

@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
+import { canonicalFor } from "@/lib/site";
+
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
 
@@ -44,6 +46,7 @@ export const metadata: Metadata = {
   title: "Best Hair Oil for Hair Growth in Pakistan | CoElegance Organic Hair Oil",
   description:
     "Looking for the best hair oil in Pakistan? CoElegance is the best organic hair oil in Pakistan — reduces hair fall, promotes hair growth and strengthens roots. Cash on delivery nationwide.",
+  ...canonicalFor("/"),
 };
 
 export default function Home() {

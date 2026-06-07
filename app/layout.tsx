@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // lib
 import { cn } from "@/lib/utils";
+import { siteUrl } from "@/lib/site";
 
 // css
 import "./globals.css";
@@ -21,9 +22,6 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
 });
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.coelegance.store";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -77,9 +75,6 @@ export const metadata: Metadata = {
     siteName: "CoElegance Organic Herbal Hair Oil",
     type: "website",
     locale: "en_PK",
-  },
-  alternates: {
-    canonical: "/",
   },
   robots: {
     index: true,
