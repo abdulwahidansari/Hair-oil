@@ -2,26 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { canonicalFor } from "@/lib/site";
+import { blogPostList } from "@/lib/blog-posts";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/blog", {
   title: "Hair Care Blog | Best Hair Oil Tips & Growth Guide | CoElegance Pakistan",
   description:
     "Discover expert tips on the best hair oil for hair growth, reducing hair fall and herbal scalp care. CoElegance blog — your guide to healthier hair in Pakistan.",
-  ...canonicalFor("/blog"),
-};
-
-// Sample blog data - in a real app, this would come from an API or CMS
-const blogPosts = [
-  {
-    id: 1,
-    title: "Ramadan: Maintaining Health and Wellness During Fasting",
-    date: "March 7, 2025",
-    image: "/images/blog/ramadan-wellness.jpg",
-    excerpt: "Ramadan and fasting offer a valuable opportunity to slow down and reset both body and mind. Learn essential tips for maintaining physical well-being, proper hydration, and healthy nutrition during the holy month.",
-    slug: "ramadan-health-wellness"
-  },
-];
+});
 
 export default function BlogPage() {
   return (
@@ -29,43 +17,51 @@ export default function BlogPage() {
       <h1 className="mb-8 text-center text-2xl font-bold uppercase tracking-wider text-gray-800 md:mb-12 md:text-3xl">
         NEWS
       </h1>
-      
+
       <div className="space-y-12 md:space-y-16">
-        {blogPosts.map((post) => (
-          <article key={post.id} className="group">
-            <div className="grid gap-6 md:grid-cols-[1fr_1.5fr] md:gap-8">
-              {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="flex flex-col space-y-4">
-                <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">
-                  {post.title}
-                </h2>
-                <time className="text-sm text-gray-500" dateTime={post.date}>
-                  {post.date}
-                </time>
-                <p className="text-gray-600">
-                  {post.excerpt}
-                </p>
+        {blogPostList.map((post) => (
+          <article
+            key={post.slug}
+            className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-12"
+          >
+            <Link
+              href={`/blog/${post.slug}`}
+              className="relative aspect-[4/3] overflow-hidden rounded-lg"
+            >
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </Link>
+
+            <div className="flex flex-col justify-center">
+              <time
+                className="mb-2 text-sm text-gray-500"
+                dateTime={post.publishedAt}
+              >
+                {post.date}
+              </time>
+              <h2 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="mt-auto inline-flex w-fit items-center border border-gray-300 px-6 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+                  className="hover:text-gray-700 transition-colors"
                 >
-                  READ MORE
+                  {post.title}
                 </Link>
-              </div>
+              </h2>
+              <p className="mb-6 text-gray-600">{post.excerpt}</p>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-flex w-fit items-center border border-gray-300 px-6 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+              >
+                Read More
+              </Link>
             </div>
           </article>
         ))}
       </div>
     </main>
   );
-} 
+}

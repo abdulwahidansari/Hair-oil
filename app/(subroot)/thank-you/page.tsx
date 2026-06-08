@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 
-import { canonicalFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
@@ -12,11 +12,12 @@ import Heading from "@/ui/head";
 import Text from "@/ui/text";
 import Button from "@/ui/button";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/thank-you", {
   title: "Thank You - CoElegance",
+  description:
+    "Your CoElegance order has been placed successfully. We will contact you shortly to confirm delivery.",
   robots: { index: false, follow: false },
-  ...canonicalFor("/thank-you"),
-};
+});
 
 export default function ThankYouPage() {
   return (

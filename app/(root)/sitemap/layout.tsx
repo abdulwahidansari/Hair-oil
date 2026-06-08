@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
-import { canonicalFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/sitemap", {
   title: "Sitemap",
   description: "Browse all pages on the CoElegance website.",
-  ...canonicalFor("/sitemap"),
-};
+});
 
 export default function SitemapLayout({
   children,

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 
-import { canonicalFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/refund", {
   title: "Refund Policy",
   description:
     "CoElegance refund and return policy for organic herbal hair oil orders in Pakistan.",
-  ...canonicalFor("/refund"),
-};
+});
 
 export default function RefundLayout({
   children,

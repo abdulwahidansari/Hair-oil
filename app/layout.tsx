@@ -67,12 +67,7 @@ export const metadata: Metadata = {
     "black seed oil",
   ],
   openGraph: {
-    title:
-      "CoElegance Organic Herbal Hair Oil | Natural Hair Growth & Scalp Care",
-    description:
-      "Strengthen roots, reduce hair fall, and support healthy growth with CoElegance Organic Herbal Hair Oil.",
     siteName: "CoElegance Organic Herbal Hair Oil",
-    type: "website",
     locale: "en_PK",
   },
   robots: {
