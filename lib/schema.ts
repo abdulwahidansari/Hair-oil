@@ -5,6 +5,8 @@ import { homepageFaqs, productFaqs } from "@/lib/faq";
 import {
   absoluteImageUrl,
   FEATURED_PRODUCT,
+  productPath,
+  productSchemaId,
   productUrl,
 } from "@/lib/product";
 import { siteUrl } from "@/lib/site";
@@ -21,6 +23,10 @@ export type BreadcrumbItem = {
 function absoluteUrl(path: string): string {
   if (!path || path === "/") {
     return siteUrl;
+  }
+
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
   }
 
   return `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
@@ -90,7 +96,7 @@ export function faqPageSchema(faqs: FaqItem[]): Record<string, unknown> {
 
 export function reviewSchema(
   testimonial: Testimonial,
-  itemReviewed?: Record<string, unknown>,
+  itemReviewedId?: string,
 ): Record<string, unknown> {
   return {
     "@type": "Review",
@@ -106,7 +112,13 @@ export function reviewSchema(
       worstRating: "1",
     },
     reviewBody: testimonial.quote,
-    ...(itemReviewed ? { itemReviewed } : {}),
+    ...(itemReviewedId
+      ? {
+          itemReviewed: {
+            "@id": itemReviewedId,
+          },
+        }
+      : {}),
   };
 }
 
@@ -125,16 +137,12 @@ export function aggregateRatingSchema(
 
 export function productSchema(): Record<string, unknown> {
   const url = productUrl();
-  const productReviewTarget = {
-    "@type": "Product",
-    "@id": `${url}#product`,
-    name: FEATURED_PRODUCT.name,
-    url,
-  };
+  const id = productSchemaId();
 
   return {
     "@type": "Product",
-    "@id": `${url}#product`,
+    "@id": id,
+    url,
     name: FEATURED_PRODUCT.name,
     description: FEATURED_PRODUCT.description,
     image: FEATURED_PRODUCT.images.map(absoluteImageUrl),
@@ -147,7 +155,7 @@ export function productSchema(): Record<string, unknown> {
       "@type": "Offer",
       url,
       priceCurrency: FEATURED_PRODUCT.currency,
-      price: FEATURED_PRODUCT.price,
+      price: String(FEATURED_PRODUCT.price),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       priceValidUntil: "2026-12-31",
@@ -156,7 +164,6 @@ export function productSchema(): Record<string, unknown> {
       },
     },
     aggregateRating: aggregateRatingSchema(testimonials.length),
-    review: reviewSchema(featuredTestimonial, productReviewTarget),
   };
 }
 
@@ -185,18 +192,12 @@ export function blogPostingSchema(post: BlogPost): Record<string, unknown> {
 }
 
 export function homepageSchemaGraph(): Record<string, unknown> {
-  const url = productUrl();
-  const productReviewTarget = {
-    "@type": "Product",
-    name: FEATURED_PRODUCT.name,
-    url,
-  };
-
   return schemaGraph(
     organizationSchema(),
     breadcrumbSchema([{ name: "Home", path: "/" }]),
+    productSchema(),
     faqPageSchema(homepageFaqs),
-    reviewSchema(featuredTestimonial, productReviewTarget),
+    reviewSchema(featuredTestimonial, productSchemaId()),
   );
 }
 
@@ -205,9 +206,10 @@ export function productPageSchemaGraph(): Record<string, unknown> {
     organizationSchema(),
     breadcrumbSchema([
       { name: "Home", path: "/" },
-      { name: FEATURED_PRODUCT.name, path: productUrl() },
+      { name: FEATURED_PRODUCT.name, path: productPath() },
     ]),
     productSchema(),
+    reviewSchema(featuredTestimonial, productSchemaId()),
     faqPageSchema(productFaqs),
   );
 }

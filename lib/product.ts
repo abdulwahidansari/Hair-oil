@@ -20,6 +20,10 @@ export function productUrl(): string {
   return `${siteUrl}${productPath()}`;
 }
 
+export function productSchemaId(): string {
+  return `${productUrl()}#product`;
+}
+
 export function absoluteImageUrl(path: string): string {
   return path.startsWith("http") ? path : `${siteUrl}${path}`;
 }
