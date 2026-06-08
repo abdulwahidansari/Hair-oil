@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata("/about", {
   title: "About CoElegance | Best Organic Hair Oil Brand in Pakistan",
@@ -12,6 +14,13 @@ export const metadata: Metadata = pageMetadata("/about", {
 
 export default function AboutUsPage() {
   return (
+    <>
+      <JsonLd
+        data={breadcrumbPageSchemaGraph([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
     <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
       {/* Hero Section */}
       <section className="mb-16 text-center md:mb-24">
@@ -144,5 +153,6 @@ export default function AboutUsPage() {
         </Link>
       </section>
     </main>
+    </>
   );
 } 

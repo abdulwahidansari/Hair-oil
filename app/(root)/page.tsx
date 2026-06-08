@@ -4,6 +4,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { pageMetadata } from "@/lib/site";
+import { testimonials } from "@/lib/testimonials";
+import { JsonLd } from "@/components/seo/json-ld";
+import { homepageSchemaGraph } from "@/lib/schema";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
@@ -20,28 +23,6 @@ import {
   MoneyIcon,
 } from "@/ui/assets/svg";
 
-const testimonials = [
-  {
-    quote: `I've never felt better about the products I use on my Hair. CoElegance delivers on its promise of organic, effective Hair oil.!`,
-    author: "Bisma Khan",
-    location: "Karachi",
-  }, {
-    quote: `My hair fall reduced within weeks and feels thicker at the roots. CoElegance is now a permanent part of my night routine.`,
-    author: "Ayesha Khan",
-    location: "Karachi",
-  },
-  {
-    quote: `I love that it&apos;s herbal and still lightweight. My scalp feels calm and my hair looks healthier without feeling greasy.`,
-    author: "Sara Malik",
-    location: "Lahore",
-  },
-  {
-    quote: `After using CoElegance regularly, my hair feels stronger and breakage has visibly reduced. Highly recommend for damaged hair.`,
-    author: "Hamza Ali",
-    location: "Islamabad",
-  },
-];
-
 export const metadata: Metadata = pageMetadata("/", {
   title: "Best Hair Oil for Hair Growth in Pakistan | CoElegance Organic Hair Oil",
   description:
@@ -51,6 +32,7 @@ export const metadata: Metadata = pageMetadata("/", {
 export default function Home() {
   return (
     <>
+      <JsonLd data={homepageSchemaGraph()} />
       {/* Hero section */}
       <SectionLayout
         bg="bg-[#ffc95c]"

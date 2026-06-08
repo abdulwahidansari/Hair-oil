@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { blogPosts, getBlogPost, toIsoDateTime } from "@/lib/blog-posts";
+import { blogPostSchemaGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export async function generateMetadata({
   params,
@@ -40,6 +42,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   }
 
   return (
+    <>
+      <JsonLd data={blogPostSchemaGraph(post)} />
     <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
       <nav className="mb-8">
         <Link
@@ -87,6 +91,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         </Link>
       </div>
     </main>
+    </>
   );
 }
 

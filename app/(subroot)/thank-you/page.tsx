@@ -3,6 +3,8 @@ import Script from "next/script";
 import Link from "next/link";
 
 import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 
 // layouts
 import SectionLayout from "@/layouts/sectionLayout";
@@ -22,6 +24,12 @@ export const metadata: Metadata = pageMetadata("/thank-you", {
 export default function ThankYouPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbPageSchemaGraph([
+          { name: "Home", path: "/" },
+          { name: "Thank You", path: "/thank-you" },
+        ])}
+      />
       <Script id="fbq-purchase" strategy="afterInteractive">
         {`if (typeof fbq === "function") { fbq("track", "Purchase"); }`}
       </Script>

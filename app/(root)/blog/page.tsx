@@ -3,7 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { blogPostList } from "@/lib/blog-posts";
+import { blogIndexSchemaGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = pageMetadata("/blog", {
   title: "Hair Care Blog | Best Hair Oil Tips & Growth Guide | CoElegance Pakistan",
@@ -13,6 +15,8 @@ export const metadata: Metadata = pageMetadata("/blog", {
 
 export default function BlogPage() {
   return (
+    <>
+      <JsonLd data={blogIndexSchemaGraph()} />
     <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
       <h1 className="mb-8 text-center text-2xl font-bold uppercase tracking-wider text-gray-800 md:mb-12 md:text-3xl">
         NEWS
@@ -63,5 +67,6 @@ export default function BlogPage() {
         ))}
       </div>
     </main>
+    </>
   );
 }

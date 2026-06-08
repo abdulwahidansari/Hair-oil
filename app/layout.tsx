@@ -23,26 +23,6 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HealthAndBeautyBusiness",
-  name: "CoElegance Organic Herbal Hair Oil",
-  url: siteUrl,
-  telephone: "+923071123512",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Karachi",
-    addressCountry: "PK",
-  },
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61587810810965",
-    "https://www.instagram.com/coelegance.store/",
-    "https://www.youtube.com/@Coelegance",
-    "https://www.pinterest.com/coelegance/",
-    "https://www.tiktok.com/@coeleganceintl",
-  ],
-};
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -185,12 +165,6 @@ fbq('track', 'PageView');
           />
         </noscript>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
         <Analytics />
         <SpeedInsights />
       </body>
