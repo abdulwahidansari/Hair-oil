@@ -135,6 +135,49 @@ export function aggregateRatingSchema(
   };
 }
 
+export function merchantReturnPolicySchema(): Record<string, unknown> {
+  return {
+    "@type": "MerchantReturnPolicy",
+    applicableCountry: "PK",
+    returnPolicyCategory:
+      "https://schema.org/MerchantReturnFiniteReturnWindow",
+    merchantReturnDays: 30,
+    returnMethod: "https://schema.org/ReturnByMail",
+    returnFees: "https://schema.org/FreeReturn",
+    merchantReturnLink: `${siteUrl}/refund`,
+  };
+}
+
+export function shippingDetailsSchema(): Record<string, unknown> {
+  return {
+    "@type": "OfferShippingDetails",
+    shippingRate: {
+      "@type": "MonetaryAmount",
+      value: "0",
+      currency: FEATURED_PRODUCT.currency,
+    },
+    shippingDestination: {
+      "@type": "DefinedRegion",
+      addressCountry: "PK",
+    },
+    deliveryTime: {
+      "@type": "ShippingDeliveryTime",
+      handlingTime: {
+        "@type": "QuantitativeValue",
+        minValue: 0,
+        maxValue: 1,
+        unitCode: "DAY",
+      },
+      transitTime: {
+        "@type": "QuantitativeValue",
+        minValue: 2,
+        maxValue: 7,
+        unitCode: "DAY",
+      },
+    },
+  };
+}
+
 export function productSchema(): Record<string, unknown> {
   const url = productUrl();
   const id = productSchemaId();
@@ -162,6 +205,8 @@ export function productSchema(): Record<string, unknown> {
       seller: {
         "@id": ORGANIZATION_ID,
       },
+      hasMerchantReturnPolicy: merchantReturnPolicySchema(),
+      shippingDetails: shippingDetailsSchema(),
     },
     aggregateRating: aggregateRatingSchema(testimonials.length),
   };
