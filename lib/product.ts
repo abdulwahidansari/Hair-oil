@@ -1,7 +1,7 @@
 import { siteUrl } from "@/lib/site";
 
 export const FEATURED_PRODUCT = {
-  slug: "coelegance-organic-hair-oil-best-seller",
+  slug: "organic-hair-oil-best-seller",
   name: "CoElegance Organic Herbal Hair Oil 200ml",
   description:
     "Buy CoElegance Organic Herbal Hair Oil 200ml in Pakistan. Herbal formula for hair fall control, stronger roots, dandruff care, and shinier hair.",

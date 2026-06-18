@@ -12,6 +12,7 @@ import { useRootContext } from "@/hooks/rootContext";
 
 // lib
 import { cn } from "@/lib/utils";
+import { productPath } from "@/lib/product";
 
 export default function PromoSection() {
   const isRootPage = useRootContext();
@@ -40,7 +41,7 @@ export default function PromoSection() {
               )}
             >
                25% OFF CoElegance Organic Hair Oil  — Limited time!
-              <Link href="/products/coelegance-organic-hair-oil-best-seller">
+              <Link href={productPath()}>
                 <span
                   className={cn(
                     "hidden items-center gap-1 border-b font-medium md:flex",

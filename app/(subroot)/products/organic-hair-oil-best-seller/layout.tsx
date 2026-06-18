@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/seo/json-ld";
 import { productPageSchemaGraph } from "@/lib/schema";
+import { productPath } from "@/lib/product";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "/products/organic-hair-oil-best-seller",
+  productPath(),
   {
     title: "Organic Herbal Hair Oil ",
     description:

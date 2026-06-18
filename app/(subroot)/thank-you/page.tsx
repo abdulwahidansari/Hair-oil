@@ -3,6 +3,7 @@ import Script from "next/script";
 import Link from "next/link";
 
 import { pageMetadata } from "@/lib/site";
+import { productPath } from "@/lib/product";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 
@@ -47,7 +48,7 @@ export default function ThankYouPage() {
             your CoElegance Organic Herbal Hair Oil order and arrange delivery.
           </Text>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/products/coelegance-organic-hair-oil-best-seller">
+            <Link href={productPath()}>
               <Button className="rounded-full px-6 py-2.5 text-sm md:text-base">
                 Back to product page
               </Button>

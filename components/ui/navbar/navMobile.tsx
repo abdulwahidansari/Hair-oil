@@ -20,6 +20,7 @@ import {
 
 // lib
 import { cn } from "@/lib/utils";
+import { productPath } from "@/lib/product";
 
 const links = [
   {
@@ -29,7 +30,7 @@ const links = [
   },
   {
     id: "shop",
-    path: "/products/coelegance-organic-hair-oil-best-seller",
+    path: productPath(),
     name: "Shop",
   },
   {
@@ -66,10 +67,10 @@ export default function NavMobile({
     onClick();
     if (searchQuery.trim()) {
       router.push(
-        `/products/coelegance-organic-hair-oil-best-seller?q=${encodeURIComponent(searchQuery.trim())}`,
+        `${productPath()}?q=${encodeURIComponent(searchQuery.trim())}`,
       );
     } else {
-      router.push("/products/coelegance-organic-hair-oil-best-seller");
+      router.push(productPath());
     }
     setSearchQuery("");
   };

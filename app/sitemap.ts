@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: "", priority: 1, changeFrequency: "weekly" as const },
     {
-      path: "products/coelegance-organic-hair-oil-best-seller",
+      path: "products/organic-hair-oil-best-seller",
       priority: 0.9,
       changeFrequency: "weekly" as const,
     },

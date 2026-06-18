@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { pageMetadata } from "@/lib/site";
+import { productPath } from "@/lib/product";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 
@@ -146,7 +147,7 @@ export default function AboutUsPage() {
           Explore our organic herbal hair oil and start your journey to stronger, healthier hair.
         </p>
         <Link
-          href="/products/coelegance-organic-hair-oil-best-seller"
+          href={productPath()}
           className="inline-block rounded-md bg-white px-8 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-100"
         >
           Shop Now

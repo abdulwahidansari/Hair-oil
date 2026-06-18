@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { pageMetadata } from "@/lib/site";
+import { productPath } from "@/lib/product";
 import { testimonials } from "@/lib/testimonials";
 import { JsonLd } from "@/components/seo/json-ld";
 import { homepageSchemaGraph } from "@/lib/schema";
@@ -49,7 +50,7 @@ export default function Home() {
               From root to tip refined care
             </Text>
           </div>
-          <Link href="/products/coelegance-organic-hair-oil-best-seller">
+          <Link href={productPath()}>
             <Button fontSize="sm" className="px-14 py-3 md:text-lg">
               Shopping Now
             </Button>
@@ -255,7 +256,7 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
                   <span className="font-semibold text-[#374151]">How to use:</span> Apply 8–10 drops to the scalp. Massage in circular motions for 5 minutes. Leave overnight or for at least 2 hours before washing. Use 2–3 times per week for best results.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/products/coelegance-organic-hair-oil-best-seller">
+                <Link href={productPath()}>
                     <Button
                       fontSize="sm"
                       className="rounded-xl bg-[#4a5d47] px-6 py-2.5 text-white hover:bg-[#3d4f3b]"
@@ -263,7 +264,7 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
                       Shop Now
                     </Button>
                   </Link>
-                  <Link href="/products/coelegance-organic-hair-oil-best-seller">
+                  <Link href={productPath()}>
                     <Button
                       variant="primary"
                       fontSize="sm"

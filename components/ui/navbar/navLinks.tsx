@@ -8,6 +8,7 @@ import { NavLinkProps } from "@/ui/navbar/definition";
 
 // lib
 import { cn } from "@/lib/utils";
+import { productPath } from "@/lib/product";
 
 const links: NavLinkProps[] = [
   {
@@ -17,7 +18,7 @@ const links: NavLinkProps[] = [
   },
   {
     id: "shop",
-    path: "/products/coelegance-organic-hair-oil-best-seller",
+    path: productPath(),
     name: "Shop",
   },
   {

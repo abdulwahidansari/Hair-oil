@@ -1,6 +1,8 @@
 // package
 import Link from "next/link";
 
+import { productPath } from "@/lib/product";
+
 // ui
 import Text from "@/ui/text";
 import { FaFacebookF, FaInstagram, FaYoutube, FaPinterestP } from "react-icons/fa";
@@ -85,7 +87,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/products/coelegance-organic-hair-oil-best-seller"
+                    href={productPath()}
                     className={linkClass}
                   >
                     Shop

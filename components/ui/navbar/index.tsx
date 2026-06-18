@@ -22,6 +22,7 @@ import { useRootContext } from "@/hooks/rootContext";
 
 // lib
 import { cn } from "@/lib/utils";
+import { productPath } from "@/lib/product";
 
 interface NavbarProps {}
 
@@ -65,11 +66,9 @@ const Navbar: React.FC<NavbarProps> = () => {
     setSearchOpen(false);
     const q = searchQuery.trim();
     if (q) {
-      router.push(
-        `/products/coelegance-organic-hair-oil-best-seller?q=${encodeURIComponent(q)}`,
-      );
+      router.push(`${productPath()}?q=${encodeURIComponent(q)}`);
     } else {
-      router.push("/products/coelegance-organic-hair-oil-best-seller");
+      router.push(productPath());
     }
     setSearchQuery("");
   };
@@ -210,7 +209,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <div className="space-y-3 text-sm text-[#4b5563]">
                   <p>No order selected yet.</p>
                   <Link
-                    href="/products/coelegance-organic-hair-oil-best-seller"
+                    href={productPath()}
                     onClick={() => setCartOpen(false)}
                     className="inline-flex w-full justify-center"
                   >
