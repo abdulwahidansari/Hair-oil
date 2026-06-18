@@ -48,10 +48,10 @@ export function organizationSchema(): Record<string, unknown> {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: "CoElegance",
-    alternateName: "CoElegance Organic Herbal Hair Oil",
+    alternateName: "Organic Hair Oil",
     url: siteUrl,
     logo: `${siteUrl}/icon.png`,
-    email: "coeleganceintl@gmail.com",
+    email: "coelegance@gmail.com",
     telephone: "+923071123512",
     address: {
       "@type": "PostalAddress",

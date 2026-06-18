@@ -108,7 +108,7 @@ export default function Page() {
               intent="shop-page"
               className="text-2xl font-semibold leading-tight tracking-tight text-[#111827] sm:text-3xl lg:text-[2rem] xl:text-4xl"
             >
-              CoElegance Organic Hair Oil
+              Organic Hair Oil
             </Heading>
 
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
