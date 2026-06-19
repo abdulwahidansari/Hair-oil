@@ -97,7 +97,7 @@ export default function Page() {
   return (
     <SectionLayout bg="bg-white">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:flex-row lg:items-start lg:gap-10 lg:px-8 lg:py-16 xl:gap-12">
-        <div className="min-w-0 w-full lg:sticky lg:top-24 lg:z-10 lg:w-1/2 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:overscroll-contain lg:self-start">
+        <div className="min-w-0 w-full lg:sticky lg:top-24 lg:z-10 lg:w-1/2 lg:self-start">
           <ProductImageGallery className="rounded-2xl border border-gray-100 bg-white shadow-sm" />
         </div>
 
@@ -126,11 +126,23 @@ export default function Page() {
             </div>
           </header>
 
-          <Text size="sm" className="max-w-prose text-[15px] leading-relaxed text-[#4b5563] sm:text-base">
-            A powerful herbal blend with more than 20 natural ingredients to reduce hair
-            fall, support new growth, and nourish your scalp. Lightweight, non-sticky and
-            suitable for all hair types.
-          </Text>
+          <div className="max-w-prose space-y-4 text-[15px] leading-relaxed text-[#4b5563] sm:text-base">
+            <Text size="sm" className="text-[15px] leading-relaxed text-[#4b5563] sm:text-base">
+              A powerful organic hair growth oil is meticulously crafted to nourish your scalp
+              while promoting thicker, fuller hair. It has 20+ herbs and 6 natural oils — our
+              formula strengthens hair follicles, reduces breakage, and stimulates growth.
+            </Text>
+            <Text size="sm" className="text-[15px] leading-relaxed text-[#4b5563] sm:text-base">
+              Ideal for all hair types, deeply nourishing and hydrating the scalp and helping
+              your hair feel softer, fuller, and more vibrant. Use it regularly, and your hair
+              can look healthier, shinier, and better maintained, naturally.
+            </Text>
+            <Text size="sm" className="text-[15px] leading-relaxed text-[#4b5563] sm:text-base">
+              Give your hair the care it deserves with a botanical-rich formula designed for
+              everyday hair care. Shop CoElegance Organic Hair Oil today and add the good stuff
+              of natural ingredients to your hair care routine.
+            </Text>
+          </div>
 
           <div className="space-y-3">
             <Text size="sm" weight={600} className="text-[#111827]">
