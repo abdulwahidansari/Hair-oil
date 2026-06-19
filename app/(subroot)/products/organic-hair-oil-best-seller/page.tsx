@@ -34,10 +34,10 @@ const PRODUCT_ACCORDION_SECTIONS: AccordionSection[] = [
     content: (
       <ul className="list-disc space-y-2 pl-5">
         <li>Helps reduce hair fall and supports healthier-looking growth.</li>
-        <li>Nourishes the scalp with a blend of 20+ natural ingredients.</li>
-        <li>Lightweight, non-sticky feel suitable for daily use.</li>
-        <li>The oil for hair growth strengthens hair roots.</li>
-        <li>Hair growth oil accelerates hair growth.</li>
+        <li>Nourishes the scalp with 20+ herbs and 6 natural oils.</li>
+        <li>Strengthens hair follicles and reduces breakage with regular use.</li>
+        <li>Lightweight, non-sticky feel suitable for all hair types.</li>
+        <li>Deeply hydrates the scalp for softer, shinier hair.</li>
       </ul>
     ),
   },
@@ -110,6 +110,9 @@ export default function Page() {
             >
               Organic Hair Oil
             </Heading>
+            <p className="text-sm text-[#6b7280] sm:text-base">
+              200ml · 20+ herbs · Cash on delivery across Pakistan
+            </p>
 
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <p className="text-2xl font-semibold tabular-nums text-[#111827] sm:text-3xl">
@@ -199,10 +202,16 @@ export default function Page() {
             </div>
             <Text size="sm" className="text-xs text-[#6b7280] md:text-sm">
               Total bottles: <span className="font-semibold text-[#111827]">{totalBottles}</span>
+              {totalBottles > 1 && (
+                <>
+                  {" "}
+                  · {formatCurrency(CURRENT_PRICE_PER_BOTTLE)} per bottle
+                </>
+              )}
             </Text>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Link
               href={`/checkout?packSize=${encodeURIComponent(String(packSize))}&quantity=${encodeURIComponent(String(quantity))}`}
             >
@@ -210,6 +219,9 @@ export default function Page() {
                 Buy Now
               </Button>
             </Link>
+            <p className="text-center text-xs text-[#6b7280] sm:text-sm">
+              Nationwide delivery · Secure checkout · 100% herbal formula
+            </p>
           </div>
 
           <div className="w-full border-t border-gray-200 pt-1">
