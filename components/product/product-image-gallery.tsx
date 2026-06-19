@@ -7,10 +7,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const PRODUCT_GALLERY_IMAGES = [
-  { src: "/images/bottel1.png", alt: "CoElegance Organic Hair Oil with golden oil splash" },
-  { src: "/images/bottel.png", alt: "CoElegance Organic Hair Oil — front" },
+  { src: "/images/bottel.png", alt: "CoElegance Organic Hair Oil with golden oil splash" },
+  { src: "/images/image 1.png", alt: "CoElegance Organic Hair Oil — front" },
   { src: "/images/main.png", alt: "CoElegance Organic Hair Oil — lifestyle" },
-  { src: "/images/b.png", alt: "CoElegance Organic Hair Oil — product detail" },
+  { src: "/images/Organic (1)", alt: "CoElegance Organic Hair Oil — product detail" },
 ] as const;
 
 const MAIN_ZOOM_SCALE = 2.75;
