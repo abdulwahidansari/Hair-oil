@@ -8,7 +8,7 @@ import { useKeenSlider } from "keen-slider/react";
 import * as ProductCard from "@/ui/card/productCard";
 
 // data
-import products from "@/data/product.json";
+import { catalogProducts, productPath } from "@/lib/product";
 
 // css
 import "keen-slider/keen-slider.min.css";
@@ -76,7 +76,7 @@ export default function CatalogSlider() {
         </>
       )}
       <div ref={slideRef} className="keen-slider">
-        {products.map((product) => (
+        {catalogProducts.map((product) => (
           <div key={product.id} className="keen-slider__slide">
             <ProductCard.Root data={product}>
               <ProductCard.Thumbnail>
@@ -85,12 +85,12 @@ export default function CatalogSlider() {
                   <ProductCard.WishlistButton />
                 </ProductCard.ThumbnailBadge>
 
-                <Link href="/product">
+                <Link href={productPath()}>
                   <ProductCard.Image />
                 </Link>
               </ProductCard.Thumbnail>
 
-              <Link href="/product">
+              <Link href={productPath()}>
                 <ProductCard.Content>
                   <ProductCard.Ratings />
                   <ProductCard.Name />

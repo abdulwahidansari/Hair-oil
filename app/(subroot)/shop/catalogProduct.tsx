@@ -8,7 +8,7 @@ import * as ProductCard from "@/ui/card/productCard";
 import { useProductDetail } from "@/stores/zustand";
 
 // data
-import products from "@/data/product.json";
+import { catalogProducts } from "@/lib/product";
 
 // lib
 import { cn } from "@/lib/utils";
@@ -25,7 +25,7 @@ const CatalogProduct = () => {
             : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
         )}
       >
-        {products.map((product) => (
+        {catalogProducts.map((product) => (
           <ProductCard.Root
             key={product.id}
             data={product}

@@ -16,7 +16,6 @@ import SectionLayout from "@/layouts/sectionLayout";
 import Button from "@/ui/button";
 import Heading from "@/ui/head";
 import Text from "@/ui/text";
-import CatalogSlider from "@/ui/slider/catalogSlider";
 import TestimonialsSection from "@/ui/testimonialsSection";
 import {
   CallIcon,

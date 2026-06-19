@@ -1,15 +1,16 @@
-import products from "@/data/dummy.json";
 import { NextResponse } from "next/server";
 
+import { apiProducts } from "@/lib/product";
+
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: { productId: string } },
 ) {
-  const productId = params.productId;
-  const productData = products.find((product) => product.id === productId);
+  const productData = apiProducts.find((product) => product.id === params.productId);
 
-  if (!productData)
+  if (!productData) {
     return NextResponse.json({ error: "Product Not Found" }, { status: 404 });
+  }
 
   return Response.json(productData);
 }

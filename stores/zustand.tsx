@@ -38,41 +38,7 @@ type CartProductsStoreProps = {
 export const useCartProductsStore = create<CartProductsStoreProps>()(
   (set, get) => ({
     total: 0,
-    products: [
-      {
-        id: 1,
-        image: {
-          src: "/images/sumplekuping-1.png",
-          alt: "sumplekuping",
-        },
-        name: "Skullcandy - Rail True Wireless Earbuds",
-        quantity: 2,
-        price: 120,
-        color: "Black",
-      },
-      {
-        id: 2,
-        image: {
-          src: "/images/sumplekuping-2.png",
-          alt: "sumplekuping",
-        },
-        name: "Sony - WH-CH720N Wireless Noise Canceling",
-        quantity: 1,
-        price: 420,
-        color: "White",
-      },
-      {
-        id: 3,
-        image: {
-          src: "/images/sumplekuping-4.png",
-          alt: "sumplekuping",
-        },
-        name: "Bose QuietComfort Headphones",
-        quantity: 3,
-        price: 70,
-        color: "Black",
-      },
-    ],
+    products: [],
     getProductById: (productId) => {
       return get().products.find((product) => product.id === productId);
     },
