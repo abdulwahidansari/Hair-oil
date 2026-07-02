@@ -16,6 +16,7 @@ import SectionLayout from "@/layouts/sectionLayout";
 import Button from "@/ui/button";
 import Heading from "@/ui/head";
 import Text from "@/ui/text";
+import HeroSlider from "@/ui/slider/heroSlider";
 import TestimonialsSection from "@/ui/testimonialsSection";
 import {
   CallIcon,
@@ -33,40 +34,8 @@ export default function Home() {
   return (
     <>
       <JsonLd data={homepageSchemaGraph()} />
-      {/* Hero section */}
-      <SectionLayout
-        bg="bg-[#ffc95c]"
-        className="flex flex-col items-center justify-between lg:grid lg:grid-cols-2 lg:pt-8"
-      >
-        {/* Text content */}
-        <div className="flex flex-col items-center gap-4 p-8 sm:max-w-[600px] md:max-w-[600px] md:py-16 lg:order-2 lg:max-w-none lg:items-start lg:p-0">
-          <div className="space-y-2 text-center lg:text-left">
-            <Heading as="h1" intent="hero-section">
-               Healthy hair <br /><span className="text-[#377DFF]">starts</span>{" "}
-              with <br /> care.
-            </Heading>
-            <Text className="md:text-lg lg:text-xl">
-              From root to tip refined care
-            </Text>
-          </div>
-          <Link href={productPath()}>
-            <Button fontSize="sm" className="px-14 py-3 md:text-lg">
-              Shopping Now
-            </Button>
-          </Link>
-        </div>
-
-        {/* Image content */}
-        <div className="flex h-auto w-full items-end justify-center overflow-hidden lg:order-1">
-          <Image
-            src="/images/main.png"
-            width={600}
-            height={761}
-            alt="Person with healthy, shiny hair"
-            className="w-full max-w-[360px] object-cover object-top lg:max-w-[420px] xl:max-w-[460px]"
-          />
-        </div>
-      </SectionLayout>
+      {/* Hero slider — full-bleed; edit slides in lib/hero-slides.ts */}
+      <HeroSlider />
 
       {/* Organic highlight section */}
       <SectionLayout bg="bg-[#fdf7ef]">
