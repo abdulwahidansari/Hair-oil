@@ -63,7 +63,15 @@ function renderHeadline(slide: HeroSlideConfig) {
   );
 }
 
-function HeroSlidePanel({ slide, isPrimary }: { slide: HeroSlideConfig; isPrimary: boolean }) {
+function HeroSlidePanel({
+  slide,
+  isPrimary,
+  isActive,
+}: {
+  slide: HeroSlideConfig;
+  isPrimary: boolean;
+  isActive: boolean;
+}) {
   const imageFirst = slide.imagePosition !== "right";
   const HeadingTag = isPrimary ? "h1" : "h2";
 
@@ -133,7 +141,7 @@ function HeroSlidePanel({ slide, isPrimary }: { slide: HeroSlideConfig; isPrimar
         )}
       </div>
 
-      <Link href={slide.ctaHref} className="mt-1">
+      <Link href={slide.ctaHref} className="mt-1" tabIndex={isActive ? 0 : -1}>
         <Button fontSize="sm" className="px-10 py-3 md:px-14 md:text-lg">
           {slide.ctaLabel}
         </Button>
@@ -190,7 +198,7 @@ export default function HeroSlider() {
     {
       initial: 0,
       loop: HERO_SLIDES.length > 1,
-      slides: { perView: 1 },
+      slides: { perView: 1, spacing: 0 },
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
       },
@@ -208,24 +216,50 @@ export default function HeroSlider() {
     [instanceRef],
   );
 
+  const showControls = HERO_SLIDES.length > 1;
+
   return (
-    <section className="relative w-full overflow-hidden">
-      <div ref={sliderRef} className="keen-slider">
-        {HERO_SLIDES.map((slide, index) => (
-          <div key={slide.id} className="keen-slider__slide">
-            <HeroSlidePanel slide={slide} isPrimary={index === 0} />
-          </div>
-        ))}
+    <section
+      aria-roledescription="carousel"
+      aria-label="Featured promotions"
+      className="relative w-full min-h-[min(88vw,520px)] overflow-hidden lg:min-h-[520px]"
+    >
+      <div
+        ref={sliderRef}
+        className={cn("hero-slider keen-slider", loaded && "hero-slider--initialized")}
+      >
+        {HERO_SLIDES.map((slide, index) => {
+          const isActive = !loaded ? index === 0 : index === currentSlide;
+
+          return (
+            <div
+              key={slide.id}
+              className="keen-slider__slide"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${index + 1} of ${HERO_SLIDES.length}`}
+              aria-hidden={!isActive}
+            >
+              <HeroSlidePanel slide={slide} isPrimary={index === 0} isActive={isActive} />
+            </div>
+          );
+        })}
       </div>
 
-      {loaded && HERO_SLIDES.length > 1 && (
-        <div className="pointer-events-none absolute inset-0">
+      {showControls && (
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 transition-opacity duration-200",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        >
           <div className="relative mx-auto h-full max-w-[1440px]">
             <button
               type="button"
               aria-label="Previous slide"
               onClick={() => instanceRef.current?.prev()}
-              className="pointer-events-auto absolute left-2 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[#111827] shadow-md transition hover:bg-white sm:left-4 md:flex lg:left-6"
+              disabled={!loaded}
+              className="pointer-events-auto absolute left-2 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[#111827] shadow-md transition hover:bg-white disabled:pointer-events-none sm:left-4 md:flex lg:left-6"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -233,7 +267,8 @@ export default function HeroSlider() {
               type="button"
               aria-label="Next slide"
               onClick={() => instanceRef.current?.next()}
-              className="pointer-events-auto absolute right-2 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[#111827] shadow-md transition hover:bg-white sm:right-4 md:flex lg:right-6"
+              disabled={!loaded}
+              className="pointer-events-auto absolute right-2 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[#111827] shadow-md transition hover:bg-white disabled:pointer-events-none sm:right-4 md:flex lg:right-6"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -247,9 +282,10 @@ export default function HeroSlider() {
                     type="button"
                     aria-label={`Go to slide ${index + 1}`}
                     aria-current={isActive}
+                    disabled={!loaded}
                     onClick={() => goTo(index)}
                     className={cn(
-                      "rounded-full transition-all duration-300",
+                      "rounded-full transition-all duration-300 disabled:pointer-events-none",
                       isActive
                         ? "h-3 w-3 border-2 border-[#111827] bg-transparent ring-2 ring-[#111827]/20"
                         : "h-2.5 w-2.5 bg-[#111827]/35 hover:bg-[#111827]/55",

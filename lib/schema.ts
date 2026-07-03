@@ -239,6 +239,17 @@ export function blogPostingSchema(post: BlogPost): Record<string, unknown> {
 export function homepageSchemaGraph(): Record<string, unknown> {
   return schemaGraph(
     organizationSchema(),
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: "CoElegance Organic Herbal Hair Oil — Best Hair Oil in Pakistan",
+      description:
+        "CoElegance organic herbal hair oil reduces hair fall, strengthens roots and supports natural hair growth. Cash on delivery across Pakistan.",
+      isPartOf: { "@id": ORGANIZATION_ID },
+      about: { "@id": productSchemaId() },
+      inLanguage: "en-PK",
+    },
     breadcrumbSchema([{ name: "Home", path: "/" }]),
     productSchema(),
     faqPageSchema(homepageFaqs),

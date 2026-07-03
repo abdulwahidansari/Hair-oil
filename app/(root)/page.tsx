@@ -28,6 +28,8 @@ export const metadata: Metadata = pageMetadata("/", {
   title: "Best Hair Oil for Hair Growth in Pakistan | CoElegance Organic Hair Oil",
   description:
     "Looking for the best hair oil in Pakistan? CoElegance is the best organic hair oil in Pakistan — reduces hair fall, promotes hair growth and strengthens roots. Cash on delivery nationwide.",
+}, {
+  images: ["/images/main.png"],
 });
 
 export default function Home() {
