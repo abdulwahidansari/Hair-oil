@@ -1,5 +1,8 @@
 import { siteUrl } from "@/lib/site";
 
+/** Former product slug — permanently redirected in next.config.js (301). */
+export const LEGACY_PRODUCT_SLUG = "coelegance-organic-hair-oil-best-seller";
+
 export const FEATURED_PRODUCT = {
   slug: "organic-hair-oil-best-seller",
   name: "CoElegance Organic Herbal Hair Oil 200ml",

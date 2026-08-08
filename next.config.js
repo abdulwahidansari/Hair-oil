@@ -7,6 +7,11 @@ const nextConfig = {
         destination: "/products/organic-hair-oil-best-seller",
         permanent: true,
       },
+      {
+        source: "/products/coelegance-organic-hair-oil-best-seller/",
+        destination: "/products/organic-hair-oil-best-seller",
+        permanent: true,
+      },
     ];
   },
 };
