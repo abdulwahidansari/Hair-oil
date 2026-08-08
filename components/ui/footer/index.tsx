@@ -68,10 +68,6 @@ const Footer = () => {
                 <a href="tel:+923071123512" className={linkClass}>
                 Phone : +923071123512
                 </a>
-                <div className="text-white/60">
-                  Mon - Sat: 9:30am - 10:00pm <span className="text-white/30">|</span> Sun:
-                  11am - 8pm
-                </div>
                 <a href="mailto:coeleganceintl@gmail.com" className={linkClass}>
                   coeleganceintl@gmail.com
                 </a>
@@ -164,7 +160,7 @@ const Footer = () => {
           {/* Bottom bar */}
           <div className="mt-12 border-t border-white/10 pt-6">
             <div className="flex flex-col gap-3 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
-              <div>© {2025} CoElegance. All rights reserved.</div>
+              <div>© {2026} CoElegance. All rights reserved.</div>
               <div className="flex flex-wrap gap-x-6 gap-y-2">
                 <Link href="/terms" className={linkClass}>
                   Terms

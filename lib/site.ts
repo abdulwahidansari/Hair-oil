@@ -65,3 +65,35 @@ export function pageMetadata(
     },
   };
 }
+
+/**
+ * Metadata for utility pages (checkout, thank-you) that must not appear in search results.
+ * Uses noindex + follow, and omits canonical to avoid mixed indexing signals.
+ */
+export function privatePageMetadata(path: string, metadata: Metadata): Metadata {
+  const pagePath = resolvePagePath(path);
+  const titleString = resolveTitleString(metadata.title);
+  const descriptionString =
+    typeof metadata.description === "string" ? metadata.description : undefined;
+
+  return {
+    ...metadata,
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: false,
+        follow: true,
+      },
+    },
+    openGraph: {
+      ...metadata.openGraph,
+      url: pagePath,
+      siteName,
+      locale: "en_PK",
+      type: "website",
+      ...(titleString ? { title: titleString } : {}),
+      ...(descriptionString ? { description: descriptionString } : {}),
+    },
+  };
+}

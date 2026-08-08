@@ -18,10 +18,9 @@ const sitemapData = [
     title: "Products",
     links: [
       {
-        name: "Best Seller Product",
+        name: "CoElegance Organic Hair Oil",
         path: "/products/organic-hair-oil-best-seller",
       },
-      { name: "Checkout", path: "/checkout" },
     ],
   },
   {

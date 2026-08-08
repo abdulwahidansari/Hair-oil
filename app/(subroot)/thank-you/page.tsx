@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 
-import { pageMetadata } from "@/lib/site";
+import { privatePageMetadata } from "@/lib/site";
 import { productPath } from "@/lib/product";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbPageSchemaGraph } from "@/lib/schema";
@@ -15,11 +15,10 @@ import Heading from "@/ui/head";
 import Text from "@/ui/text";
 import Button from "@/ui/button";
 
-export const metadata: Metadata = pageMetadata("/thank-you", {
+export const metadata: Metadata = privatePageMetadata("/thank-you", {
   title: "Thank You - CoElegance",
   description:
     "Your CoElegance order has been placed successfully. We will contact you shortly to confirm delivery.",
-  robots: { index: false, follow: false },
 });
 
 export default function ThankYouPage() {

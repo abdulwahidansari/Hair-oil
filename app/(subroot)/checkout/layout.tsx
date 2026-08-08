@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbPageSchemaGraph } from "@/lib/schema";
-import { pageMetadata } from "@/lib/site";
+import { privatePageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = pageMetadata("/checkout", {
+export const metadata: Metadata = privatePageMetadata("/checkout", {
   title: "Checkout",
   description:
     "Complete your CoElegance organic herbal hair oil order with cash on delivery across Pakistan.",
-  robots: { index: false, follow: false },
 });
 
 export default function CheckoutLayout({
