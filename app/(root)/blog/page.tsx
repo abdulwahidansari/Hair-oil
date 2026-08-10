@@ -7,19 +7,26 @@ import { blogIndexSchemaGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
 import { JsonLd } from "@/components/seo/json-ld";
 
-export const metadata: Metadata = pageMetadata("/blog", {
-  title: "Hair Care Blog | Best Hair Oil Tips & Growth Guide | CoElegance Pakistan",
-  description:
-    "Discover expert tips on the best hair oil for hair growth, reducing hair fall and herbal scalp care. CoElegance blog — your guide to healthier hair in Pakistan.",
-});
+export const metadata: Metadata = pageMetadata(
+  "/blog",
+  {
+    title: "Hair Care Tips & Guides",
+    description:
+      "Expert hair care tips from CoElegance Pakistan — reduce hair fall, grow thicker hair, and care for your scalp with organic herbal oils.",
+  },
+  {
+    images: ["/images/bottel.png"],
+    twitterCard: "summary_large_image",
+  },
+);
 
 export default function BlogPage() {
   return (
     <>
       <JsonLd data={blogIndexSchemaGraph()} />
     <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
-      <h1 className="mb-8 text-center text-2xl font-bold uppercase tracking-wider text-gray-800 md:mb-12 md:text-3xl">
-        NEWS
+      <h1 className="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 md:text-3xl">
+        Hair Care Tips &amp; Guides
       </h1>
 
       <div className="space-y-12 md:space-y-16">

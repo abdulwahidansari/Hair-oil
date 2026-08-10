@@ -30,7 +30,13 @@ type PageMetadataOptions = {
   publishedTime?: string;
   modifiedTime?: string;
   images?: string[];
+  twitterCard?: "summary" | "summary_large_image";
 };
+
+function pageUrl(path: string): string {
+  const pagePath = resolvePagePath(path);
+  return pagePath === "/" ? siteUrl : `${siteUrl}${pagePath}`;
+}
 
 /** Builds per-route SEO metadata with self-referencing canonical and openGraph URLs. */
 export function pageMetadata(
@@ -38,22 +44,27 @@ export function pageMetadata(
   metadata: Metadata,
   options: PageMetadataOptions = {},
 ): Metadata {
-  const pagePath = resolvePagePath(path);
+  const absoluteUrl = pageUrl(path);
   const titleString = resolveTitleString(metadata.title);
   const descriptionString =
     typeof metadata.description === "string" ? metadata.description : undefined;
 
-  const openGraphImages = options.images?.map((image) => ({ url: image }));
+  const imageUrls = options.images ?? [];
+  const openGraphImages = imageUrls.map((image) => ({
+    url: image.startsWith("http") ? image : `${siteUrl}${image}`,
+  }));
+
+  const twitterCard = options.twitterCard ?? (imageUrls.length > 0 ? "summary_large_image" : "summary");
 
   return {
     ...metadata,
     alternates: {
       ...metadata.alternates,
-      canonical: pagePath,
+      canonical: absoluteUrl,
     },
     openGraph: {
       ...metadata.openGraph,
-      url: pagePath,
+      url: absoluteUrl,
       siteName,
       locale: "en_PK",
       type: options.openGraphType ?? "website",
@@ -61,7 +72,20 @@ export function pageMetadata(
       ...(descriptionString ? { description: descriptionString } : {}),
       ...(options.publishedTime ? { publishedTime: options.publishedTime } : {}),
       ...(options.modifiedTime ? { modifiedTime: options.modifiedTime } : {}),
-      ...(openGraphImages ? { images: openGraphImages } : {}),
+      ...(openGraphImages.length > 0 ? { images: openGraphImages } : {}),
+    },
+    twitter: {
+      ...metadata.twitter,
+      card: twitterCard,
+      ...(titleString ? { title: titleString } : {}),
+      ...(descriptionString ? { description: descriptionString } : {}),
+      ...(imageUrls.length > 0
+        ? {
+            images: imageUrls.map((image) =>
+              image.startsWith("http") ? image : `${siteUrl}${image}`,
+            ),
+          }
+        : {}),
     },
   };
 }
@@ -71,7 +95,7 @@ export function pageMetadata(
  * Uses noindex + follow, and omits canonical to avoid mixed indexing signals.
  */
 export function privatePageMetadata(path: string, metadata: Metadata): Metadata {
-  const pagePath = resolvePagePath(path);
+  const absoluteUrl = pageUrl(path);
   const titleString = resolveTitleString(metadata.title);
   const descriptionString =
     typeof metadata.description === "string" ? metadata.description : undefined;
@@ -88,7 +112,7 @@ export function privatePageMetadata(path: string, metadata: Metadata): Metadata 
     },
     openGraph: {
       ...metadata.openGraph,
-      url: pagePath,
+      url: absoluteUrl,
       siteName,
       locale: "en_PK",
       type: "website",

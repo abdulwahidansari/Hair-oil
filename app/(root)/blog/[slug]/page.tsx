@@ -19,17 +19,25 @@ export async function generateMetadata({
     return {};
   }
 
+  const coverImage = post.image || "/images/bottel.png";
+
   return pageMetadata(
     `/blog/${post.slug}`,
     {
-      title: post.title,
-      description: post.description,
+      title: {
+        absolute: `${post.title} | CoElegance Hair Care Blog`,
+      },
+      description: post.excerpt,
+      openGraph: {
+        authors: ["CoElegance Editorial"],
+      },
     },
     {
       openGraphType: "article",
       publishedTime: toIsoDateTime(post.publishedAt),
       modifiedTime: toIsoDateTime(post.modifiedAt),
-      images: [post.image],
+      images: [coverImage],
+      twitterCard: "summary_large_image",
     },
   );
 }
@@ -44,53 +52,53 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   return (
     <>
       <JsonLd data={blogPostSchemaGraph(post)} />
-    <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
-      <nav className="mb-8">
-        <Link
-          href="/blog"
-          className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-        >
-          ← Back to Blog
-        </Link>
-      </nav>
+      <main className="mx-auto max-w-[1440px] px-4 py-8 md:px-8 md:py-12">
+        <nav className="mb-8">
+          <Link
+            href="/blog"
+            className="text-sm text-gray-500 transition-colors hover:text-gray-700"
+          >
+            ← Back to Blog
+          </Link>
+        </nav>
 
-      <header className="mb-12">
-        <div className="mb-8">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
+        <header className="mb-12">
+          <div className="mb-8">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
+
+          <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+            {post.title}
+          </h1>
+
+          <time className="text-sm text-gray-500" dateTime={post.publishedAt}>
+            {post.date}
+          </time>
+        </header>
+
+        <article className="prose prose-lg max-w-none">
+          <div
+            dangerouslySetInnerHTML={{ __html: post.content }}
+            className="space-y-6 leading-relaxed text-gray-700"
+          />
+        </article>
+
+        <div className="mt-16 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center border border-gray-300 px-8 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+          >
+            ← Back to All Posts
+          </Link>
         </div>
-
-        <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-          {post.title}
-        </h1>
-
-        <time className="text-sm text-gray-500" dateTime={post.publishedAt}>
-          {post.date}
-        </time>
-      </header>
-
-      <article className="prose prose-lg max-w-none">
-        <div
-          dangerouslySetInnerHTML={{ __html: post.content }}
-          className="space-y-6 text-gray-700 leading-relaxed"
-        />
-      </article>
-
-      <div className="mt-16 text-center">
-        <Link
-          href="/blog"
-          className="inline-flex items-center border border-gray-300 px-8 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
-        >
-          ← Back to All Posts
-        </Link>
-      </div>
-    </main>
+      </main>
     </>
   );
 }
