@@ -28,9 +28,6 @@ export async function generateMetadata({
         absolute: `${post.title} | CoElegance Hair Care Blog`,
       },
       description: post.excerpt,
-      openGraph: {
-        authors: ["CoElegance Editorial"],
-      },
     },
     {
       openGraphType: "article",
@@ -38,6 +35,7 @@ export async function generateMetadata({
       modifiedTime: toIsoDateTime(post.modifiedAt),
       images: [coverImage],
       twitterCard: "summary_large_image",
+      authors: ["CoElegance Editorial"],
     },
   );
 }

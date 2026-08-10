@@ -31,6 +31,7 @@ type PageMetadataOptions = {
   modifiedTime?: string;
   images?: string[];
   twitterCard?: "summary" | "summary_large_image";
+  authors?: string[];
 };
 
 function pageUrl(path: string): string {
@@ -55,6 +56,29 @@ export function pageMetadata(
   }));
 
   const twitterCard = options.twitterCard ?? (imageUrls.length > 0 ? "summary_large_image" : "summary");
+  const openGraphType = options.openGraphType ?? "website";
+
+  const openGraphBase = {
+    ...metadata.openGraph,
+    url: absoluteUrl,
+    siteName,
+    locale: "en_PK",
+    type: openGraphType,
+    ...(titleString ? { title: titleString } : {}),
+    ...(descriptionString ? { description: descriptionString } : {}),
+    ...(options.publishedTime ? { publishedTime: options.publishedTime } : {}),
+    ...(options.modifiedTime ? { modifiedTime: options.modifiedTime } : {}),
+    ...(openGraphImages.length > 0 ? { images: openGraphImages } : {}),
+  };
+
+  const openGraph =
+    openGraphType === "article"
+      ? {
+          ...openGraphBase,
+          type: "article" as const,
+          ...(options.authors ? { authors: options.authors } : {}),
+        }
+      : openGraphBase;
 
   return {
     ...metadata,
@@ -62,18 +86,7 @@ export function pageMetadata(
       ...metadata.alternates,
       canonical: absoluteUrl,
     },
-    openGraph: {
-      ...metadata.openGraph,
-      url: absoluteUrl,
-      siteName,
-      locale: "en_PK",
-      type: options.openGraphType ?? "website",
-      ...(titleString ? { title: titleString } : {}),
-      ...(descriptionString ? { description: descriptionString } : {}),
-      ...(options.publishedTime ? { publishedTime: options.publishedTime } : {}),
-      ...(options.modifiedTime ? { modifiedTime: options.modifiedTime } : {}),
-      ...(openGraphImages.length > 0 ? { images: openGraphImages } : {}),
-    },
+    openGraph,
     twitter: {
       ...metadata.twitter,
       card: twitterCard,
