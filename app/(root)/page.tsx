@@ -16,7 +16,7 @@ import SectionLayout from "@/layouts/sectionLayout";
 import Button from "@/ui/button";
 import Heading from "@/ui/head";
 import Text from "@/ui/text";
-import HeroSlider from "@/ui/slider/heroSlider";
+import AzadiHeroBanner from "@/components/home/azadi-hero-banner";
 import TestimonialsSection from "@/ui/testimonialsSection";
 import {
   CallIcon,
@@ -36,8 +36,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={homepageSchemaGraph()} />
-      {/* Hero slider — full-bleed; edit slides in lib/hero-slides.ts */}
-      <HeroSlider />
+      <AzadiHeroBanner />
 
       {/* Organic highlight section */}
       <SectionLayout bg="bg-[#fdf7ef]">

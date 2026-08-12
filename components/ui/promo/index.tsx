@@ -36,15 +36,15 @@ export default function PromoSection() {
 
             <p
               className={cn(
-                "flex gap-3 font-inter text-xs font-semibold md:text-sm",
+                "flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-inter text-xs font-semibold md:text-sm",
                 isRootPage ? "text-[#FEFEFE]" : "text-[#343839]",
               )}
             >
-               25% OFF CoElegance Organic Hair Oil  — Azadi sell!
-              <Link href={productPath()}>
+              Azadi Sale — Flat 25% OFF · 13 Aug – 16 Aug
+              <Link href={productPath()} className="inline-flex shrink-0">
                 <span
                   className={cn(
-                    "hidden items-center gap-1 border-b font-medium md:flex",
+                    "inline-flex items-center gap-1 border-b font-medium",
                     isRootPage
                       ? "border-[#FFAB00] text-[#FFAB00]"
                       : "border-[#377DFF] text-[#377DFF]",
@@ -52,7 +52,7 @@ export default function PromoSection() {
                 >
                   Shop Now
                   <ArrowRightIcon
-                    className="h-5 w-5"
+                    className="h-4 w-4 md:h-5 md:w-5"
                     stroke={cn(isRootPage ? "#FFAB00" : "#377DFF")}
                   />
                 </span>
