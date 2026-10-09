@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
@@ -72,7 +71,6 @@ const PRODUCT_ACCORDION_SECTIONS: AccordionSection[] = [
 export default function Page() {
   const [packSize, setPackSize] = useState<(typeof PACK_OPTIONS)[number]>(1);
   const [quantity, setQuantity] = useState<number>(1);
-  const [openAccordionId, setOpenAccordionId] = useState<string | null>(null);
 
   const totalBottles = packSize * quantity;
   const currentTotal = CURRENT_PRICE_PER_BOTTLE * totalBottles;
@@ -108,7 +106,7 @@ export default function Page() {
               intent="shop-page"
               className="text-2xl font-semibold leading-tight tracking-tight text-[#111827] sm:text-3xl lg:text-[2rem] xl:text-4xl"
             >
-              Organic Hair Oil
+              CoElegance Organic Herbal Hair Oil 200ml
             </Heading>
             <p className="text-sm text-[#6b7280] sm:text-base">
               200ml · 20+ herbs · Cash on delivery across Pakistan
@@ -224,49 +222,26 @@ export default function Page() {
             </p>
           </div>
 
+          {/*
+            Native <details> keeps Benefits / Usage / Ingredients in the server-rendered
+            HTML (collapsed visually, not removed), so search engines and AI crawlers can
+            read them without running JavaScript.
+          */}
           <div className="w-full border-t border-gray-200 pt-1">
-            {PRODUCT_ACCORDION_SECTIONS.map((section) => {
-              const isOpen = openAccordionId === section.id;
-              return (
-                <div key={section.id} className="border-b border-gray-200">
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    onClick={() =>
-                      setOpenAccordionId((prev) => (prev === section.id ? null : section.id))
-                    }
-                    className="flex w-full items-center justify-between gap-4 py-4 text-left transition-colors hover:bg-gray-50/80"
-                  >
-                    <span className="text-base font-medium text-[#111827]">{section.title}</span>
-                    <ChevronDown
-                      className={`h-4 w-4 shrink-0 text-[#111827] transition-transform duration-300 ease-out ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                      aria-hidden
-                    />
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        key={section.id}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{
-                          height: { duration: 0.34, ease: [0.22, 1, 0.36, 1] },
-                          opacity: { duration: 0.26, ease: "easeOut" },
-                        }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pb-4 text-sm leading-relaxed text-[#4b5563]">
-                          {section.content}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+            {PRODUCT_ACCORDION_SECTIONS.map((section) => (
+              <details key={section.id} className="group border-b border-gray-200">
+                <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 py-4 text-left transition-colors hover:bg-gray-50/80 [&::-webkit-details-marker]:hidden">
+                  <span className="text-base font-medium text-[#111827]">{section.title}</span>
+                  <ChevronDown
+                    className="h-4 w-4 shrink-0 text-[#111827] transition-transform duration-300 ease-out group-open:rotate-180"
+                    aria-hidden
+                  />
+                </summary>
+                <div className="pb-4 text-sm leading-relaxed text-[#4b5563]">
+                  {section.content}
                 </div>
-              );
-            })}
+              </details>
+            ))}
           </div>
         </div>
       </div>

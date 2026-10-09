@@ -7,6 +7,8 @@ import { pageMetadata } from "@/lib/site";
 export const metadata: Metadata = pageMetadata("/sitemap", {
   title: "Sitemap",
   description: "Browse all pages on the CoElegance website.",
+  // Utility page for visitors; keep it out of search results but let bots follow its links.
+  robots: { index: false, follow: true },
 });
 
 export default function SitemapLayout({

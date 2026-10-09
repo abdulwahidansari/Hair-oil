@@ -3,9 +3,15 @@ import type { MetadataRoute } from "next";
 import { blogPostList } from "@/lib/blog-posts";
 import { siteUrl } from "@/lib/site";
 
+/**
+ * Only list pages that should rank. The HTML /sitemap page is noindex, so it
+ * is intentionally left out.
+ *
+ * `lastModified` is omitted for static pages on purpose: stamping every URL
+ * with the build time makes Google distrust the field. Add a real date here
+ * only when that page's content actually changes.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const staticRoutes = [
     { path: "", priority: 1, changeFrequency: "weekly" as const },
     {
@@ -18,13 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "contact", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "refund", priority: 0.4, changeFrequency: "yearly" as const },
     { path: "terms", priority: 0.4, changeFrequency: "yearly" as const },
-    { path: "sitemap", priority: 0.3, changeFrequency: "monthly" as const },
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(
     ({ path, priority, changeFrequency }) => ({
       url: path ? `${siteUrl}/${path}` : siteUrl,
-      lastModified: now,
       changeFrequency,
       priority,
     }),

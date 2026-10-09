@@ -51,7 +51,7 @@ export function organizationSchema(): Record<string, unknown> {
     alternateName: "Organic Hair Oil",
     url: siteUrl,
     logo: `${siteUrl}/icon.png`,
-    email: "coelegance@gmail.com",
+    email: "coeleganceintl@gmail.com",
     telephone: "+923071123512",
     address: {
       "@type": "PostalAddress",
@@ -135,6 +135,16 @@ export function aggregateRatingSchema(
   };
 }
 
+/** Average of the reviews actually shown on the site, rounded to one decimal. */
+function averageTestimonialRating(): number {
+  if (testimonials.length === 0) {
+    return 0;
+  }
+
+  const total = testimonials.reduce((sum, item) => sum + item.rating, 0);
+  return Math.round((total / testimonials.length) * 10) / 10;
+}
+
 export function merchantReturnPolicySchema(): Record<string, unknown> {
   return {
     "@type": "MerchantReturnPolicy",
@@ -201,14 +211,16 @@ export function productSchema(): Record<string, unknown> {
       price: String(FEATURED_PRODUCT.price),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      priceValidUntil: "2026-12-31",
       seller: {
         "@id": ORGANIZATION_ID,
       },
       hasMerchantReturnPolicy: merchantReturnPolicySchema(),
       shippingDetails: shippingDetailsSchema(),
     },
-    aggregateRating: aggregateRatingSchema(testimonials.length),
+    aggregateRating: aggregateRatingSchema(
+      testimonials.length,
+      averageTestimonialRating(),
+    ),
   };
 }
 

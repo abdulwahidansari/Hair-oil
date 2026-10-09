@@ -163,7 +163,6 @@ export default function NavMobile({
 
                 <div className="flex items-center gap-1.5">
                   <CartIcon className="w-6" />
-                  <NotificationCount count={6} />
                 </div>
               </Link>
             </li>

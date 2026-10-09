@@ -8,9 +8,9 @@ import { pageMetadata } from "@/lib/site";
 export const metadata: Metadata = pageMetadata(
   productPath(),
   {
-    title: "Organic Herbal Hair Oil ",
+    title: { absolute: "CoElegance Herbal Hair Oil 200ml – Buy in Pakistan (COD)" },
     description:
-      "Buy CoElegance Organic Herbal Hair Oil 200ml in Pakistan. Herbal formula for hair fall control, stronger roots, dandruff care, and shinier hair.",
+      "Buy CoElegance Organic Herbal Hair Oil 200ml in Pakistan. Herbal formula to help reduce hair fall and strengthen roots. Cash on delivery nationwide.",
   },
   {
     images: ["/images/bottel.png"],
