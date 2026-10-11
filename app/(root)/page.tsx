@@ -25,9 +25,9 @@ import {
 } from "@/ui/assets/svg";
 
 export const metadata: Metadata = pageMetadata("/", {
-  title: "Best Hair Oil for Hair Growth in Pakistan | CoElegance Organic Hair Oil",
+  title: { absolute: "CoElegance Herbal Hair Oil – Hair Fall Care in Pakistan" },
   description:
-    "Looking for the best hair oil in Pakistan? CoElegance is the best organic hair oil in Pakistan — reduces hair fall, promotes hair growth and strengthens roots. Cash on delivery nationwide.",
+    "CoElegance herbal hair oil, made in Pakistan with 20+ botanical ingredients to help reduce hair fall and strengthen roots. Cash on delivery nationwide.",
 }, {
   images: ["/images/main.png"],
 });
@@ -97,7 +97,7 @@ export default function Home() {
               <div className="relative h-64 w-40 md:h-80 md:w-52 lg:h-96 lg:w-60">
                 <Image
                   src="/images/bottel1.png"
-                  alt="Organic product"
+                  alt="CoElegance Organic Herbal Hair Oil bottle with golden oil splash"
                   fill
                   sizes="(min-width: 1024px) 240px, 200px"
                   className="object-contain"
@@ -120,7 +120,7 @@ export default function Home() {
                   intent="base-section"
                   className="text-xl text-[#21411f] md:text-2xl"
                 >
-                  Skin Nourishment
+                  Hair &amp; Scalp Nourishment
                 </Heading>
                 <Text
                   size="sm"
@@ -195,7 +195,7 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
                 <div className="relative h-56 w-40 md:h-72 md:w-48 lg:h-80 lg:w-52">
                   <Image
                     src="/images/bottel.png"
-                    alt="Organic product"
+                    alt="CoElegance Organic Herbal Hair Oil 200ml bottle"
                     fill
                     sizes="(min-width: 1024px) 208px, 192px"
                     className="object-contain"

@@ -136,6 +136,8 @@ export function ProductImageGallery({
   };
 
   const current = images[selected] ?? images[0];
+  // A single photo needs no thumbnail strip or scroll arrows.
+  const showThumbs = images.length > 1;
 
   const thumbButtons = (keyPrefix: string, size: "mobile" | "desktop") =>
     images.map((img, i) => {
@@ -195,7 +197,12 @@ export function ProductImageGallery({
     <div className={cn("w-full", className)}>
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-5 lg:gap-6">
         {/* Desktop: vertical thumbnail strip */}
-        <div className="hidden shrink-0 flex-col items-center gap-2 md:flex">
+        <div
+          className={cn(
+            "hidden shrink-0 flex-col items-center gap-2",
+            showThumbs && "md:flex",
+          )}
+        >
           <button
             type="button"
             aria-label="Scroll thumbnails up"
@@ -270,7 +277,12 @@ export function ProductImageGallery({
         </div>
 
         {/* Mobile: horizontal thumbnail strip below main image */}
-        <div className="order-2 flex items-center gap-2 md:hidden">
+        <div
+          className={cn(
+            "order-2 flex items-center gap-2 md:hidden",
+            !showThumbs && "hidden",
+          )}
+        >
           <button
             type="button"
             aria-label="Scroll thumbnails left"

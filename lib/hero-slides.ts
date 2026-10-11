@@ -42,7 +42,7 @@ export const HERO_SLIDES: HeroSlideConfig[] = [
       className: "text-[#377DFF]",
     },
     subheadline: "From root to tip refined care",
-    ctaLabel: "Shopping Now",
+    ctaLabel: "Shop Now",
     ctaHref: productPath(),
   },
   {

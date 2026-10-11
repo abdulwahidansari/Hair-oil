@@ -10,6 +10,7 @@ import Logo from "@/ui/assets/logo";
 import {
   CartIcon,
   CloseIcon,
+  DropdownIcon,
   FacebookIcon,
   InstagramIcon,
   NotificationCount,
@@ -20,35 +21,13 @@ import {
 
 // lib
 import { cn } from "@/lib/utils";
-import { productPath } from "@/lib/product";
+import { mainNavItems, type NavItem } from "@/lib/catalog";
 
-const links = [
-  {
-    id: "home",
-    path: "/",
-    name: "Home",
-  },
-  {
-    id: "shop",
-    path: productPath(),
-    name: "Shop",
-  },
-  {
-    id: "about",
-    path: "/about",
-    name: "About Us",
-  },
-  {
-    id: "blog",
-    path: "/blog",
-    name: "Blog",
-  },
-  {
-    id: "contact",
-    path: "/contact",
-    name: "Contact Us",
-  },
-];
+// stores
+import { useCartCount } from "@/stores/cart";
+
+// Built from the categories in lib/catalog.ts, same as the desktop menu.
+const links: NavItem[] = mainNavItems();
 
 export default function NavMobile({
   onClick,
@@ -60,18 +39,14 @@ export default function NavMobile({
   onSearchOpen?: () => void;
 }) {
   const router = useRouter();
+  const cartCount = useCartCount();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
     onClick();
-    if (searchQuery.trim()) {
-      router.push(
-        `${productPath()}?q=${encodeURIComponent(searchQuery.trim())}`,
-      );
-    } else {
-      router.push(productPath());
-    }
+    const q = searchQuery.trim();
+    router.push(q ? `/shop?q=${encodeURIComponent(q)}` : "/shop");
     setSearchQuery("");
   };
 
@@ -79,7 +54,7 @@ export default function NavMobile({
     <div
       className={cn(
         "fixed inset-0 z-[110] grid h-[100dvh] min-h-[100dvh] w-full grid-cols-[11fr_1fr] bg-transparent transition-transform duration-200 ease-out md:grid-cols-[10fr_2fr] lg:hidden",
-        open ? "translate-x-0 touch-none" : "pointer-events-none -translate-x-full",
+        open ? "translate-x-0" : "pointer-events-none -translate-x-full",
       )}
       aria-hidden={!open}
       role="dialog"
@@ -131,18 +106,7 @@ export default function NavMobile({
           {/* navbar links */}
           <ul className="grid grid-cols-1">
             {links.map((link) => (
-              <li
-                key={link.id}
-                className="border-b border-[#E8ECEF] first:pt-0"
-              >
-                <Link
-                  href={link.path}
-                  onClick={onClick}
-                  className="block py-4 font-inter text-sm font-medium text-[#141718]"
-                >
-                  {link.name}
-                </Link>
-              </li>
+              <MobileNavItem key={link.id} item={link} onNavigate={onClick} depth={0} />
             ))}
           </ul>
         </div>
@@ -153,17 +117,17 @@ export default function NavMobile({
           <ul>
             <li>
               <Link
-                href="/checkout"
+                href="/cart"
                 onClick={onClick}
                 className="flex items-center justify-between border-b border-[#E8ECEF] py-4"
               >
                 <span className="font-inter text-sm font-medium text-[#141718]">
-                  Checkout
+                  Cart
                 </span>
 
                 <div className="flex items-center gap-1.5">
                   <CartIcon className="w-6" />
-                  <NotificationCount count={6} />
+                  {cartCount > 0 && <NotificationCount count={cartCount} />}
                 </div>
               </Link>
             </li>
@@ -179,7 +143,6 @@ export default function NavMobile({
 
                 <div className="flex items-center gap-1.5 text-[#9ca3af]">
                   <WishlistIcon className="w-6" />
-                  <NotificationCount count={0} />
                 </div>
               </button>
             </li>
@@ -196,5 +159,73 @@ export default function NavMobile({
 
       <div className="h-full bg-black/30" onClick={onClick}></div>
     </div>
+  );
+}
+
+/** One menu row. Rows with children expand like an accordion; the label still links to the page. */
+function MobileNavItem({
+  item,
+  onNavigate,
+  depth,
+}: {
+  item: NavItem;
+  onNavigate: () => void;
+  depth: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const indent = depth > 0 ? "pl-4" : "";
+
+  if (!item.subLinks) {
+    return (
+      <li className="border-b border-[#E8ECEF] first:pt-0">
+        <Link
+          href={item.path}
+          onClick={onNavigate}
+          className={cn(
+            "block py-4 font-inter text-sm font-medium text-[#141718]",
+            indent,
+          )}
+        >
+          {item.name}
+        </Link>
+      </li>
+    );
+  }
+
+  return (
+    <li className="border-b border-[#E8ECEF] first:pt-0">
+      <div className={cn("flex items-center justify-between", indent)}>
+        <Link
+          href={item.path}
+          onClick={onNavigate}
+          className="flex-1 py-4 font-inter text-sm font-medium text-[#141718]"
+        >
+          {item.name}
+        </Link>
+        <button
+          type="button"
+          onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
+          aria-label={`${expanded ? "Collapse" : "Expand"} ${item.name}`}
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center"
+        >
+          <DropdownIcon
+            className={cn("h-5 w-5 transition-transform", expanded && "rotate-180")}
+          />
+        </button>
+      </div>
+      {expanded && (
+        <ul className="pb-2">
+          {item.subLinks.map((subLink) => (
+            <MobileNavItem
+              key={subLink.id}
+              item={subLink}
+              onNavigate={onNavigate}
+              depth={depth + 1}
+            />
+          ))}
+        </ul>
+      )}
+    </li>
   );
 }

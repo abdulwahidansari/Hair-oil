@@ -1,7 +1,7 @@
 // package
 import Link from "next/link";
 
-import { productPath } from "@/lib/product";
+import { CATEGORIES, collectionHref } from "@/lib/catalog";
 
 // ui
 import Text from "@/ui/text";
@@ -82,13 +82,17 @@ const Footer = () => {
               </Text>
               <ul className="space-y-2">
                 <li>
-                  <Link
-                    href={productPath()}
-                    className={linkClass}
-                  >
+                  <Link href="/shop" className={linkClass}>
                     Shop
                   </Link>
                 </li>
+                {CATEGORIES.map((category) => (
+                  <li key={category.slug}>
+                    <Link href={collectionHref(category)} className={linkClass}>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
                 <li>
                   <Link href="/blog" className={linkClass}>
                     Blog
