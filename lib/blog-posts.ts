@@ -41,7 +41,7 @@ export const blogPosts: Record<string, BlogPost> = {
       
       <p>Hydration is extremely important, especially during hot weather. Water plays a vital role in maintaining body functions, improving skin health, and preventing fatigue.</p>
       
-      <p>On average, adults should aim to drink about 14–16 glasses of water daily. During Ramadan, this intake should be distributed between Iftar and Suhoor. Instead of drinking large amounts all at once at Iftar, it is better to drink water slowly throughout the evening.</p>
+      <p>Many adults aim for roughly 8 glasses (about 2 litres) of fluids a day, and a little more in hot weather. During Ramadan, spread this between Iftar and Suhoor. Instead of drinking large amounts all at once at Iftar, it is better to drink water slowly throughout the evening.</p>
       
       <p>It is also beneficial to start Suhoor with a glass of water on an empty stomach to support digestion and hydration before the fast begins.</p>
       

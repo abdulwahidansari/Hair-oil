@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const TermsOfUse = () => {
@@ -21,7 +22,7 @@ const TermsOfUse = () => {
             Terms of Use
           </h1>
           <p className="mt-2 text-sm text-gray-600">
-            Last updated: {new Date().toLocaleDateString()}
+            Last updated: 11 October 2026
           </p>
         </div>
 
@@ -167,7 +168,8 @@ const TermsOfUse = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-900">Section 10 - Personal Information</h2>
               <p>
-                Your submission of personal information through the store is governed by our Privacy Policy. To view our Privacy Policy.
+                Your submission of personal information through the store is governed by our{" "}
+                <Link href="/privacy" className="underline">Privacy Policy</Link>.
               </p>
             </section>
 

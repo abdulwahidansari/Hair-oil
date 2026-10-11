@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "contact", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "refund", priority: 0.4, changeFrequency: "yearly" as const },
     { path: "terms", priority: 0.4, changeFrequency: "yearly" as const },
+    { path: "privacy", priority: 0.4, changeFrequency: "yearly" as const },
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(

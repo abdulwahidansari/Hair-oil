@@ -128,6 +128,11 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/privacy" className={linkClass}>
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
                   <Link href="/sitemap" className={linkClass}>
                     Sitemap
                   </Link>
@@ -171,6 +176,9 @@ const Footer = () => {
                 </Link>
                 <Link href="/refund" className={linkClass}>
                   Refund Policy
+                </Link>
+                <Link href="/privacy" className={linkClass}>
+                  Privacy
                 </Link>
                 <Link href="/contact" className={linkClass}>
                   Support
