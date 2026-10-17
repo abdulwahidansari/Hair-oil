@@ -6,7 +6,9 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/site";
 import { productPath } from "@/lib/product";
 import { testimonials } from "@/lib/testimonials";
+import { FaqSection } from "@/components/seo/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
+import { homepageFaqs } from "@/lib/faq";
 import { homepageSchemaGraph } from "@/lib/schema";
 
 // layouts
@@ -206,7 +208,7 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
               {/* Right: product details */}
               <div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
                 <h3 className="font-sans text-xl font-bold leading-tight text-[#2d4a2a] md:text-2xl lg:text-3xl">
-                CoElegance Organic Herbal Hair Oil 200ml | Reduces Hair Fall, Strengthens Roots & Controls Dandruff | All Hair Types
+                CoElegance Organic Herbal Hair Oil 200ml | Helps Reduce Hair Fall & Strengthen Roots | Most Hair Types
                 </h3>
                 <Text
                   size="sm"
@@ -215,15 +217,15 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
                   CoElegance Organic Hair Oil is a 100% Herbal & Chemical Free Formula for Pakistani Hair Types. It nourishes the scalp very well, reduces hair fall from the root and helps in faster and thicker hair growth in 4-6 weeks. It is enriched with black seed oil, castor oil and olive oil, all cold pressed and free from mineral oil, parabens and silicones. Lightweight for everyday use. Suitable for coloured, dry, oily and chemically treated hair.
                 </Text>
                 <ul className="mt-5 max-w-xl space-y-2 text-sm text-[#374151] md:text-base">
-                  <li>✓ Reduces hair fall in 2–4 weeks of regular use</li>
+                  <li>✓ Formulated to help reduce hair fall with regular use</li>
                   <li>✓ Strengthens weak, brittle hair from the root</li>
-                  <li>✓ Natural anti-dandruff care — no medicated chemicals</li>
+                  <li>✓ Herbal scalp care — no medicated chemicals</li>
                   <li>✓ Seals split ends and controls frizz</li>
                   <li>✓ Halal-friendly | Cruelty-free | No mineral oil</li>
                   <li>✓ Nationwide delivery with COD — Pakistan</li>
                 </ul>
                 <Text size="sm" className="mt-4 max-w-xl text-sm leading-relaxed text-[#6b7280] md:text-base">
-                  <span className="font-semibold text-[#374151]">How to use:</span> Apply 8–10 drops to the scalp. Massage in circular motions for 5 minutes. Leave overnight or for at least 2 hours before washing. Use 2–3 times per week for best results.
+                  <span className="font-semibold text-[#374151]">How to use:</span> Apply 8–10 drops to the scalp. Massage in circular motions for 5 minutes. Leave on for at least 30 minutes, or overnight, before washing. Use 2–3 times per week for best results.
                 </Text>
                 <div className="mt-6 flex flex-wrap gap-3">
                 <Link href={productPath()}>
@@ -273,32 +275,35 @@ Trusted by thousands of customers across Karachi, Lahore, Peshawar, Quetta and I
           <div className="flex flex-col items-center rounded-2xl bg-white px-8 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:py-12">
             <MoneyIcon className="mb-4 h-12 w-12 text-[#1a1a1a] md:h-14 md:w-14" />
             <h3 className="text-lg font-bold tracking-tight text-[#1a1a1a] md:text-xl">
-              Money-back
+              Damaged-item replacement
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-              30 days guarantee
+              Report within 24 hours of delivery
             </p>
           </div>
           <div className="flex flex-col items-center rounded-2xl bg-white px-8 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:py-12">
             <LockIcon className="mb-4 h-12 w-12 text-[#1a1a1a] md:h-14 md:w-14" />
             <h3 className="text-lg font-bold tracking-tight text-[#1a1a1a] md:text-xl">
-              Secure Payments
+              Pay on Delivery
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-              COD
+              Cash on delivery across Pakistan
             </p>
           </div>
           <div className="flex flex-col items-center rounded-2xl bg-white px-8 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:py-12">
             <CallIcon className="mb-4 h-12 w-12 text-[#1a1a1a] md:h-14 md:w-14" />
             <h3 className="text-lg font-bold tracking-tight text-[#1a1a1a] md:text-xl">
-              24/7 Support
+              Customer Support
             </h3>
             <p className="mt-2 text-sm text-[#6b7280] md:text-base">
-              Phone and Email support
+              Mon–Sat 9:30am–10pm, Sun 11am–8pm
             </p>
           </div>
         </div>
       </SectionLayout>
+
+      {/* Same questions and answers as the FAQPage markup in homepageSchemaGraph(). */}
+      <FaqSection faqs={homepageFaqs} id="home-faq" />
     </>
   );
 }

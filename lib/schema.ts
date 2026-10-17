@@ -159,9 +159,12 @@ export function merchantReturnPolicySchema(): Record<string, unknown> {
   return {
     "@type": "MerchantReturnPolicy",
     applicableCountry: "PK",
+    // Mirrors /refund: replacement only for damaged or wrong items, reported within 24 hours.
+    // If the policy on that page changes, change this block to match.
     returnPolicyCategory:
       "https://schema.org/MerchantReturnFiniteReturnWindow",
-    merchantReturnDays: 30,
+    merchantReturnDays: 1,
+    itemCondition: "https://schema.org/DamagedCondition",
     returnMethod: "https://schema.org/ReturnByMail",
     returnFees: "https://schema.org/FreeReturn",
     merchantReturnLink: `${siteUrl}/refund`,

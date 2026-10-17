@@ -28,6 +28,7 @@ const sitemapData = [
     links: [
       { name: "Terms of Service", path: "/terms" },
       { name: "Refund & Exchange Policy", path: "/refund" },
+      { name: "Shipping & Delivery", path: "/shipping" },
       { name: "Privacy Policy", path: "/privacy" },
     ],
   },

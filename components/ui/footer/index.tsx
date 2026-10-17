@@ -128,6 +128,11 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/shipping" className={linkClass}>
+                    Shipping &amp; Delivery
+                  </Link>
+                </li>
+                <li>
                   <Link href="/privacy" className={linkClass}>
                     Privacy Policy
                   </Link>
@@ -176,6 +181,9 @@ const Footer = () => {
                 </Link>
                 <Link href="/refund" className={linkClass}>
                   Refund Policy
+                </Link>
+                <Link href="/shipping" className={linkClass}>
+                  Shipping
                 </Link>
                 <Link href="/privacy" className={linkClass}>
                   Privacy

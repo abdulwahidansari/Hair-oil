@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 
+import { FaqSection } from "@/components/seo/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ProductImageGallery } from "@/components/product/product-image-gallery";
 import { ProductCard } from "@/components/shop/product-card";
@@ -242,6 +243,11 @@ export default function ProductPage({ params }: ProductPageProps) {
             )}
           </div>
         </div>
+
+        {/* Shown whenever the product page also outputs FAQPage markup (live products only). */}
+        {live && product.faqs && product.faqs.length > 0 && (
+          <FaqSection faqs={product.faqs} id="product-faq" />
+        )}
 
         {related.length > 0 && (
           <section
