@@ -52,7 +52,7 @@ const ContactUs = () => {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="mb-2 text-4xl font-bold text-gray-900">DROP US A QUERY</h1>
+          <h1 className="mb-2 text-4xl font-bold text-gray-900">Drop us a query</h1>
           <p className="text-gray-600">
             We&apos;re here to quickly provide you with the info and services you need & answer any question you may have
           </p>
@@ -61,8 +61,8 @@ const ContactUs = () => {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Contact Form */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900">SEND US AN EMAIL:</h2>
-            <p className="text-gray-600">ASK US ANYTHING! WE&apos;LL GET BACK TO YOU WITHIN 24-48 HOURS.</p>
+            <h2 className="text-2xl font-semibold text-gray-900">Send us an email</h2>
+            <p className="text-gray-600">Ask us anything! We&apos;ll get back to you within 24–48 hours. For a faster reply, message us on WhatsApp.</p>
 
             {submitStatus.type && (
               <div
@@ -143,7 +143,7 @@ const ContactUs = () => {
                   isSubmitting ? "cursor-not-allowed opacity-70" : "hover:bg-[#EE1D52]/90"
                 }`}
               >
-                {isSubmitting ? "SUBMITTING..." : "SUBMIT CONTACT"}
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </form>
           </div>
@@ -151,9 +151,9 @@ const ContactUs = () => {
           {/* Customer Service Info */}
           <div className="space-y-8 bg-gray-50 p-8">
             <div>
-              <h2 className="mb-4 text-2xl font-semibold text-gray-900">CUSTOMER SERVICE</h2>
+              <h2 className="mb-4 text-2xl font-semibold text-gray-900">Customer service</h2>
               <p className="text-gray-600">
-                IF YOU HAVE AN ISSUE OR QUESTION THAT REQUIRES IMMEDIATE ASSISTANCE, YOU CAN CONTACT A CUSTOMER SERVICE REPRESENTATIVE ON THE NUMBERS GIVEN BELOW:
+                If you have an issue or question that needs immediate assistance, you can contact a customer service representative on the number below:
               </p>
             </div>
 
@@ -177,12 +177,12 @@ const ContactUs = () => {
 
               <div>
                 <p className="text-gray-600">
-                  IF WE AREN&apos;T AVAILABLE, DROP US AN EMAIL AND WE&apos;LL RESPOND WITHIN 24-48 HOURS
+                  If we aren&apos;t available, drop us an email and we&apos;ll respond within 24–48 hours
                 </p>
               </div>
 
               <div>
-                <p className="font-medium text-gray-700">OUR CUSTOMER SERVICE TEAM IS AVAILABLE</p>
+                <p className="font-medium text-gray-700">Our customer service team is available</p>
                 <p className="text-gray-600">Mon - Sat: 9:30am - 10:00pm</p>
                 <p className="text-gray-600">Sun: 11am - 8pm</p>
               </div>
@@ -195,13 +195,13 @@ const ContactUs = () => {
                 onClick={handleEmailUsClick}
                 className="w-full border border-gray-300 bg-white px-6 py-3 text-center text-sm font-semibold text-gray-700 transition-all hover:bg-gray-50"
               >
-                EMAIL US
+                Email us
               </button>
             </div>
 
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900">
-                FOR BULK ORDERS, DISTRIBUTION AND CORPORATE INQUIRIES
+                For bulk orders, distribution and corporate inquiries
               </h3>
               <div>
                 <p className="font-medium text-gray-700">Email:</p>
