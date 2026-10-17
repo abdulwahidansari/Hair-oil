@@ -172,10 +172,14 @@ export const PRODUCTS: Product[] = [
     faqs: productFaqs,
   },
 
-  // TODO(owner): the two shampoos below are placeholders. Before launching them:
+  // TODO(owner): the two shampoos below are drafts. Before launching them:
   //   - add real photos in /public/images and replace the `images` entries,
-  //   - fill in `price`, `size`, `ingredients` and confirm the wording of the
-  //     description / benefits / usage (only claims you can support),
+  //   - fill in `price`, `size` and the full `ingredients` list copied from your label,
+  //   - confirm every claim on the bottle: "sulphate-free", "paraben-free", "silicone-free",
+  //     "halal", "cruelty-free" (add them to the copy only once the label supports them),
+  //   - add any allergy / dietary note your label carries (for example nut allergy,
+  //     or "not vegan" if the formula contains keratin),
+  //   - add shelf-life wording from the label (for example months after opening),
   //   - change `status` to "active".
   {
     slug: "hair-repair-shampoo",
@@ -191,12 +195,28 @@ export const PRODUCTS: Product[] = [
       },
     ],
     description: [
-      "CoElegance Hair Repair Shampoo is a gentle cleansing shampoo made to care for dry, damaged-looking hair.",
-      "Full product details and pricing will be available at launch.",
+      "CoElegance Hair Repair Shampoo is a gentle everyday shampoo for hair that feels dry, rough or tired from heat styling, colouring, sun and dust. It cleans the scalp while leaving your hair softer, smoother and easier to comb.",
+      "It is made for dry, brittle and chemically treated hair, and works well on fine or flat hair that needs a little extra body. Follow it with your usual conditioner to keep the ends feeling smooth between trims.",
+    ],
+    benefits: [
+      "Gently cleanses the hair and scalp.",
+      "Helps hair feel softer, smoother and more manageable.",
+      "Made for dry, brittle and chemically treated hair.",
+      "Helps hair look shinier and fuller.",
+      "Helps rough ends look and feel smoother.",
+    ],
+    usage: [
+      "Wet your hair and scalp thoroughly.",
+      "Take a small amount, work it into a lather and massage the scalp gently for about two minutes.",
+      "Rinse well with water. Follow with a conditioner for best results.",
+      "Do a patch test on the inner elbow before first use, and stop using it if irritation occurs.",
+      "Avoid contact with eyes. If it gets in your eyes, rinse well with water.",
+      "Keep out of reach of children. For external use only.",
+      "Store below 30°C and out of direct sunlight.",
     ],
     metaTitle: "CoElegance Hair Repair Shampoo – Coming Soon",
     metaDescription:
-      "CoElegance Hair Repair Shampoo for dry, damaged-looking hair, made in Pakistan. Coming soon.",
+      "CoElegance Hair Repair Shampoo for dry, rough, damaged-looking hair, made in Pakistan. Coming soon.",
   },
   {
     slug: "anti-dandruff-shampoo",
@@ -214,6 +234,15 @@ export const PRODUCTS: Product[] = [
     description: [
       "CoElegance Anti-Dandruff Shampoo is a scalp-care shampoo made for flaky, itchy-feeling scalps.",
       "Full product details and pricing will be available at launch.",
+    ],
+    usage: [
+      "Wet your hair and scalp thoroughly.",
+      "Take a small amount, work it into a lather and massage the scalp gently for a couple of minutes.",
+      "Rinse well with water.",
+      "Do a patch test on the inner elbow before first use, and stop using it if irritation occurs.",
+      "Avoid contact with eyes. If it gets in your eyes, rinse well with water.",
+      "Keep out of reach of children. For external use only.",
+      "Store below 30°C and out of direct sunlight.",
     ],
     metaTitle: "CoElegance Anti-Dandruff Shampoo – Coming Soon",
     metaDescription:
