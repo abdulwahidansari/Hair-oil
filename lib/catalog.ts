@@ -177,8 +177,10 @@ export const PRODUCTS: Product[] = [
   //   - fill in `price`, `size` and the full `ingredients` list copied from your label,
   //   - confirm every claim on the bottle: "sulphate-free", "paraben-free", "silicone-free",
   //     "halal", "cruelty-free" (add them to the copy only once the label supports them),
-  //   - add any allergy / dietary note your label carries (for example nut allergy,
-  //     or "not vegan" if the formula contains keratin),
+  //   - add any allergy / dietary note your label carries (for example a nut-allergy
+  //     warning, or "not vegan" if the formula contains keratin),
+  //   - the dandruff wording is deliberately modest ("helps reduce the look of flakes");
+  //     only make stronger claims if you have testing to support them,
   //   - add shelf-life wording from the label (for example months after opening),
   //   - change `status` to "active".
   {
@@ -232,12 +234,19 @@ export const PRODUCTS: Product[] = [
       },
     ],
     description: [
-      "CoElegance Anti-Dandruff Shampoo is a scalp-care shampoo made for flaky, itchy-feeling scalps.",
-      "Full product details and pricing will be available at launch.",
+      "CoElegance Anti-Dandruff Shampoo is an everyday scalp-care shampoo for people who deal with flakes, dryness and an itchy, uncomfortable scalp. It cleanses gently and leaves hair feeling clean, soft and smooth.",
+      "It is made to help calm and moisturise the scalp, keep it feeling balanced, and wash away build-up. Because it is gentle enough for regular washing, it can be part of your normal hair care routine.",
+    ],
+    benefits: [
+      "Helps reduce the look of visible flakes.",
+      "Helps soothe an itchy, uncomfortable scalp.",
+      "Moisturises the scalp and helps keep it feeling balanced.",
+      "Helps wash away product and oil build-up.",
+      "Leaves hair feeling soft, smooth and clean.",
     ],
     usage: [
       "Wet your hair and scalp thoroughly.",
-      "Take a small amount, work it into a lather and massage the scalp gently for a couple of minutes.",
+      "Take a small amount, work it into a lather and massage the scalp gently for about two minutes.",
       "Rinse well with water.",
       "Do a patch test on the inner elbow before first use, and stop using it if irritation occurs.",
       "Avoid contact with eyes. If it gets in your eyes, rinse well with water.",
