@@ -5,9 +5,9 @@ import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata("/contact", {
-  title: "Contact CoElegance Pakistan",
+  title: { absolute: "Contact CoElegance – Orders, Delivery & Support" },
   description:
-    "Contact CoElegance for orders, delivery, or product support. Reach us for organic herbal hair oil inquiries anywhere in Pakistan.",
+    "Contact CoElegance by WhatsApp, phone or email for orders, delivery or product questions anywhere in Pakistan.",
 });
 
 export default function ContactLayout({

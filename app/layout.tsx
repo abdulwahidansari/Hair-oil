@@ -34,18 +34,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "CoElegance Organic Herbal Hair Oil | Natural Hair Growth & Scalp Care",
   description:
-    "CoElegance Organic Herbal Hair Oil blends rosemary, onion, black seed and botanical oils to reduce hair fall, strengthen roots and support healthy natural hair growth.",
-  keywords: [
-    "CoElegance",
-    "organic hair oil",
-    "herbal hair oil",
-    "natural hair growth",
-    "scalp care",
-    "reduce hair fall",
-    "rosemary oil",
-    "onion oil",
-    "black seed oil",
-  ],
+    "CoElegance Organic Herbal Hair Oil blends 20+ botanical ingredients to help reduce hair fall and strengthen roots. Cash on delivery across Pakistan.",
   openGraph: {
     siteName: "CoElegance Organic Herbal Hair Oil",
     locale: "en_PK",
@@ -69,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(inter.variable, poppins.variable)}>
+    <html lang="en-PK" className={cn(inter.variable, poppins.variable)}>
       <head>
         <meta name="facebook-domain-verification" content="vkqsp1jvv2nn9zgwp5kzyct9i9b5h3" />
         <script
@@ -102,30 +91,7 @@ gtag('config', 'G-4NRC667Z4N');
             `,
           }}
         />
-        
-        {/* Font Preloading for Performance */}
-        <link
-          rel="preload"
-          href="/fonts/poppins-v20-latin-regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/poppins-v20-latin-500.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/poppins-v20-latin-600.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        
+
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{

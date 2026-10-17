@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const TermsOfUse = () => {
@@ -21,7 +22,7 @@ const TermsOfUse = () => {
             Terms of Use
           </h1>
           <p className="mt-2 text-sm text-gray-600">
-            Last updated: {new Date().toLocaleDateString()}
+            Last updated: 11 October 2026
           </p>
         </div>
 
@@ -91,7 +92,7 @@ const TermsOfUse = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-900">Section 5 - Products or Services</h2>
               <p>
-                Certain products or services may be available exclusively online through the website. These products or services may have limited quantities and are subject to return or exchange only according to our Return Policy.
+                Certain products or services may be available exclusively online through the website. These products or services may have limited quantities and are subject to return or exchange only according to our Refund & Exchange Policy.
               </p>
               <p>
                 We have made every effort to display as accurately as possible the colors and images of our products that appear at the store. We cannot guarantee that your computer monitor&apos;s display of any color will be accurate.
@@ -114,7 +115,7 @@ const TermsOfUse = () => {
                 You agree to provide current, complete and accurate purchase and account information for all purchases made at our store. You agree to promptly update your account and other information, including your email address and credit card numbers and expiration dates, so that we can complete your transactions and contact you as needed.
               </p>
               <p>
-                For more detail, please review our Returns Policy.
+                For more detail, please review our Refund & Exchange Policy.
               </p>
             </section>
 
@@ -167,7 +168,8 @@ const TermsOfUse = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-900">Section 10 - Personal Information</h2>
               <p>
-                Your submission of personal information through the store is governed by our Privacy Policy. To view our Privacy Policy.
+                Your submission of personal information through the store is governed by our{" "}
+                <Link href="/privacy" className="underline">Privacy Policy</Link>.
               </p>
             </section>
 

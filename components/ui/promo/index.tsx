@@ -40,7 +40,7 @@ export default function PromoSection() {
                 isRootPage ? "text-[#FEFEFE]" : "text-[#343839]",
               )}
             >
-               25% OFF CoElegance Organic Hair Oil  — Azadi sell!
+              25% OFF CoElegance Organic Hair Oil — cash on delivery across Pakistan
               <Link href={productPath()}>
                 <span
                   className={cn(

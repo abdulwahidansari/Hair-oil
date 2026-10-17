@@ -1,19 +1,30 @@
+import { CURRENCY, getProduct, productHref } from "@/lib/catalog";
 import { siteUrl } from "@/lib/site";
 
 /** Former product slug — permanently redirected in next.config.js (301). */
 export const LEGACY_PRODUCT_SLUG = "coelegance-organic-hair-oil-best-seller";
 
+/** The store's flagship product (used on the homepage and in site-wide schema). */
+export const FEATURED_PRODUCT_SLUG = "organic-hair-oil-best-seller";
+
+const featured = getProduct(FEATURED_PRODUCT_SLUG);
+
+if (!featured || typeof featured.price !== "number") {
+  throw new Error(
+    `Featured product "${FEATURED_PRODUCT_SLUG}" must exist in lib/catalog.ts and have a price`,
+  );
+}
+
 export const FEATURED_PRODUCT = {
-  slug: "organic-hair-oil-best-seller",
-  name: "CoElegance Organic Herbal Hair Oil 200ml",
-  description:
-    "Buy CoElegance Organic Herbal Hair Oil 200ml in Pakistan. Herbal formula for hair fall control, stronger roots, dandruff care, and shinier hair.",
-  price: 1500,
-  compareAtPrice: 2000,
-  currency: "PKR",
-  sku: "COELEGANCE-HAIR-OIL-200ML",
-  images: ["/images/bottel.png", "/images/bottel1.png", "/images/main.png"],
-} as const;
+  slug: featured.slug,
+  name: featured.name,
+  description: featured.metaDescription,
+  price: featured.price,
+  compareAtPrice: featured.compareAtPrice ?? featured.price,
+  currency: CURRENCY,
+  sku: featured.sku,
+  images: featured.images.map((image) => image.src),
+};
 
 export type CatalogProduct = {
   id: number;
@@ -72,18 +83,20 @@ export const apiProducts = [
   },
 ];
 
-export function productPath(): string {
-  return `/products/${FEATURED_PRODUCT.slug}`;
+/** Path of a product page. Defaults to the featured product. */
+export function productPath(slug: string = FEATURED_PRODUCT_SLUG): string {
+  return productHref(slug);
 }
 
-export function productUrl(): string {
-  return `${siteUrl}${productPath()}`;
+export function productUrl(slug: string = FEATURED_PRODUCT_SLUG): string {
+  return `${siteUrl}${productPath(slug)}`;
 }
 
-export function productSchemaId(): string {
-  return `${productUrl()}#product`;
+export function productSchemaId(slug: string = FEATURED_PRODUCT_SLUG): string {
+  return `${productUrl(slug)}#product`;
 }
 
+/** Absolute URL for an image path. Spaces and other characters are encoded. */
 export function absoluteImageUrl(path: string): string {
-  return path.startsWith("http") ? path : `${siteUrl}${path}`;
+  return path.startsWith("http") ? path : `${siteUrl}${encodeURI(path)}`;
 }

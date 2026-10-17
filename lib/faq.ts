@@ -3,26 +3,32 @@ export type FaqItem = {
   answer: string;
 };
 
+/*
+ * Every answer here is also shown on the page (see components/seo/faq-section.tsx)
+ * and is used as FAQPage markup, so keep the wording true and in line with
+ * /refund, /shipping and the product page.
+ */
+
 export const homepageFaqs: FaqItem[] = [
   {
     question: "What is CoElegance Organic Herbal Hair Oil?",
     answer:
-      "CoElegance is a 100% herbal hair oil made in Pakistan with more than 20 natural ingredients including black seed oil, castor oil, and olive oil. It helps reduce hair fall, strengthen roots, and support healthier hair growth.",
+      "CoElegance is a herbal hair oil made in Pakistan with more than 20 natural ingredients including black seed oil, castor oil, and olive oil. It is formulated to help reduce hair fall, strengthen roots, and support healthier-looking hair.",
   },
   {
     question: "How long does it take to see results with CoElegance?",
     answer:
-      "Most customers notice reduced hair fall within 2–4 weeks of regular use. For visibly thicker, stronger hair, use the oil 2–3 times per week consistently for 4–6 weeks.",
+      "Results vary from person to person. With regular use, 2–3 times per week, you may start to notice a difference in hair fall and thickness after about 4–6 weeks. If you have sudden or heavy hair loss, please see a doctor.",
   },
   {
     question: "Is CoElegance suitable for all hair types?",
     answer:
-      "Yes. CoElegance is lightweight and suitable for dry, oily, frizzy, colour-treated, and chemically treated hair. It is free from mineral oil, parabens, silicones, and artificial fragrance.",
+      "CoElegance is a lightweight oil made to suit most hair types, including dry, oily, and colour-treated hair. It is free from mineral oil, parabens, silicones, and artificial fragrance. As with any new product, try a small patch first.",
   },
   {
     question: "Do you offer cash on delivery across Pakistan?",
     answer:
-      "Yes. CoElegance offers nationwide delivery with cash on delivery (COD) across Pakistan, including Karachi, Lahore, Islamabad, Peshawar, and Quetta.",
+      "Yes. We deliver nationwide with cash on delivery (COD), including Karachi, Lahore, Islamabad, Peshawar, and Quetta. Delivery usually takes 2–7 working days, and a flat delivery fee is shown at checkout.",
   },
   {
     question: "Is CoElegance halal-friendly and cruelty-free?",
@@ -35,26 +41,31 @@ export const productFaqs: FaqItem[] = [
   {
     question: "How do I use CoElegance Organic Hair Oil?",
     answer:
-      "Apply 8–10 drops to the scalp, massage in circular motions for 5 minutes, and leave on for at least 2 hours or overnight. Wash with your usual shampoo. Use 2–3 times per week for best results.",
+      "Apply 8–10 drops to the scalp and massage in circular motions for a few minutes. Leave it on for at least 30 minutes, or overnight for deeper care, then wash with your usual shampoo. Use 2–3 times per week.",
   },
   {
     question: "What are the main ingredients in CoElegance hair oil?",
     answer:
-      "CoElegance contains mustard oil, coconut oil, rosemary essential oil, castor oil, olive oil, black cumin, aloe vera, amla, fenugreek, onion, and more than 20 other natural botanical ingredients.",
+      "CoElegance contains mustard oil, coconut oil, rosemary essential oil, castor oil, olive oil, black cumin, aloe vera, amla, fenugreek, onion, and more than 20 other natural botanical ingredients. The full list is under Ingredients on this page.",
   },
   {
     question: "How many bottles should I order?",
     answer:
-      "One 200ml bottle lasts approximately 4–6 weeks with regular use. Many customers order 2–4 bottles for a full treatment cycle and to save on multi-bottle pricing.",
+      "One 200ml bottle usually lasts around 4–6 weeks with regular use, depending on your hair length and how often you apply it. Order more than one bottle if you want to use it consistently for a couple of months.",
   },
   {
-    question: "Is CoElegance safe for coloured or chemically treated hair?",
+    question: "Can I use CoElegance on coloured or chemically treated hair?",
     answer:
-      "Yes. CoElegance is gentle, non-sticky, and free from harsh chemicals, making it safe for colour-treated and chemically processed hair.",
+      "CoElegance is a lightweight, non-sticky herbal oil without mineral oil, parabens, or silicones. Many people with colour-treated hair use herbal oils, but everyone's hair is different, so try a small patch first and stop using it if you notice irritation.",
   },
   {
-    question: "What is CoElegance's return policy?",
+    question: "What if my order arrives damaged?",
     answer:
-      "CoElegance offers a 30-day money-back guarantee. If you are not satisfied with your purchase, contact our customer service team through the Contact page or email coeleganceintl@gmail.com.",
+      "Tell us within 24 hours of delivery, by email or WhatsApp, with your order number and clear photos of the item and invoice. We arrange a courier pickup and send a replacement. Please keep the product and its packaging. Full details are in our Refund & Exchange Policy.",
+  },
+  {
+    question: "How long does delivery take and how do I pay?",
+    answer:
+      "We deliver across Pakistan and you pay cash on delivery. Delivery usually takes 2–7 working days. A flat delivery fee is shown at checkout before you place your order.",
   },
 ];

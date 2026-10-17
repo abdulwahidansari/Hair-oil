@@ -20,7 +20,7 @@ export const blogPosts: Record<string, BlogPost> = {
       "Ramadan and fasting offer a valuable opportunity to slow down and reset both body and mind. Learn essential tips for maintaining physical well-being, proper hydration, and healthy nutrition during the holy month.",
     date: "March 7, 2025",
     publishedAt: "2025-03-07",
-    modifiedAt: "2025-03-07",
+    modifiedAt: "2026-10-17",
     image: "/images/blog/ramadan-wellness.jpg",
     content: `
       <h2>Ramadan and Fasting: A Time for Reset</h2>
@@ -41,7 +41,7 @@ export const blogPosts: Record<string, BlogPost> = {
       
       <p>Hydration is extremely important, especially during hot weather. Water plays a vital role in maintaining body functions, improving skin health, and preventing fatigue.</p>
       
-      <p>On average, adults should aim to drink about 14–16 glasses of water daily. During Ramadan, this intake should be distributed between Iftar and Suhoor. Instead of drinking large amounts all at once at Iftar, it is better to drink water slowly throughout the evening.</p>
+      <p>Many adults aim for roughly 8 glasses (about 2 litres) of fluids a day, and a little more in hot weather. During Ramadan, spread this between Iftar and Suhoor. Instead of drinking large amounts all at once at Iftar, it is better to drink water slowly throughout the evening.</p>
       
       <p>It is also beneficial to start Suhoor with a glass of water on an empty stomach to support digestion and hydration before the fast begins.</p>
       
@@ -65,6 +65,10 @@ export const blogPosts: Record<string, BlogPost> = {
       
       <p>Including dates at Iftar is therefore both spiritually meaningful and nutritionally beneficial.</p>
       
+      <h3>Don't Forget Your Scalp</h3>
+
+      <p>Long fasting hours, less sleep and a change in diet can leave your scalp feeling dry. Drinking enough water between Iftar and Suhoor helps, and a gentle scalp massage with a herbal oil a few times a week can be a calming part of your routine. If you are curious, you can read about our <a href="/products/organic-hair-oil-best-seller">CoElegance herbal hair oil</a>. If you notice heavy or sudden hair loss, please speak to a doctor.</p>
+
       <h2>Conclusion</h2>
       
       <p>Maintaining health during Ramadan is about balance and mindfulness. By prioritizing proper sleep, hydration, and nutrition, you can ensure that your body remains strong and healthy while you focus on the spiritual aspects of this blessed month. Remember that taking care of your physical health enables you to better fulfill your religious duties and fully benefit from the transformative experience of Ramadan.</p>

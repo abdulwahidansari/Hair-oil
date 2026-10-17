@@ -8,9 +8,12 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbPageSchemaGraph } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata("/about", {
-  title: "About CoElegance | Best Organic Hair Oil Brand in Pakistan",
+  title: { absolute: "About CoElegance – Herbal Hair Oil from Karachi" },
   description:
-    "CoElegance is a Pakistani brand making the best organic hair oil for hair growth. Our herbal formula with black seed & castor oil reduces hair fall naturally. Learn our story.",
+    "Meet CoElegance, a Karachi-based herbal hair care brand, and the team behind our 20+ ingredient hair oil. Learn what we make and why.",
+}, {
+  images: ["/images/main.png"],
+  twitterCard: "summary_large_image",
 });
 
 export default function AboutUsPage() {

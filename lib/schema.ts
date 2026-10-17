@@ -1,11 +1,21 @@
 import type { BlogPost } from "@/lib/blog-posts";
 import { toIsoDateTime } from "@/lib/blog-posts";
 import type { FaqItem } from "@/lib/faq";
-import { homepageFaqs, productFaqs } from "@/lib/faq";
+import { homepageFaqs } from "@/lib/faq";
+import {
+  CURRENCY,
+  SHIPPING_FEE,
+  categoryTrail,
+  collectionHref,
+  getPublishedProduct,
+  isPurchasable,
+  productHref,
+  type Category,
+  type Product,
+} from "@/lib/catalog";
 import {
   absoluteImageUrl,
-  FEATURED_PRODUCT,
-  productPath,
+  FEATURED_PRODUCT_SLUG,
   productSchemaId,
   productUrl,
 } from "@/lib/product";
@@ -51,7 +61,7 @@ export function organizationSchema(): Record<string, unknown> {
     alternateName: "Organic Hair Oil",
     url: siteUrl,
     logo: `${siteUrl}/icon.png`,
-    email: "coelegance@gmail.com",
+    email: "coeleganceintl@gmail.com",
     telephone: "+923071123512",
     address: {
       "@type": "PostalAddress",
@@ -135,13 +145,26 @@ export function aggregateRatingSchema(
   };
 }
 
+/** Average of the reviews actually shown on the site, rounded to one decimal. */
+function averageTestimonialRating(): number {
+  if (testimonials.length === 0) {
+    return 0;
+  }
+
+  const total = testimonials.reduce((sum, item) => sum + item.rating, 0);
+  return Math.round((total / testimonials.length) * 10) / 10;
+}
+
 export function merchantReturnPolicySchema(): Record<string, unknown> {
   return {
     "@type": "MerchantReturnPolicy",
     applicableCountry: "PK",
+    // Mirrors /refund: replacement only for damaged or wrong items, reported within 24 hours.
+    // If the policy on that page changes, change this block to match.
     returnPolicyCategory:
       "https://schema.org/MerchantReturnFiniteReturnWindow",
-    merchantReturnDays: 30,
+    merchantReturnDays: 1,
+    itemCondition: "https://schema.org/DamagedCondition",
     returnMethod: "https://schema.org/ReturnByMail",
     returnFees: "https://schema.org/FreeReturn",
     merchantReturnLink: `${siteUrl}/refund`,
@@ -153,8 +176,8 @@ export function shippingDetailsSchema(): Record<string, unknown> {
     "@type": "OfferShippingDetails",
     shippingRate: {
       "@type": "MonetaryAmount",
-      value: "0",
-      currency: FEATURED_PRODUCT.currency,
+      value: String(SHIPPING_FEE),
+      currency: CURRENCY,
     },
     shippingDestination: {
       "@type": "DefinedRegion",
@@ -178,18 +201,29 @@ export function shippingDetailsSchema(): Record<string, unknown> {
   };
 }
 
-export function productSchema(): Record<string, unknown> {
-  const url = productUrl();
-  const id = productSchemaId();
+function featuredProduct(): Product {
+  const product = getPublishedProduct(FEATURED_PRODUCT_SLUG);
+
+  if (!product) {
+    throw new Error(`Featured product "${FEATURED_PRODUCT_SLUG}" must be published.`);
+  }
+
+  return product;
+}
+
+export function productSchema(
+  product: Product = featuredProduct(),
+): Record<string, unknown> {
+  const url = productUrl(product.slug);
 
   return {
     "@type": "Product",
-    "@id": id,
+    "@id": productSchemaId(product.slug),
     url,
-    name: FEATURED_PRODUCT.name,
-    description: FEATURED_PRODUCT.description,
-    image: FEATURED_PRODUCT.images.map(absoluteImageUrl),
-    sku: FEATURED_PRODUCT.sku,
+    name: product.name,
+    description: product.metaDescription,
+    image: product.images.map((image) => absoluteImageUrl(image.src)),
+    sku: product.sku,
     brand: {
       "@type": "Brand",
       name: "CoElegance",
@@ -197,18 +231,25 @@ export function productSchema(): Record<string, unknown> {
     offers: {
       "@type": "Offer",
       url,
-      priceCurrency: FEATURED_PRODUCT.currency,
-      price: String(FEATURED_PRODUCT.price),
+      priceCurrency: CURRENCY,
+      price: String(product.price),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      priceValidUntil: "2026-12-31",
       seller: {
         "@id": ORGANIZATION_ID,
       },
       hasMerchantReturnPolicy: merchantReturnPolicySchema(),
       shippingDetails: shippingDetailsSchema(),
     },
-    aggregateRating: aggregateRatingSchema(testimonials.length),
+    // Ratings are only published for products whose reviews are shown on the site.
+    ...(product.showReviews && testimonials.length > 0
+      ? {
+          aggregateRating: aggregateRatingSchema(
+            testimonials.length,
+            averageTestimonialRating(),
+          ),
+        }
+      : {}),
   };
 }
 
@@ -257,16 +298,66 @@ export function homepageSchemaGraph(): Record<string, unknown> {
   );
 }
 
-export function productPageSchemaGraph(): Record<string, unknown> {
+export function productPageSchemaGraph(product: Product): Record<string, unknown> {
+  // "Coming soon" products have no price or offer yet, so they get no Product markup.
+  const live = isPurchasable(product);
+  const firstCategory = product.categories[0];
+  const categoryCrumbs: BreadcrumbItem[] = firstCategory
+    ? categoryTrail(firstCategory).map((category) => ({
+        name: category.name,
+        path: collectionHref(category.slug),
+      }))
+    : [];
+
   return schemaGraph(
     organizationSchema(),
     breadcrumbSchema([
       { name: "Home", path: "/" },
-      { name: FEATURED_PRODUCT.name, path: productPath() },
+      { name: "Shop", path: "/shop" },
+      ...categoryCrumbs,
+      { name: product.name, path: productHref(product.slug) },
     ]),
-    productSchema(),
-    reviewSchema(featuredTestimonial, productSchemaId()),
-    faqPageSchema(productFaqs),
+    ...(live ? [productSchema(product)] : []),
+    ...(live && product.showReviews
+      ? [reviewSchema(featuredTestimonial, productSchemaId(product.slug))]
+      : []),
+    ...(live && product.faqs && product.faqs.length > 0
+      ? [faqPageSchema(product.faqs)]
+      : []),
+  );
+}
+
+/** Schema for /shop and /collections/[slug]: breadcrumb plus a list of products. */
+export function collectionSchemaGraph(
+  title: string,
+  path: string,
+  items: Product[],
+  category?: Category,
+): Record<string, unknown> {
+  const crumbs: BreadcrumbItem[] = [{ name: "Home", path: "/" }];
+
+  if (category) {
+    crumbs.push({ name: "Shop", path: "/shop" });
+    categoryTrail(category.slug).forEach((item) => {
+      crumbs.push({ name: item.name, path: collectionHref(item.slug) });
+    });
+  } else {
+    crumbs.push({ name: title, path });
+  }
+
+  return schemaGraph(
+    organizationSchema(),
+    breadcrumbSchema(crumbs),
+    {
+      "@type": "ItemList",
+      name: title,
+      itemListElement: items.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: productUrl(product.slug),
+        name: product.name,
+      })),
+    },
   );
 }
 

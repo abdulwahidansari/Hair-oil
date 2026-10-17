@@ -20,56 +20,35 @@ import PromoSection from "@/ui/promo";
 // hooks
 import { useRootContext } from "@/hooks/rootContext";
 
+// stores
+import { useCartCount, useHydrateCart } from "@/stores/cart";
+
 // lib
 import { cn } from "@/lib/utils";
-import { productPath } from "@/lib/product";
 
 interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
   const router = useRouter();
   const isRootPage = useRootContext();
+  const cartCount = useCartCount();
   const [open, setOpen] = useState<boolean>(false);
   const [scroll, setScroll] = useState<boolean>(false);
-  const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [cartSummary, setCartSummary] = useState<{
-    productName: string;
-    packSize: number;
-    quantity: number;
-    totalBottles: number;
-    subtotalFormatted: string;
-  } | null>(null);
+
+  // Load the visitor's saved cart once, on every page.
+  useHydrateCart();
 
   const handleOnScroll = () => {
     window.scrollY >= 32 ? setScroll(true) : setScroll(false);
-  };
-
-  const loadCartFromStorage = () => {
-    if (typeof window === "undefined") return;
-    try {
-      const raw = window.localStorage.getItem("currentOrder");
-      if (!raw) {
-        setCartSummary(null);
-        return;
-      }
-      const parsed = JSON.parse(raw);
-      setCartSummary(parsed);
-    } catch {
-      setCartSummary(null);
-    }
   };
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSearchOpen(false);
     const q = searchQuery.trim();
-    if (q) {
-      router.push(`${productPath()}?q=${encodeURIComponent(q)}`);
-    } else {
-      router.push(productPath());
-    }
+    router.push(q ? `/shop?q=${encodeURIComponent(q)}` : "/shop");
     setSearchQuery("");
   };
 
@@ -102,7 +81,12 @@ const Navbar: React.FC<NavbarProps> = () => {
       >
         <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:justify-normal">
           <div className="flex items-center gap-2 lg:basis-1/4">
-            <button className="lg:hidden" onClick={() => setOpen(true)}>
+            <button
+              type="button"
+              className="lg:hidden"
+              aria-label="Open navigation menu"
+              onClick={() => setOpen(true)}
+            >
               <HamburgerMenu className="w-6 sm:w-7" />
             </button>
 
@@ -123,24 +107,21 @@ const Navbar: React.FC<NavbarProps> = () => {
               <SearchIcon className="h-6 w-6" />
             </button>
 
-            <button
-              type="button"
-              aria-label="Cart / Checkout"
-              onClick={() => {
-                loadCartFromStorage();
-                setCartOpen(true);
-              }}
+            <Link
+              href="/cart"
+              aria-label={
+                cartCount > 0 ? `Cart, ${cartCount} item${cartCount > 1 ? "s" : ""}` : "Cart"
+              }
               className="relative inline-flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
             >
               <CartIcon className="h-6 w-6" />
-              <NotificationCount
-                count={cartSummary?.totalBottles ?? 0}
-                className={cn(
-                  "absolute -right-1 -top-1 h-5 w-5 text-white",
-                  isRootPage ? "bg-black" : "bg-black",
-                )}
-              />
-            </button>
+              {cartCount > 0 && (
+                <NotificationCount
+                  count={cartCount}
+                  className="absolute -right-1 -top-1 h-5 w-5 bg-black text-white"
+                />
+              )}
+            </Link>
           </div>
 
           {/* mobile navbar  */}
@@ -150,78 +131,6 @@ const Navbar: React.FC<NavbarProps> = () => {
             onSearchOpen={() => setSearchOpen(true)}
           />
         </nav>
-
-        {cartOpen && (
-          <div
-            className="fixed inset-0 z-[120] flex items-end justify-center bg-black/30 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-16 sm:items-start sm:justify-end sm:pt-24"
-            onClick={() => setCartOpen(false)}
-          >
-            <div
-              className="w-full max-w-sm rounded-t-xl bg-white p-4 shadow-lg sm:rounded-lg sm:p-5"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-sm font-semibold text-[#111827]">
-                  Order summary
-                </p>
-                <button
-                  type="button"
-                  className="text-xs text-[#6b7280] hover:text-black"
-                  onClick={() => setCartOpen(false)}
-                >
-                  Close
-                </button>
-              </div>
-
-              {cartSummary ? (
-                <div className="space-y-3 text-sm">
-                  <p className="font-medium text-[#111827]">
-                    {cartSummary.productName}
-                  </p>
-                  <p className="text-[#4b5563]">
-                    {cartSummary.packSize} Bottle
-                    {cartSummary.packSize > 1 ? "s" : ""} ×{" "}
-                    {cartSummary.quantity} pack
-                  </p>
-                  <p className="text-xs text-[#6b7280]">
-                    Total bottles:{" "}
-                    <span className="font-semibold text-[#111827]">
-                      {cartSummary.totalBottles}
-                    </span>
-                  </p>
-                  <div className="mt-2 flex items-center justify-between border-t border-gray-200 pt-3">
-                    <span className="text-[#4b5563]">Estimated total</span>
-                    <span className="font-semibold text-[#111827]">
-                      {cartSummary.subtotalFormatted}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/checkout?packSize=${cartSummary.packSize}&quantity=${cartSummary.quantity}`}
-                    onClick={() => setCartOpen(false)}
-                    className="mt-3 inline-flex w-full justify-center"
-                  >
-                    <span className="inline-flex w-full items-center justify-center rounded-full bg-black px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-900">
-                      Go to checkout
-                    </span>
-                  </Link>
-                </div>
-              ) : (
-                <div className="space-y-3 text-sm text-[#4b5563]">
-                  <p>No order selected yet.</p>
-                  <Link
-                    href={productPath()}
-                    onClick={() => setCartOpen(false)}
-                    className="inline-flex w-full justify-center"
-                  >
-                    <span className="inline-flex w-full items-center justify-center rounded-full bg-black px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-900">
-                      View product
-                    </span>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
         {/* Search overlay */}
         {searchOpen && (
@@ -253,7 +162,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </button>
               </form>
               <p className="mt-2 text-xs text-[#6C7275]">
-                Search and go to shop. Try &quot;hair oil&quot; or &quot;organic&quot;.
+                Try &quot;shampoo&quot; or &quot;hair oil&quot;.
               </p>
             </div>
           </div>

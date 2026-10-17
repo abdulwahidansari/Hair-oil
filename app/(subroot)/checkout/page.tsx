@@ -2,7 +2,8 @@
 
 // package
 import Image from "next/image";
-import { useState, FormEvent } from "react";
+import Link from "next/link";
+import { Suspense, useMemo, useState, FormEvent } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 // layouts
@@ -12,40 +13,47 @@ import SectionLayout from "@/layouts/sectionLayout";
 import Text from "@/ui/text";
 import Heading from "@/ui/head";
 
-const BASE_PRODUCT = {
-  name: "CoElegance Organic Herbal Hair Oil",
-  variant: "1 Bottle",
-  price: 1500,
-  compareAtPrice: 2000,
-  image: "/images/bottel.png",
-};
+// lib
+import { clampQuantity, formatPKR, priceOrder } from "@/lib/catalog";
+import { FEATURED_PRODUCT_SLUG } from "@/lib/product";
 
-const formatCurrency = (value: number) =>
-  `Rs ${value.toLocaleString("en-PK")}.00`;
+// stores
+import { useCartStore } from "@/stores/cart";
 
-export default function Page() {
+function CheckoutForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const packSizeParam = Number(searchParams.get("packSize") || "1");
-  const quantityParam = Number(searchParams.get("quantity") || "1");
+  const cartItems = useCartStore((state) => state.items);
+  const cartHydrated = useCartStore((state) => state.hydrated);
+  const clearCart = useCartStore((state) => state.clear);
 
-  const packSize =
-    !Number.isFinite(packSizeParam) || packSizeParam < 1 || packSizeParam > 4
-      ? 1
-      : packSizeParam;
-  const quantity =
-    !Number.isFinite(quantityParam) || quantityParam < 1 || quantityParam > 20
-      ? 1
-      : quantityParam;
+  // Old links like /checkout?packSize=2&quantity=1 (ads, posts) still work: they
+  // order that many bottles of the hair oil without using the cart.
+  const legacyBottles = useMemo(() => {
+    const packParam = searchParams.get("packSize");
+    const quantityParam = searchParams.get("quantity");
+    if (packParam === null && quantityParam === null) {
+      return null;
+    }
+    const pack = Number(packParam || "1");
+    const quantity = Number(quantityParam || "1");
+    const safePack = !Number.isFinite(pack) || pack < 1 || pack > 4 ? 1 : pack;
+    const safeQuantity = !Number.isFinite(quantity) || quantity < 1 || quantity > 20 ? 1 : quantity;
+    return clampQuantity(safePack * safeQuantity);
+  }, [searchParams]);
 
-  const totalBottles = packSize * quantity;
+  const totals = useMemo(
+    () =>
+      priceOrder(
+        legacyBottles !== null
+          ? [{ slug: FEATURED_PRODUCT_SLUG, quantity: legacyBottles }]
+          : cartItems,
+      ),
+    [legacyBottles, cartItems],
+  );
 
-  const subtotal = BASE_PRODUCT.price * totalBottles;
-  const shipping = 200;
-  const total = subtotal + shipping;
-  const savingsPerUnit = BASE_PRODUCT.compareAtPrice - BASE_PRODUCT.price;
-  const totalSavings = savingsPerUnit * totalBottles;
+  const ready = legacyBottles !== null || cartHydrated;
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formTouched, setFormTouched] = useState(false);
@@ -90,14 +98,12 @@ export default function Page() {
       return;
     }
 
-    const productPayload = {
-      name: BASE_PRODUCT.name,
-      variant: `${packSize} Bottle${packSize > 1 ? "s" : ""}`,
-      packSize,
-      quantity,
-      totalBottles,
-    };
+    if (totals.lines.length === 0) {
+      setSubmitError("Your cart is empty. Add a product before placing an order.");
+      return;
+    }
 
+    // Only product ids and quantities are sent; the server works out the prices itself.
     const payload = {
       contactEmail: formData.get("contactEmail") || "",
       firstName: formData.get("firstName") || "",
@@ -107,14 +113,10 @@ export default function Page() {
       city: formData.get("city") || "",
       postalCode: formData.get("postalCode") || "",
       phone: formData.get("phone") || "",
-      product: productPayload,
-      pricing: {
-        unitPrice: formatCurrency(BASE_PRODUCT.price),
-        subtotal: formatCurrency(subtotal),
-        shipping: "200",
-        savings: totalSavings > 0 ? formatCurrency(totalSavings) : "Rs 0.00",
-        total: `PKR ${total.toLocaleString("en-PK")}`,
-      },
+      items: totals.lines.map((line) => ({
+        slug: line.product.slug,
+        quantity: line.quantity,
+      })),
     };
 
     setSubmitting(true);
@@ -132,6 +134,9 @@ export default function Page() {
           throw new Error(data.message || "Failed to place order.");
         }
         setSubmitSuccess(true);
+        if (legacyBottles === null) {
+          clearCart();
+        }
         // Redirect to thank you page so user sees clear confirmation.
         router.push("/thank-you");
       })
@@ -144,6 +149,37 @@ export default function Page() {
         setSubmitting(false);
       });
   };
+
+  if (!ready) {
+    return (
+      <SectionLayout className="px-4 py-16 md:px-8 lg:px-12">
+        <p className="text-center text-sm text-[#6b7280]" aria-live="polite">
+          Loading your order…
+        </p>
+      </SectionLayout>
+    );
+  }
+
+  if (totals.lines.length === 0 && !submitSuccess) {
+    return (
+      <SectionLayout className="px-4 py-16 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-md space-y-4 text-center">
+          <Heading as="h1" intent="shop-page" className="text-2xl md:text-3xl">
+            Checkout
+          </Heading>
+          <p className="text-sm text-[#4b5563]">
+            Your cart is empty, so there&apos;s nothing to check out yet.
+          </p>
+          <Link
+            href="/shop"
+            className="inline-flex rounded-full bg-black px-6 py-3 text-sm font-semibold text-white hover:bg-gray-900"
+          >
+            Continue shopping
+          </Link>
+        </div>
+      </SectionLayout>
+    );
+  }
 
   return (
     <SectionLayout className="px-4 py-10 md:px-8 lg:px-12">
@@ -304,12 +340,7 @@ export default function Page() {
             </Text>
             <div className="flex items-center justify-between rounded-lg border border-gray-400 bg-[#f5f5f5] px-4 py-3 text-sm text-[#111827]">
               <span>Standard</span>
-              {/* <div className="flex items-center gap-3 text-xs md:text-sm">
-                <span className="text-[#9ca3af] line-through">
-                  {formatCurrency(200)}
-                </span>
-                <span className="font-semibold text-[#16a34a]">FREE</span>
-              </div> */}
+              <span>{formatPKR(totals.shipping)}</span>
             </div>
           </section>
 
@@ -319,8 +350,7 @@ export default function Page() {
               Payment
             </Text>
             <Text size="sm" className="text-xs text-[#6b7280] md:text-sm">
-              All transactions are secure and encrypted. You will pay in cash at
-              delivery.
+              You will pay in cash at delivery.
             </Text>
             <div className="rounded-md border border-gray-300">
               <label className="flex items-center justify-between gap-3 px-4 py-3 text-sm">
@@ -341,33 +371,49 @@ export default function Page() {
         {/* Right column: order summary */}
         <aside className="space-y-6 rounded-lg bg-[#f9fafb] p-6 lg:p-8">
           {/* Product list */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="relative h-20 w-20 overflow-hidden rounded-md bg-white">
-                <Image
-                  src={BASE_PRODUCT.image}
-                  alt={BASE_PRODUCT.name}
-                  fill
-                  sizes="80px"
-                  className="object-contain"
-                />
-                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 text-xs font-semibold text-white">
-                  {totalBottles}
-                </span>
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-[#111827]">
-                  {BASE_PRODUCT.name}
-                </p>
-                <p className="text-xs text-[#6b7280]">
-                  {packSize} Bottle{packSize > 1 ? "s" : ""} × {quantity} pack
-                </p>
-              </div>
-              <p className="text-sm font-semibold text-[#111827]">
-                {formatCurrency(subtotal)}
-              </p>
-            </div>
-          </div>
+          <ul className="space-y-4">
+            {totals.lines.map((line) => {
+              const image = line.product.images[0];
+              return (
+                <li key={line.product.slug} className="flex items-center gap-4">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md bg-white">
+                    {image && (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="80px"
+                        className="object-contain"
+                      />
+                    )}
+                    <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 text-xs font-semibold text-white">
+                      {line.quantity}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-[#111827]">
+                      {line.product.name}
+                    </p>
+                    <p className="text-xs text-[#6b7280]">
+                      {formatPKR(line.unitPrice)} × {line.quantity}
+                    </p>
+                  </div>
+                  <p className="text-sm font-semibold text-[#111827]">
+                    {formatPKR(line.lineTotal)}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+
+          {legacyBottles === null && (
+            <Link
+              href="/cart"
+              className="block text-sm font-medium text-[#4b5563] underline hover:text-black"
+            >
+              Edit cart
+            </Link>
+          )}
 
           {/* Discount code */}
           <div className="mt-2 flex gap-3">
@@ -375,7 +421,10 @@ export default function Page() {
               placeholder="Discount code"
               className="h-10 flex-1 rounded-md border border-gray-300 px-3 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black"
             />
-            <button className="h-10 rounded-md bg-black px-4 text-sm font-medium text-white hover:bg-gray-900">
+            <button
+              type="button"
+              className="h-10 rounded-md bg-black px-4 text-sm font-medium text-white hover:bg-gray-900"
+            >
               Apply
             </button>
           </div>
@@ -385,17 +434,17 @@ export default function Page() {
             <div className="flex items-center justify-between">
               <span className="text-[#4b5563]">Subtotal</span>
               <span className="text-[#111827] font-medium">
-                {formatCurrency(subtotal)}
+                {formatPKR(totals.subtotal)}
               </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-[#4b5563]">Shipping</span>
-              <span className="text-black font-medium">200</span>
+              <span className="text-black font-medium">{formatPKR(totals.shipping)}</span>
             </div>
-            {totalSavings > 0 && (
+            {totals.savings > 0 && (
               <div className="flex items-center justify-between text-xs text-[#16a34a]">
                 <span>Total savings</span>
-                <span>{formatCurrency(totalSavings)}</span>
+                <span>{formatPKR(totals.savings)}</span>
               </div>
             )}
             <div className="mt-2 flex items-center justify-between border-t border-gray-200 pt-4">
@@ -403,7 +452,7 @@ export default function Page() {
                 Total
               </span>
               <span className="text-base font-semibold text-[#111827]">
-                PKR {total.toLocaleString("en-PK")}
+                {formatPKR(totals.total)}
               </span>
             </div>
           </div>
@@ -419,5 +468,13 @@ export default function Page() {
         </aside>
       </form>
     </SectionLayout>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutForm />
+    </Suspense>
   );
 }

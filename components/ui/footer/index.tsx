@@ -1,7 +1,7 @@
 // package
 import Link from "next/link";
 
-import { productPath } from "@/lib/product";
+import { CATEGORIES, collectionHref } from "@/lib/catalog";
 
 // ui
 import Text from "@/ui/text";
@@ -82,13 +82,17 @@ const Footer = () => {
               </Text>
               <ul className="space-y-2">
                 <li>
-                  <Link
-                    href={productPath()}
-                    className={linkClass}
-                  >
+                  <Link href="/shop" className={linkClass}>
                     Shop
                   </Link>
                 </li>
+                {CATEGORIES.map((category) => (
+                  <li key={category.slug}>
+                    <Link href={collectionHref(category)} className={linkClass}>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
                 <li>
                   <Link href="/blog" className={linkClass}>
                     Blog
@@ -121,6 +125,16 @@ const Footer = () => {
                 <li>
                   <Link href="/refund" className={linkClass}>
                     Refund & Exchange Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/shipping" className={linkClass}>
+                    Shipping &amp; Delivery
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy" className={linkClass}>
+                    Privacy Policy
                   </Link>
                 </li>
                 <li>
@@ -167,6 +181,12 @@ const Footer = () => {
                 </Link>
                 <Link href="/refund" className={linkClass}>
                   Refund Policy
+                </Link>
+                <Link href="/shipping" className={linkClass}>
+                  Shipping
+                </Link>
+                <Link href="/privacy" className={linkClass}>
+                  Privacy
                 </Link>
                 <Link href="/contact" className={linkClass}>
                   Support
